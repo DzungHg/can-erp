@@ -1,0 +1,159 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ShipVia_ID",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Ship Via ID",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 25,
+                              "name": "ShipVia_ID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnshipvium.ShipVia_ID}"
+                            },
+                            {
+                              "component": "ShipVia_ID",
+                              "name": "ShipVia_IDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "ShipVia_ID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Description",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Diễn giải",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Description",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnshipvium.Description}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${tblgnshipvium}",
+                  "events": {
+                    "submit": []
+                  },
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblgnshipvium != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "contentContainer0",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "tblgnshipvium",
+        "type": "set",
+        "value": "new ErpCan.Models.CanErpDbAt132.TblGnShipVium()",
+        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Tbl Gn Ship Vium"
+}

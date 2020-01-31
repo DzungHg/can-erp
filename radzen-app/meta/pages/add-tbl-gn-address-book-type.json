@@ -1,0 +1,149 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Address Book Type Id",
+                              "component": "AddressBookType_ID",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 10,
+                              "type": "textbox",
+                              "name": "AddressBookType_ID",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblgnaddressbooktype.AddressBookType_ID}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Address Book Type Text",
+                              "component": "AddressBookTypeText",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 150,
+                              "type": "textbox",
+                              "name": "AddressBookTypeText",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblgnaddressbooktype.AddressBookTypeText}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": []
+                  },
+                  "data": "${tblgnaddressbooktype}",
+                  "visible": "${tblgnaddressbooktype != null}",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBookType"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "tblgnaddressbooktype",
+        "type": "set",
+        "value": "new ErpCan.Models.CanErpDbAt132.TblGnAddressBookType()",
+        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBookType"
+      }
+    ]
+  },
+  "name": "Add Tbl Gn Address Book Type",
+  "layout": "Main"
+}

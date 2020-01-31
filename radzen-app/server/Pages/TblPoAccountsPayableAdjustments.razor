@@ -1,0 +1,55 @@
+﻿@page "/tbl-po-accounts-payable-adjustments"
+@layout MainLayout
+@inherits ErpCan.Pages.TblPoAccountsPayableAdjustmentsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Po Accounts Payable Adjustments">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoAccountsPayableAdjustmentsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Voucher_No" Title="Voucher No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Format="date-time" Property="Voucher_Date" FormatString="{0:MM/dd/yyyy}" Title="Voucher Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Vendor_FK" Title="Vendor FK" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Transact_ID" Title="Transact ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Record_Code" Title="Record Code" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="PO_No" Title="PO No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Invoice_No" Title="Invoice No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Format="date-time" Property="Invoice_Date" FormatString="{0:MM/dd/yyyy}" Title="Invoice Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Debit_Account" Title="Debit Account" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Credit_Account" Title="Credit Account" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Description" Title="Description" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Format="decimal" Property="Amount" Title="Amount" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Property="Authorize_By" Title="Authorize By" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment" Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblPoAccountsPayableAdjustment))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

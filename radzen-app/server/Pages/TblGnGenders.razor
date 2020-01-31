@@ -1,0 +1,35 @@
+﻿@page "/tbl-gn-genders"
+@layout MainLayout
+@inherits ErpCan.Pages.TblGnGendersComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Gn Genders">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnGendersResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" Context="erpCanModelsCanErpDbAt132TblGnGender" Property="Gender_SEQ" Title="Gender SEQ" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" Context="erpCanModelsCanErpDbAt132TblGnGender" Property="Gender_ID" Title="Gender ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" Context="erpCanModelsCanErpDbAt132TblGnGender" Property="Gender" Title="Gender" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" Context="erpCanModelsCanErpDbAt132TblGnGender" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblGnGender">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnGender))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

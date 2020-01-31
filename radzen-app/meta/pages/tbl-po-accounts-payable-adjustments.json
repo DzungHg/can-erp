@@ -1,0 +1,209 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl Po Accounts Payable Adjustments"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-po-accounts-payable-adjustment",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Voucher_No",
+                            "value": "${event.Voucher_No}"
+                          }
+                        ],
+                        "path": "edit-tbl-po-accounts-payable-adjustment",
+                        "type": "popup",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "Voucher_No",
+                      "title": "Voucher No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Voucher_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Voucher Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Vendor_FK",
+                      "title": "Vendor FK",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Transact_ID",
+                      "title": "Transact ID",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Record_Code",
+                      "title": "Record Code",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PO_No",
+                      "title": "PO No",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Invoice_No",
+                      "title": "Invoice No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Invoice_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Invoice Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Debit_Account",
+                      "title": "Debit Account",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Credit_Account",
+                      "title": "Credit Account",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Description",
+                      "title": "Description",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Amount",
+                      "title": "Amount",
+                      "type": "number"
+                    },
+                    {
+                      "property": "Authorize_By",
+                      "title": "Authorize By",
+                      "type": "integer"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblPoAccountsPayableAdjustment",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblPoAccountsPayableAdjustment",
+                                "parameters": [
+                                  {
+                                    "name": "Voucher_No",
+                                    "value": "${data.Voucher_No}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke",
+                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Tbl Po Accounts Payable Adjustments",
+  "layout": "Main"
+}

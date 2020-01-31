@@ -1,0 +1,35 @@
+﻿@page "/tbl-gn-departments"
+@layout MainLayout
+@inherits ErpCan.Pages.TblGnDepartmentsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Gn Departments">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnDepartmentsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" Context="erpCanModelsCanErpDbAt132TblGnDepartment" Property="Department_ID" Title="Department ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" Context="erpCanModelsCanErpDbAt132TblGnDepartment" Property="Deparment_Name" Title="Deparment Name" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" Context="erpCanModelsCanErpDbAt132TblGnDepartment" Property="Description" Title="Description" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" Context="erpCanModelsCanErpDbAt132TblGnDepartment" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblGnDepartment">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnDepartment))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

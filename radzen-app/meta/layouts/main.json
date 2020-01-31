@@ -1,0 +1,200 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "class": "col-md-6 d-flex align-items-center",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "sidebar0.Toggle();",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "body0.Toggle();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "sidebar-toggle0",
+                  "type": "sidebar-toggle"
+                },
+                {
+                  "name": "label0",
+                  "text": "ErpCan",
+                  "type": "label"
+                }
+              ],
+              "name": "leftCol",
+              "type": "col"
+            },
+            {
+              "class": "col-md-6 text-lg-right",
+              "components": [],
+              "name": "rightCol",
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "type": "header"
+    },
+    {
+      "components": [
+        {
+          "name": "contentContainer0",
+          "style": {
+            "height": "21px"
+          },
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "type": "body"
+    },
+    {
+      "components": [
+        {
+          "items": [
+            {
+              "icon": "",
+              "items": [
+                {
+                  "icon": "",
+                  "path": "tbl-po-purchase-orders",
+                  "text": "PO"
+                },
+                {
+                  "path": "tbl-po-vendors",
+                  "text": "Vendor"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-po-list",
+                  "text": "PO List"
+                }
+              ],
+              "text": "Thu Mua"
+            }
+          ],
+          "name": "panelmenu1",
+          "type": "panelmenu"
+        },
+        {
+          "items": [
+            {
+              "icon": "",
+              "items": [
+                {
+                  "path": "tbl-ic-inventories",
+                  "text": "Bảng Tồn Kho",
+                  "visible": true
+                }
+              ],
+              "text": "Tồn kho"
+            }
+          ],
+          "name": "panelmenu0",
+          "type": "panelmenu"
+        },
+        {
+          "items": [
+            {
+              "icon": "",
+              "items": [
+                {
+                  "path": "tbl-gn-address-books",
+                  "text": "DS Liên Hệ"
+                },
+                {
+                  "path": "tbl-gn-cities",
+                  "text": "Tỉnh Thành"
+                }
+              ],
+              "text": "Liên hệ"
+            }
+          ],
+          "name": "panelmenu3",
+          "type": "panelmenu"
+        },
+        {
+          "items": [
+            {
+              "icon": "",
+              "items": [
+                {
+                  "path": "tbl-ic-categories",
+                  "text": "DM Tồn Kho"
+                },
+                {
+                  "path": "tbl-ic-classifications",
+                  "text": "P. Loại Tồn Kho"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-ic-warehouses",
+                  "text": "DS Kho"
+                },
+                {
+                  "path": "tbl-gn-incoterms",
+                  "text": "Incoterm"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-gn-payment-terms",
+                  "text": "ĐK Thanh Toán"
+                },
+                {
+                  "path": "tbl-gn-payment-types",
+                  "text": "Kiểu Thanh Toán"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-gn-ship-via",
+                  "text": "Ship Via"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-po-order-statuses",
+                  "text": "PO Status"
+                },
+                {
+                  "path": "tbl-gn-departments",
+                  "text": "Phòng Ban"
+                }
+              ],
+              "text": "Cài đặt"
+            }
+          ],
+          "name": "panelmenu2",
+          "type": "panelmenu"
+        }
+      ],
+      "name": "sidebar0",
+      "type": "sidebar"
+    },
+    {
+      "components": [
+        {
+          "name": "footerText",
+          "text": "ErpCan, Copyright &copy; 2019",
+          "type": "label"
+        }
+      ],
+      "name": "footer0",
+      "type": "footer"
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Main"
+}

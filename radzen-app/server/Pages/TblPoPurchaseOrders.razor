@@ -1,0 +1,77 @@
+﻿@page "/tbl-po-purchase-orders"
+@layout MainLayout
+@inherits ErpCan.Pages.TblPoPurchaseOrdersComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Po Purchase Orders">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoPurchaseOrdersResult)" TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="PO_ID" Title="PO ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Format="date-time" Property="PODate" FormatString="{0:MM/dd/yyyy}" Title="PO Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="CreatedBy_FK" SortProperty="TblGnAddressBook.AddressBook_ID" FilterProperty="TblGnAddressBook.AddressBook_ID" Title="Tbl Gn Address Book" Type="string">
+              <Template Context="data">
+              @data.TblGnAddressBook?.AddressBook_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="POStatus_FK" SortProperty="TblPoOrderStatus.POStatusText" FilterProperty="TblPoOrderStatus.POStatusText" Title="Tbl Po Order Status" Type="string">
+              <Template Context="data">
+              @data.TblPoOrderStatus?.POStatusText
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="Vendor_FK" SortProperty="TblPoVendor.LastName" FilterProperty="TblPoVendor.LastName" Title="Tbl Po Vendor" Type="string">
+              <Template Context="data">
+              @data.TblPoVendor?.LastName
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="Description" Title="Description" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="Incoterm_ID" Title="Incoterm ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="ShipVia_FK" SortProperty="TblGnShipVium.ShipVia_ID" FilterProperty="TblGnShipVium.ShipVia_ID" Title="Tbl Gn Ship Vium" Type="string">
+              <Template Context="data">
+              @data.TblGnShipVium?.ShipVia_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="PaymentTerm_FK" SortProperty="TblGnPaymentTerm.PaymentTerm_ID" FilterProperty="TblGnPaymentTerm.PaymentTerm_ID" Title="Tbl Gn Payment Term" Type="string">
+              <Template Context="data">
+              @data.TblGnPaymentTerm?.PaymentTerm_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="PaymentType_FK" SortProperty="TblGnPaymentType.PaymentType_ID" FilterProperty="TblGnPaymentType.PaymentType_ID" Title="Tbl Gn Payment Type" Type="string">
+              <Template Context="data">
+              @data.TblGnPaymentType?.PaymentType_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="Buyer_FK" Title="Buyer FK" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="TaxYN" Title="Tax YN" Type="boolean">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Format="double" Property="TaxtRate" Title="Taxt Rate" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Property="Department_FK" Title="Department FK" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Format="decimal" Property="PO_Amount" Title="PO Amount" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrder">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblPoPurchaseOrder))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

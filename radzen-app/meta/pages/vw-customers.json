@@ -1,0 +1,118 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Vw Customers"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getVwCustomersResult}",
+                  "events": {
+                    "loadData": []
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "AddressBook_SEQ",
+                      "title": "Address Book SEQ"
+                    },
+                    {
+                      "property": "AddressBook_ID",
+                      "title": "Address Book ID"
+                    },
+                    {
+                      "property": "AddressBookType_FK",
+                      "title": "Address Book Type FK"
+                    },
+                    {
+                      "property": "LastName",
+                      "title": "Last Name"
+                    },
+                    {
+                      "property": "FirstName",
+                      "title": "First Name"
+                    },
+                    {
+                      "property": "Gender_FK",
+                      "title": "Gender FK"
+                    },
+                    {
+                      "property": "DOB",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "DOB"
+                    },
+                    {
+                      "property": "Origin",
+                      "title": "Origin"
+                    },
+                    {
+                      "property": "IDNumber",
+                      "title": "ID Number"
+                    },
+                    {
+                      "property": "TaxIDNumber",
+                      "title": "Tax ID Number"
+                    },
+                    {
+                      "property": "OrganizationName",
+                      "title": "Organization Name"
+                    },
+                    {
+                      "property": "JobPosition",
+                      "title": "Job Position"
+                    },
+                    {
+                      "property": "Address",
+                      "title": "Address"
+                    },
+                    {
+                      "property": "City_FK",
+                      "title": "City FK"
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.VwCustomer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CanERP_DB_AT132.getVwCustomers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getVwCustomersResult",
+            "type": "set",
+            "value": "${result.value}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.VwCustomer>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Vw Customers",
+  "layout": "Main"
+}

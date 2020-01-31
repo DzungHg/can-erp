@@ -1,0 +1,74 @@
+﻿@page "/tbl-ic-transactions"
+@layout MainLayout
+@inherits ErpCan.Pages.TblIcTransactionsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Ic Transactions">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcTransactionsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Trans_No" Title="Trans No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Trans_Code" SortProperty="TblIcTransactionType.Transaction_Name" FilterProperty="TblIcTransactionType.Transaction_Name" Title="Tbl Ic Transaction Type" Type="string">
+              <Template Context="data">
+              @data.TblIcTransactionType?.Transaction_Name
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="date-time" Property="Trans_Date" FormatString="{0:MM/dd/yyyy}" Title="Trans Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Warehouse_ID" SortProperty="TblIcWarehouse.WarehouseName" FilterProperty="TblIcWarehouse.WarehouseName" Title="Tbl Ic Warehouse" Type="string">
+              <Template Context="data">
+              @data.TblIcWarehouse?.WarehouseName
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Item_FK" SortProperty="TblGnProduct.Product_ID" FilterProperty="TblGnProduct.Product_ID" Title="Tbl Gn Product" Type="string">
+              <Template Context="data">
+              @data.TblGnProduct?.Product_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Reference_No" Title="Reference No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="date-time" Property="Reference_Date" FormatString="{0:MM/dd/yyyy}" Title="Reference Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Taxable" Title="Taxable" Type="boolean">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="Cust_Vend_WarID" Title="Cust Vend War ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="double" Property="Trans_Qty" Title="Trans Qty" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="UOM" Title="UOM" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="decimal" Property="Trans_Amount" Title="Trans Amount" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="double" Property="Qty_On_Hand_EOB" Title="Qty On Hand EOB" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="double" Property="Qty_On_Order_EOB" Title="Qty On Order EOB" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Format="double" Property="Qty_On_Allowed_EOB" Title="Qty On Allowed EOB" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="GL_Asset" Title="GL Asset" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="GL_COGS" Title="GL COGS" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Property="GL_Sales" Title="GL Sales" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcTransaction" Context="erpCanModelsCanErpDbAt132TblIcTransaction" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblIcTransaction">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblIcTransaction))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

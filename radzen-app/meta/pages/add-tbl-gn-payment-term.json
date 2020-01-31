@@ -1,0 +1,169 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PaymentTerm_ID",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "ĐK thanh toán ID",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 20,
+                              "name": "PaymentTerm_ID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnpaymentterm.PaymentTerm_ID}"
+                            },
+                            {
+                              "component": "PaymentTerm_ID",
+                              "name": "PaymentTerm_IDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "PaymentTerm_ID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "PaymentTermText",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Điều kiện",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 80,
+                              "name": "PaymentTermText",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnpaymentterm.PaymentTermText}"
+                            },
+                            {
+                              "component": "PaymentTermText",
+                              "name": "PaymentTermTextRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "PaymentTermText is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${tblgnpaymentterm}",
+                  "events": {
+                    "submit": []
+                  },
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblgnpaymentterm != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "contentContainer0",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "tblgnpaymentterm",
+        "type": "set",
+        "value": "new ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm()",
+        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Tbl Gn Payment Term"
+}

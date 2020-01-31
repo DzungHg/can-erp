@@ -1,0 +1,68 @@
+﻿@page "/tbl-so-order-details"
+@layout MainLayout
+@inherits ErpCan.Pages.TblSoOrderDetailsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl So Order Details">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblSoOrderDetailsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="SODetail_SEQ" Title="SO Detail SEQ" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="SODetailStatus_FK" SortProperty="TblSoOrderDetailStatus.SODetailStatusText" FilterProperty="TblSoOrderDetailStatus.SODetailStatusText" Title="Tbl So Order Detail Status" Type="string">
+              <Template Context="data">
+              @data.TblSoOrderDetailStatus?.SODetailStatusText
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="SO_FK" SortProperty="TblSoSalesOrder.SO_ID" FilterProperty="TblSoSalesOrder.SO_ID" Title="Tbl So Sales Order" Type="string">
+              <Template Context="data">
+              @data.TblSoSalesOrder?.SO_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="Inventory_FK" SortProperty="TblIcInventory.Warehouse_FK" FilterProperty="TblIcInventory.Warehouse_FK" Title="Tbl Ic Inventory" Type="string">
+              <Template Context="data">
+              @data.TblIcInventory?.Warehouse_FK
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="UnitPrice" Title="Unit Price" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="QtyOnHand" Title="Qty On Hand" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="QtyOrdered" Title="Qty Ordered" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="QtyOrderedNow" Title="Qty Ordered Now" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="QtyBackOrdered" Title="Qty Back Ordered" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Property="QtyPicked" Title="Qty Picked" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="SubTotal" Title="Sub Total" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="DiscountPercent" Title="Discount Percent" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="Discount" Title="Discount" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="TaxRate" Title="Tax Rate" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Format="decimal" Property="Tax" Title="Tax" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Context="erpCanModelsCanErpDbAt132TblSoOrderDetail" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblSoOrderDetail">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblSoOrderDetail))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

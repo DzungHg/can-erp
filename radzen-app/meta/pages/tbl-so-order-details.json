@@ -1,0 +1,244 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl So Order Details"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-so-order-detail",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getTblSoOrderDetailsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "SODetail_SEQ",
+                            "value": "${event.SODetail_SEQ}"
+                          }
+                        ],
+                        "path": "edit-tbl-so-order-detail",
+                        "type": "popup",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "SODetail_SEQ",
+                      "title": "SO Detail SEQ",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "SODetailStatus_FK",
+                      "sortProperty": "TblSoOrderDetailStatus.SODetailStatusText",
+                      "filterProperty": "TblSoOrderDetailStatus.SODetailStatusText",
+                      "template": "${data.TblSoOrderDetailStatus?.SODetailStatusText}",
+                      "title": "Tbl So Order Detail Status",
+                      "type": "string"
+                    },
+                    {
+                      "property": "SO_FK",
+                      "sortProperty": "TblSoSalesOrder.SO_ID",
+                      "filterProperty": "TblSoSalesOrder.SO_ID",
+                      "template": "${data.TblSoSalesOrder?.SO_ID}",
+                      "title": "Tbl So Sales Order",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Inventory_FK",
+                      "sortProperty": "TblIcInventory.Warehouse_FK",
+                      "filterProperty": "TblIcInventory.Warehouse_FK",
+                      "template": "${data.TblIcInventory?.Warehouse_FK}",
+                      "title": "Tbl Ic Inventory",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "UnitPrice",
+                      "title": "Unit Price",
+                      "type": "number"
+                    },
+                    {
+                      "property": "QtyOnHand",
+                      "title": "Qty On Hand",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "QtyOrdered",
+                      "title": "Qty Ordered",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "QtyOrderedNow",
+                      "title": "Qty Ordered Now",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "QtyBackOrdered",
+                      "title": "Qty Back Ordered",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "QtyPicked",
+                      "title": "Qty Picked",
+                      "type": "integer"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "SubTotal",
+                      "title": "Sub Total",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "DiscountPercent",
+                      "title": "Discount Percent",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Discount",
+                      "title": "Discount",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "TaxRate",
+                      "title": "Tax Rate",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Tax",
+                      "title": "Tax",
+                      "type": "number"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblSoOrderDetail",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblSoOrderDetail",
+                                "parameters": [
+                                  {
+                                    "name": "SODetail_SEQ",
+                                    "value": "${data.SODetail_SEQ}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke",
+                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CanERP_DB_AT132.getTblSoOrderDetails",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblSoOrderDetailsResult",
+            "type": "set",
+            "value": "${result.value}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetail>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tbl So Order Details",
+  "layout": "Main"
+}

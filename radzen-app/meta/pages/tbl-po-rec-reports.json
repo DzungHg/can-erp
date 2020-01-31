@@ -1,0 +1,254 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl Po Rec Reports"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-po-rec-report",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getTblPoRecReportsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "RR_No",
+                            "value": "${event.RR_No}"
+                          }
+                        ],
+                        "path": "edit-tbl-po-rec-report",
+                        "type": "popup",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "RR_No",
+                      "title": "RR No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "RRDate",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "RR Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "CreatedBy_FK",
+                      "sortProperty": "TblGnAddressBook.AddressBook_ID",
+                      "filterProperty": "TblGnAddressBook.AddressBook_ID",
+                      "template": "${data.TblGnAddressBook?.AddressBook_ID}",
+                      "title": "Tbl Gn Address Book",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PO_ID",
+                      "title": "PO ID",
+                      "type": "string"
+                    },
+                    {
+                      "property": "POStatus_FK",
+                      "title": "PO Status FK",
+                      "type": "integer"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "PODate",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "PO Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Vendor_FK",
+                      "sortProperty": "TblPoVendor.LastName",
+                      "filterProperty": "TblPoVendor.LastName",
+                      "template": "${data.TblPoVendor?.LastName}",
+                      "title": "Tbl Po Vendor",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Description",
+                      "title": "Description",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Invoice_No",
+                      "title": "Invoice No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Invoice_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Invoice Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Ship_No",
+                      "title": "Ship No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Ship_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Ship Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Receiver_FK",
+                      "title": "Receiver FK",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "BillOf_Loading_No",
+                      "title": "Bill Of Loading No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "PO_Amount",
+                      "title": "PO Amount",
+                      "type": "number"
+                    },
+                    {
+                      "property": "Inactive",
+                      "title": "Inactive",
+                      "type": "boolean"
+                    },
+                    {
+                      "property": "Warhoused",
+                      "title": "Warhoused",
+                      "type": "boolean"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblPoRecReport",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblPoRecReport",
+                                "parameters": [
+                                  {
+                                    "name": "RR_No",
+                                    "value": "${data.RR_No}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke",
+                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CanERP_DB_AT132.getTblPoRecReports",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoRecReportsResult",
+            "type": "set",
+            "value": "${result.value}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tbl Po Rec Reports",
+  "layout": "Main"
+}

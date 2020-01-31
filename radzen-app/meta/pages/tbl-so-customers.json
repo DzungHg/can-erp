@@ -1,0 +1,337 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl So Customers"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-so-customer",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getTblSoCustomersResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Customer_SEQ",
+                            "value": "${event.Customer_SEQ}"
+                          }
+                        ],
+                        "path": "edit-tbl-so-customer",
+                        "type": "popup",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "Customer_SEQ",
+                      "title": "Customer SEQ",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Customer_ID",
+                      "title": "Customer ID",
+                      "type": "string"
+                    },
+                    {
+                      "property": "LastName",
+                      "title": "Last Name",
+                      "type": "string"
+                    },
+                    {
+                      "property": "FirstName",
+                      "title": "First Name",
+                      "type": "string"
+                    },
+                    {
+                      "property": "CustomerAdressBook_FK",
+                      "sortProperty": "TblGnAddressBook.AddressBook_ID",
+                      "filterProperty": "TblGnAddressBook.AddressBook_ID",
+                      "template": "${data.TblGnAddressBook?.AddressBook_ID}",
+                      "title": "Tbl Gn Address Book",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "CreditLimit",
+                      "title": "Credit Limit",
+                      "type": "number"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "LastRevisedCreditLimitDate",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Last Revised Credit Limit Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PaymentTerm_FK",
+                      "sortProperty": "TblGnPaymentTerm.PaymentTerm_ID",
+                      "filterProperty": "TblGnPaymentTerm.PaymentTerm_ID",
+                      "template": "${data.TblGnPaymentTerm?.PaymentTerm_ID}",
+                      "title": "Tbl Gn Payment Term",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PaymentType_FK",
+                      "sortProperty": "TblGnPaymentType.PaymentType_ID",
+                      "filterProperty": "TblGnPaymentType.PaymentType_ID",
+                      "template": "${data.TblGnPaymentType?.PaymentType_ID}",
+                      "title": "Tbl Gn Payment Type",
+                      "type": "string"
+                    },
+                    {
+                      "property": "DiscountPercent",
+                      "title": "Discount Percent",
+                      "type": "integer"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Current_MTD_Sales",
+                      "title": "Current MTD Sales",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Current_MTD_Returns",
+                      "title": "Current MTD Returns",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "YTD_GrossSales",
+                      "title": "YTD Gross Sales",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "YTD_Returns",
+                      "title": "YTD Returns",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "YTD_COGS",
+                      "title": "YTD COGS",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "LYR_GrossSales",
+                      "title": "LYR Gross Sales",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "LYR_COGS",
+                      "title": "LYR COGS",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "LastAmountSales",
+                      "title": "Last Amount Sales",
+                      "type": "number"
+                    },
+                    {
+                      "property": "SalesPersonAdressBook_FK",
+                      "title": "Sales Person Adress Book FK",
+                      "type": "integer"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "CommissionPercent",
+                      "title": "Commission Percent",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "SalesPerson_MTD_Goal",
+                      "title": "Sales Person MTD Goal",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "SalesPerson_YTD_Goal",
+                      "title": "Sales Person YTD Goal",
+                      "type": "number"
+                    },
+                    {
+                      "property": "ChargeInterest",
+                      "title": "Charge Interest",
+                      "type": "boolean"
+                    },
+                    {
+                      "property": "Statement",
+                      "title": "Statement",
+                      "type": "boolean"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Aging30DayAmout",
+                      "title": "Aging 30 Day Amout",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Aging60DayAmout",
+                      "title": "Aging 60 Day Amout",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Aging90DayAmout",
+                      "title": "Aging 90 Day Amout",
+                      "type": "number"
+                    },
+                    {
+                      "property": "Notes",
+                      "title": "Notes",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "LastUpdatedDate",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Last Updated Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "LastUdpatedBy",
+                      "title": "Last Udpated By",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Inactive",
+                      "title": "Inactive",
+                      "type": "boolean"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblSoCustomer",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblSoCustomer",
+                                "parameters": [
+                                  {
+                                    "name": "Customer_SEQ",
+                                    "value": "${data.Customer_SEQ}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke",
+                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CanERP_DB_AT132.getTblSoCustomers",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblSoCustomersResult",
+            "type": "set",
+            "value": "${result.value}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoCustomer>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tbl So Customers",
+  "layout": "Main"
+}

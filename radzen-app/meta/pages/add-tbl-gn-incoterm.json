@@ -1,0 +1,195 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Incoterm_ID",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Incoterm ID",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 3,
+                              "name": "Incoterm_ID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnincoterm.Incoterm_ID}"
+                            },
+                            {
+                              "component": "Incoterm_ID",
+                              "name": "Incoterm_IDRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Incoterm_ID is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Incoterm_Name",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Tên",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 15,
+                              "name": "Incoterm_Name",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${tblgnincoterm.Incoterm_Name}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Description",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Diễn giải",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "textarea0",
+                              "style": {
+                                "width": "637px"
+                              },
+                              "type": "textarea",
+                              "value": "${tblgnincoterm.Description}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "data": "${tblgnincoterm}",
+                  "events": {
+                    "submit": []
+                  },
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnIncoterm",
+                  "name": "form0",
+                  "type": "template-form",
+                  "visible": "${tblgnincoterm != null}"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "contentContainer0",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "tblgnincoterm",
+        "type": "set",
+        "value": "new ErpCan.Models.CanErpDbAt132.TblGnIncoterm()",
+        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnIncoterm"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Tbl Gn Incoterm"
+}

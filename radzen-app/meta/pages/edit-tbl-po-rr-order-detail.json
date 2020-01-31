@@ -1,0 +1,414 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "closeLabel",
+                  "style": {
+                    "fontWeight": "bold"
+                  },
+                  "text": "Item no longer available.",
+                  "type": "label",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col0",
+              "type": "col"
+            },
+            {
+              "class": "col-md-3",
+              "components": [
+                {
+                  "buttonStyle": "secondary",
+                  "events": {
+                    "click": [
+                      {
+                        "type": "close-popup"
+                      }
+                    ]
+                  },
+                  "icon": "",
+                  "name": "closeButton",
+                  "style": {
+                    "marginBottom": "20px"
+                  },
+                  "text": "Close",
+                  "type": "button",
+                  "visible": "${!canEdit}"
+                }
+              ],
+              "name": "col1",
+              "type": "col"
+            }
+          ],
+          "name": "row0",
+          "style": {},
+          "type": "row"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Tbl Po Rec Report",
+                              "component": "RR_FK",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblPoRecReportsResult}",
+                              "textProperty": "PO_ID",
+                              "valueProperty": "RR_No",
+                              "placeholder": "Choose TblPoRecReport",
+                              "type": "dropdown",
+                              "name": "RR_FK",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblporrorderdetail.RR_FK}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "RR_FKRequiredValidator",
+                              "component": "RR_FK",
+                              "text": "RR_FK is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Tbl Ic Inventory",
+                              "component": "Inventory_FK",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getTblIcInventoriesResult}",
+                              "textProperty": "Warehouse_FK",
+                              "valueProperty": "Inventory_SEQ",
+                              "placeholder": "Choose TblIcInventory",
+                              "type": "dropdown",
+                              "name": "Inventory_FK",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${tblporrorderdetail.Inventory_FK}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Inventory_FKRequiredValidator",
+                              "component": "Inventory_FK",
+                              "text": "Inventory_FK is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Unit Price",
+                              "component": "Unit_Price",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "Unit_Price",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblporrorderdetail.Unit_Price}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Qty Ordered",
+                              "component": "QtyOrdered",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "QtyOrdered",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblporrorderdetail.QtyOrdered}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Qty Received",
+                              "component": "QtyReceived",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "QtyReceived",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblporrorderdetail.QtyReceived}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "close-popup"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoRrOrderDetail",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "CanERP_DB_AT132.updateTblPoRrOrderDetail",
+                        "parameters": [
+                          {
+                            "name": "RR_FK",
+                            "value": "${parameters.RR_FK}"
+                          },
+                          {
+                            "name": "Inventory_FK",
+                            "value": "${parameters.Inventory_FK}"
+                          },
+                          {
+                            "name": "TblPoRrOrderDetail",
+                            "value": "${tblporrorderdetail}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblporrorderdetail}"
+                          }
+                        ],
+                        "type": "invoke",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+                      }
+                    ]
+                  },
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail",
+                  "data": "${tblporrorderdetail}",
+                  "visible": "${tblporrorderdetail != null && canEdit}"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "canEdit",
+        "type": "set",
+        "value": "true",
+        "valueType": "bool"
+      },
+      {
+        "name": "CanERP_DB_AT132.getTblPoRrOrderDetailByRR_FKAndInventory_FK",
+        "parameters": [
+          {
+            "name": "RR_FK",
+            "value": "${parameters.RR_FK}"
+          },
+          {
+            "name": "Inventory_FK",
+            "value": "${parameters.Inventory_FK}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblporrorderdetail",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "CanERP_DB_AT132.getTblPoRecReports",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoRecReportsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "CanERP_DB_AT132.getTblIcInventories",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcInventoriesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Tbl Po Rr Order Detail",
+  "layout": "Main"
+}

@@ -1,0 +1,208 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl Po Ap Invoices"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-po-ap-invoice",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Vendor_ID",
+                            "value": "${event.Vendor_ID}"
+                          },
+                          {
+                            "name": "Invoice_No",
+                            "value": "${event.Invoice_No}"
+                          }
+                        ],
+                        "path": "edit-tbl-po-ap-invoice",
+                        "type": "popup",
+                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "Vendor_ID",
+                      "sortProperty": "TblPoVendor.LastName",
+                      "filterProperty": "TblPoVendor.LastName",
+                      "template": "${data.TblPoVendor?.LastName}",
+                      "title": "Tbl Po Vendor",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Invoice_No",
+                      "title": "Invoice No",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Invoice_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Invoice Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PO_ID",
+                      "title": "PO ID",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "PO_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "PO Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Description",
+                      "title": "Description",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Invoice_Amount",
+                      "title": "Invoice Amount",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Discount_Amount",
+                      "title": "Discount Amount",
+                      "type": "number"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Due_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Due Date",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Paid",
+                      "title": "Paid",
+                      "type": "boolean"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblPoApInvoice",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblPoApInvoice",
+                                "parameters": [
+                                  {
+                                    "name": "Vendor_ID",
+                                    "value": "${data.Vendor_ID}"
+                                  },
+                                  {
+                                    "name": "Invoice_No",
+                                    "value": "${data.Invoice_No}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke",
+                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Tbl Po Ap Invoices",
+  "layout": "Main"
+}

@@ -1,0 +1,51 @@
+﻿@page "/add-tbl-gn-payment-term"
+@layout MainLayout
+@inherits ErpCan.Pages.AddTblGnPaymentTermComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@(tblgnpaymentterm)" TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" Visible="@(tblgnpaymentterm != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="PaymentTerm_ID" style="width: 100%" Text="ĐK thanh toán ID">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="20" style="display: block; width: 100%" @bind-Value="@((tblgnpaymentterm.PaymentTerm_ID))" Name="PaymentTerm_ID">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="PaymentTerm_ID" style="position: absolute" Text="PaymentTerm_ID is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="PaymentTermText" style="width: 100%" Text="Điều kiện">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="80" style="display: block; width: 100%" @bind-Value="@((tblgnpaymentterm.PaymentTermText))" Name="PaymentTermText">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="PaymentTermText" style="position: absolute" Text="PaymentTermText is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

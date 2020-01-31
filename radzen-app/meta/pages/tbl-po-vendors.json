@@ -1,0 +1,246 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "contentContainer0",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Tbl Po Vendors"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "icon": "add_circle_outline",
+                  "name": "button0",
+                  "style": {
+                    "marginBottom": "10px"
+                  },
+                  "text": "Add",
+                  "type": "button",
+                  "events": {
+                    "click": [
+                      {
+                        "path": "add-tbl-po-vendor",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "grid0.Reload();",
+                            "type": "execute"
+                          },
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "grid0",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "data": "${getTblPoVendorsResult}",
+                  "events": {
+                    "loadData": [],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "Vendor_ID",
+                            "value": "${event.Vendor_ID}"
+                          }
+                        ],
+                        "path": "edit-tbl-po-vendor",
+                        "type": "popup",
+                        "then": [
+                          {
+                            "code": "await InvokeAsync(() => { StateHasChanged(); });",
+                            "type": "execute"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "Vendor_ID",
+                      "title": "Vendor ID",
+                      "type": "string"
+                    },
+                    {
+                      "property": "LastName",
+                      "title": "Last Name",
+                      "type": "string"
+                    },
+                    {
+                      "property": "FirstName",
+                      "title": "First Name",
+                      "type": "string"
+                    },
+                    {
+                      "property": "VendorAddressBook_FK",
+                      "sortProperty": "TblGnAddressBook.AddressBook_ID",
+                      "filterProperty": "TblGnAddressBook.AddressBook_ID",
+                      "template": "${data.TblGnAddressBook?.AddressBook_ID}",
+                      "title": "Tbl Gn Address Book",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Performing_Rating",
+                      "title": "Performing Rating",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "AP_Balance",
+                      "title": "AP Balance",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Outstand_Inv_Amt",
+                      "title": "Outstand Inv Amt",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Outstand_Credit",
+                      "title": "Outstand Credit",
+                      "type": "number"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Last_Purchase_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Last Purchase Date",
+                      "type": "string"
+                    },
+                    {
+                      "format": "date-time",
+                      "property": "Last_Payment_Date",
+                      "formatString": "{0:MM/dd/yyyy}",
+                      "title": "Last Payment Date",
+                      "type": "string"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "Current_MTD_Returns",
+                      "title": "Current MTD Returns",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "MTD_Purchase",
+                      "title": "MTD Purchase",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "YTD_Purchase",
+                      "title": "YTD Purchase",
+                      "type": "number"
+                    },
+                    {
+                      "format": "decimal",
+                      "property": "LYR_Purchase",
+                      "title": "LYR Purchase",
+                      "type": "number"
+                    },
+                    {
+                      "property": "Notes",
+                      "title": "Notes",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Inactive",
+                      "title": "Inactive",
+                      "type": "boolean"
+                    },
+                    {
+                      "filterable": false,
+                      "sortable": false,
+                      "bubble": false,
+                      "width": "70px",
+                      "textAlign": "center",
+                      "template": [
+                        {
+                          "buttonStyle": "danger",
+                          "icon": "close",
+                          "name": "gridDeleteButton",
+                          "text": "",
+                          "size": "sm",
+                          "type": "button",
+                          "events": {
+                            "click": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "Unable to delete TblPoVendor",
+                                    "severity": "error",
+                                    "summary": "Error",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "CanERP_DB_AT132.deleteTblPoVendor",
+                                "parameters": [
+                                  {
+                                    "name": "Vendor_ID",
+                                    "value": "${data.Vendor_ID}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "code": "grid0.Reload();",
+                                    "condition": "result != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ],
+                  "type": "grid",
+                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoVendor"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "CanERP_DB_AT132.getTblPoVendors",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoVendorsResult",
+            "type": "set",
+            "value": "${result.value}",
+            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Tbl Po Vendors",
+  "layout": "Main"
+}

@@ -1,0 +1,69 @@
+﻿@page "/tbl-po-rec-reports"
+@layout MainLayout
+@inherits ErpCan.Pages.TblPoRecReportsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Po Rec Reports">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoRecReportsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="RR_No" Title="RR No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Format="date-time" Property="RRDate" FormatString="{0:MM/dd/yyyy}" Title="RR Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="CreatedBy_FK" SortProperty="TblGnAddressBook.AddressBook_ID" FilterProperty="TblGnAddressBook.AddressBook_ID" Title="Tbl Gn Address Book" Type="string">
+              <Template Context="data">
+              @data.TblGnAddressBook?.AddressBook_ID
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="PO_ID" Title="PO ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="POStatus_FK" Title="PO Status FK" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Format="date-time" Property="PODate" FormatString="{0:MM/dd/yyyy}" Title="PO Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Vendor_FK" SortProperty="TblPoVendor.LastName" FilterProperty="TblPoVendor.LastName" Title="Tbl Po Vendor" Type="string">
+              <Template Context="data">
+              @data.TblPoVendor?.LastName
+              </Template>
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Description" Title="Description" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Invoice_No" Title="Invoice No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Format="date-time" Property="Invoice_Date" FormatString="{0:MM/dd/yyyy}" Title="Invoice Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Ship_No" Title="Ship No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Format="date-time" Property="Ship_Date" FormatString="{0:MM/dd/yyyy}" Title="Ship Date" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Receiver_FK" Title="Receiver FK" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="BillOf_Loading_No" Title="Bill Of Loading No" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Format="decimal" Property="PO_Amount" Title="PO Amount" Type="number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Inactive" Title="Inactive" Type="boolean">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Property="Warhoused" Title="Warhoused" Type="boolean">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoRecReport" Context="erpCanModelsCanErpDbAt132TblPoRecReport" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblPoRecReport">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblPoRecReport))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

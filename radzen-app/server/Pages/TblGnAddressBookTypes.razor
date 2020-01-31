@@ -1,0 +1,35 @@
+﻿@page "/tbl-gn-address-book-types"
+@layout MainLayout
+@inherits ErpCan.Pages.TblGnAddressBookTypesComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Gn Address Book Types">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnAddressBookTypesResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookType_SEQ" Title="Address Book Type SEQ" Type="integer">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookType_ID" Title="Address Book Type ID" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookTypeText" Title="Address Book Type Text" Type="string">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="erpCanModelsCanErpDbAt132TblGnAddressBookType">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnAddressBookType))">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

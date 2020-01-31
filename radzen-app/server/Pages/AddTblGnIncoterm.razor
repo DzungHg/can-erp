@@ -1,0 +1,59 @@
+﻿@page "/add-tbl-gn-incoterm"
+@layout MainLayout
+@inherits ErpCan.Pages.AddTblGnIncotermComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@(tblgnincoterm)" TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Visible="@(tblgnincoterm != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Incoterm_ID" style="width: 100%" Text="Incoterm ID">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="3" style="display: block; width: 100%" @bind-Value="@((tblgnincoterm.Incoterm_ID))" Name="Incoterm_ID">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Incoterm_ID" style="position: absolute" Text="Incoterm_ID is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Incoterm_Name" style="width: 100%" Text="Tên">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="15" style="width: 100%" @bind-Value="@((tblgnincoterm.Incoterm_Name))" Name="Incoterm_Name">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Description" style="width: 100%" Text="Diễn giải">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextArea style="width: 637px" @bind-Value="@((tblgnincoterm.Description))" Name="Textarea0">
+                </RadzenTextArea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

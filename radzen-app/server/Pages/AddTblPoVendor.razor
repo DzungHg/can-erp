@@ -1,0 +1,99 @@
+﻿@page "/add-tbl-po-vendor"
+@layout MainLayout
+@inherits ErpCan.Pages.AddTblPoVendorComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenTemplateForm Data="@(tblpovendor)" TItem="ErpCan.Models.CanErpDbAt132.TblPoVendor" Visible="@(tblpovendor != null)" Submit="@Form0Submit">
+          <ChildContent>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="VendorAddressBook_FK" style="width: 100%" Text="Nhà cung cấp">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenDropDown Data="@(getVwVendorsResult)" Placeholder="Choose TblGnAddressBook" style="width: 100%" TextProperty="AddressBook_ID" @bind-Value="@((tblpovendor.VendorAddressBook_FK))" ValueProperty="AddressBook_SEQ" Name="VendorAddressBook_FK" Change="@VendorAddressBookFkChange">
+                </RadzenDropDown>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Vendor_ID" style="width: 100%" Text="Vendor Id">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="10" ReadOnly="false" style="display: block; width: 100%" @bind-Value="@((tblpovendor.Vendor_ID))" Name="Vendor_ID">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="Vendor_ID" style="position: absolute" Text="Vendor_ID is required">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="LastName" style="width: 100%" Text="Họ và tên lót">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblpovendor.LastName))" Name="LastName">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="FirstName" style="width: 100%" Text="Tên">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblpovendor.FirstName))" Name="FirstName">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Performing_Rating" style="width: 100%" Text="Performing Rating">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblpovendor.Performing_Rating))" Name="Performing_Rating">
+                </RadzenTextBox>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="AP_Balance" style="width: 100%" Text="Ap Balance">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.AP_Balance))" Name="AP_Balance">
+                </RadzenNumeric>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Component="Notes" style="width: 100%" Text="Notes">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextArea style="width: 100%" @bind-Value="@((tblpovendor.Notes))" Name="Textarea0">
+                </RadzenTextArea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col offset-sm-3">
+                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                </RadzenButton>
+                <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button2Click">
+                </RadzenButton>
+              </div>
+            </div>
+          </ChildContent>
+        </RadzenTemplateForm>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

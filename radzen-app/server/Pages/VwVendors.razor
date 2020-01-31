@@ -1,0 +1,49 @@
+﻿@page "/vw-vendors"
+@layout MainLayout
+@inherits ErpCan.Pages.VwVendorsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using ErpCan.Models.CanErpDbAt132
+<RadzenContent Container="contentContainer0">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Vw Vendors">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getVwVendorsResult)" TItem="ErpCan.Models.CanErpDbAt132.VwVendor">
+          <Columns>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="AddressBook_SEQ" Title="Address Book SEQ">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="AddressBook_ID" Title="Address Book ID">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="AddressBookType_FK" Title="Address Book Type FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="LastName" Title="Last Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="FirstName" Title="First Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="Gender_FK" Title="Gender FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="DOB" FormatString="{0:MM/dd/yyyy}" Title="DOB">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="Origin" Title="Origin">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="IDNumber" Title="ID Number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="TaxIDNumber" Title="Tax ID Number">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="OrganizationName" Title="Organization Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="JobPosition" Title="Job Position">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="Address" Title="Address">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.VwVendor" Context="erpCanModelsCanErpDbAt132VwVendor" Property="City_FK" Title="City FK">
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>
