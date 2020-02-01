@@ -1,6 +1,6 @@
 {
   "dataSources": [
-    "CanERP_DB_AT132"
+    "CAN_ERP_AT_VDC2_2"
   ],
   "generator": "@radzen/blazor-server",
   "https": false,
