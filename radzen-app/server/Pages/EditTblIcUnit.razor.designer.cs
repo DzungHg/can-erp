@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblIcUnitComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Unit_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblIcUnit _tblicunit;
-        protected ErpCan.Models.CanErpDbAt132.TblIcUnit tblicunit
+        CanErp2.Models.DbAtVdc2.TblIcUnit _tblicunit;
+        protected CanErp2.Models.DbAtVdc2.TblIcUnit tblicunit
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblicunit != value)
+                if(!object.Equals(_tblicunit, value))
                 {
                     _tblicunit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblIcUnitByUnitSeqResult = await CanErpDbAt132.GetTblIcUnitByUnitSeq(int.Parse($"{Unit_SEQ}"));
-            tblicunit = canErpDbAt132GetTblIcUnitByUnitSeqResult;
+            var dbAtVdc2GetTblIcUnitByUnitSeqResult = await DbAtVdc2.GetTblIcUnitByUnitSeq(int.Parse($"{Unit_SEQ}"));
+            tblicunit = dbAtVdc2GetTblIcUnitByUnitSeqResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcUnit args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcUnit args)
         {
             try
             {
-                var canErpDbAt132UpdateTblIcUnitResult = await CanErpDbAt132.UpdateTblIcUnit(int.Parse($"{Unit_SEQ}"), tblicunit);
+                var dbAtVdc2UpdateTblIcUnitResult = await DbAtVdc2.UpdateTblIcUnit(int.Parse($"{Unit_SEQ}"), tblicunit);
                 DialogService.Close(tblicunit);
             }
-            catch (Exception canErpDbAt132UpdateTblIcUnitException)
+            catch (Exception dbAtVdc2UpdateTblIcUnitException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblIcUnit");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

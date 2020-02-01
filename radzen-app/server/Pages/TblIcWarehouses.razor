@@ -1,11 +1,11 @@
 ﻿@page "/tbl-ic-warehouses"
 @layout MainLayout
-@inherits ErpCan.Pages.TblIcWarehousesComponent
+@inherits CanErp2.Pages.TblIcWarehousesComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Ic Warehouses">
     </RadzenHeading>
@@ -13,19 +13,19 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcWarehousesResult)" TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcWarehousesResult)" TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Context="erpCanModelsCanErpDbAt132TblIcWarehouse" Property="Warehouse_ID" Title="Warehouse ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Context="canErp2ModelsDbAtVdc2TblIcWarehouse" Property="Warehouse_ID" Title="Warehouse ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Context="erpCanModelsCanErpDbAt132TblIcWarehouse" Property="WarehouseName" Title="Warehouse Name" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Context="canErp2ModelsDbAtVdc2TblIcWarehouse" Property="WarehouseName" Title="Warehouse Name">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Context="erpCanModelsCanErpDbAt132TblIcWarehouse" Property="WarehouseAddress" Title="Warehouse Address" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Context="canErp2ModelsDbAtVdc2TblIcWarehouse" Property="WarehouseAddress" Title="Warehouse Address">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Context="erpCanModelsCanErpDbAt132TblIcWarehouse" Property="Inactive" Title="Inactive" Type="boolean">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Context="canErp2ModelsDbAtVdc2TblIcWarehouse" Property="Inactive" Title="Inactive">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Context="erpCanModelsCanErpDbAt132TblIcWarehouse" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblIcWarehouse">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblIcWarehouse))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Context="canErp2ModelsDbAtVdc2TblIcWarehouse" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblIcWarehouse">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblIcWarehouse))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

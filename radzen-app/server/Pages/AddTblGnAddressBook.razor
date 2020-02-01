@@ -1,151 +1,151 @@
 ﻿@page "/add-tbl-gn-address-book"
 @layout MainLayout
-@inherits ErpCan.Pages.AddTblGnAddressBookComponent
+@inherits CanErp2.Pages.AddTblGnAddressBookComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblgnaddressbook)" TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBook" Visible="@(tblgnaddressbook != null)" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@(tblgnaddressbook)" Visible="@(tblgnaddressbook != null)" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="AddressBook_ID" style="width: 100%" Text="Mã Liên Hệ">
+                <RadzenLabel Text="Address Book Id" Component="AddressBook_ID" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@((tblgnaddressbook.AddressBook_ID))" Name="AddressBook_ID">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(tblgnaddressbook.AddressBook_ID)" Name="AddressBook_ID">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="AddressBook_ID" style="position: absolute" Text="AddressBook_ID is required">
+                <RadzenRequiredValidator Component="AddressBook_ID" Text="AddressBook_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="AddressBookType_FK" style="width: 100%" Text="Loại Liên Hệ">
+                <RadzenLabel Text="Tbl Gn Address Book Type" Component="AddressBookType_FK" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnAddressBookTypesResult)" Placeholder="Choose TblGnAddressBookType" style="width: 100%" TextProperty="AddressBookTypeText" @bind-Value="@((tblgnaddressbook.AddressBookType_FK))" ValueProperty="AddressBookType_SEQ" Name="AddressBookType_FK">
+                <RadzenDropDown Data="@(getTblGnAddressBookTypesResult)" TextProperty="AddressBookType_ID" ValueProperty="AddressBookType_SEQ" Placeholder="Choose TblGnAddressBookType" style="width: 100%" @bind-Value="@(tblgnaddressbook.AddressBookType_FK)" Name="AddressBookType_FK">
                 </RadzenDropDown>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="LastName" style="width: 100%" Text="Họ">
+                <RadzenLabel Text="Last Name" Component="LastName" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.LastName))" Name="LastName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.LastName)" Name="LastName">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="FirstName" style="width: 100%" Text="Tên">
+                <RadzenLabel Text="First Name" Component="FirstName" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.FirstName))" Name="FirstName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.FirstName)" Name="FirstName">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Gender_FK" style="width: 100%" Text="Giới Tính">
+                <RadzenLabel Text="Tbl Gn Gender" Component="Gender_FK" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnGendersResult)" Placeholder="Choose TblGnGender" style="width: 100%" TextProperty="Gender_ID" @bind-Value="@((tblgnaddressbook.Gender_FK))" ValueProperty="Gender_SEQ" Name="Gender_FK">
+                <RadzenDropDown Data="@(getTblGnGendersResult)" TextProperty="Gender_ID" ValueProperty="Gender_SEQ" Placeholder="Choose TblGnGender" style="width: 100%" @bind-Value="@(tblgnaddressbook.Gender_FK)" Name="Gender_FK">
                 </RadzenDropDown>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="DOB" style="width: 100%" Text="Sinh Nhật">
+                <RadzenLabel Text="Dob" Component="DOB" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@((tblgnaddressbook.DOB))" Name="DOB">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(tblgnaddressbook.DOB)" Name="DOB">
                 </RadzenDatePicker>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Origin" style="width: 100%" Text="Nguyên Quán">
+                <RadzenLabel Text="Origin" Component="Origin" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.Origin))" Name="Origin">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.Origin)" Name="Origin">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="IDNumber" style="width: 100%" Text="Số CMND / Căn Cước">
+                <RadzenLabel Text="Id Number" Component="IDNumber" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="20" style="width: 100%" @bind-Value="@((tblgnaddressbook.IDNumber))" Name="IDNumber">
+                <RadzenTextBox MaxLength="20" style="width: 100%" @bind-Value="@(tblgnaddressbook.IDNumber)" Name="IDNumber">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="TaxIDNumber" style="width: 100%" Text="MST Cá Nhân">
+                <RadzenLabel Text="Tax Id Number" Component="TaxIDNumber" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgnaddressbook.TaxIDNumber))" Name="TaxIDNumber">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgnaddressbook.TaxIDNumber)" Name="TaxIDNumber">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="OrganizationName" style="width: 100%" Text="Tên Công Ty">
+                <RadzenLabel Text="Organization Name" Component="OrganizationName" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblgnaddressbook.OrganizationName))" Name="OrganizationName">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblgnaddressbook.OrganizationName)" Name="OrganizationName">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="JobPosition" style="width: 100%" Text="Chức Vụ">
+                <RadzenLabel Text="Job Position" Component="JobPosition" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.JobPosition))" Name="JobPosition">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.JobPosition)" Name="JobPosition">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Address" style="width: 100%" Text="Địa Chỉ">
+                <RadzenLabel Text="Address" Component="Address" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblgnaddressbook.Address))" Name="Address">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblgnaddressbook.Address)" Name="Address">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="City_FK" style="width: 100%" Text="Thành Phố">
+                <RadzenLabel Text="Tbl Gn City" Component="City_FK" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnCitiesResult)" Placeholder="Choose TblGnCity" style="width: 100%" TextProperty="City_ID" @bind-Value="@((tblgnaddressbook.City_FK))" ValueProperty="City_SEQ" Name="City_FK">
+                <RadzenDropDown Data="@(getTblGnCitiesResult)" TextProperty="City_ID" ValueProperty="City_SEQ" Placeholder="Choose TblGnCity" style="width: 100%" @bind-Value="@(tblgnaddressbook.City_FK)" Name="City_FK">
                 </RadzenDropDown>
               </div>
             </div>
             <div class="row">
               <div class="col offset-sm-3">
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
                 </RadzenButton>
                 <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button2Click">
                 </RadzenButton>

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblPoAccountsPayableAdjustmentsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment> _getTblPoAccountsPayableAdjustmentsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment> getTblPoAccountsPayableAdjustmentsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment> _getTblPoAccountsPayableAdjustmentsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment> getTblPoAccountsPayableAdjustmentsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoAccountsPayableAdjustmentsResult != value)
+                if(!object.Equals(_getTblPoAccountsPayableAdjustmentsResult, value))
                 {
                     _getTblPoAccountsPayableAdjustmentsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoAccountsPayableAdjustmentsResult = await CanErpDbAt132.GetTblPoAccountsPayableAdjustments();
-            getTblPoAccountsPayableAdjustmentsResult = canErpDbAt132GetTblPoAccountsPayableAdjustmentsResult;
+            var dbAtVdc2GetTblPoAccountsPayableAdjustmentsResult = await DbAtVdc2.GetTblPoAccountsPayableAdjustments();
+            getTblPoAccountsPayableAdjustmentsResult = dbAtVdc2GetTblPoAccountsPayableAdjustmentsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblPoAccountsPayableAdjustment>("Add Tbl Po Accounts Payable Adjustment", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment args)
         {
             var result = await DialogService.OpenAsync<EditTblPoAccountsPayableAdjustment>("Edit Tbl Po Accounts Payable Adjustment", new Dictionary<string, object>() { {"Voucher_No", args.Voucher_No} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblPoAccountsPayableAdjustmentResult = await CanErpDbAt132.DeleteTblPoAccountsPayableAdjustment($"{data.Voucher_No}");
-                if (canErpDbAt132DeleteTblPoAccountsPayableAdjustmentResult != null) {
+                var dbAtVdc2DeleteTblPoAccountsPayableAdjustmentResult = await DbAtVdc2.DeleteTblPoAccountsPayableAdjustment($"{data.Voucher_No}");
+                if (dbAtVdc2DeleteTblPoAccountsPayableAdjustmentResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblPoAccountsPayableAdjustmentException)
+            catch (Exception dbAtVdc2DeleteTblPoAccountsPayableAdjustmentException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblPoAccountsPayableAdjustment");
             }

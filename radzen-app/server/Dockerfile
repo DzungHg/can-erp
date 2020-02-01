@@ -6,4 +6,4 @@ RUN dotnet publish -c Release -o out
 ENV ASPNETCORE_URLS http://*:5000
 WORKDIR /app/out
 
-ENTRYPOINT ["dotnet", "ErpCan.dll"]
+ENTRYPOINT ["dotnet", "CanErp2.dll"]

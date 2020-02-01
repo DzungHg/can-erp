@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-ship-via"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnShipViaComponent
+@inherits CanErp2.Pages.TblGnShipViaComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Ship Via">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnShipViaResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnShipViaResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" Context="erpCanModelsCanErpDbAt132TblGnShipVium" Property="ShipVia_SEQ" Title="Ship Via SEQ" Type="integer">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" Context="canErp2ModelsDbAtVdc2TblGnShipVium" Property="ShipVia_SEQ" Title="Ship Via SEQ">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" Context="erpCanModelsCanErpDbAt132TblGnShipVium" Property="ShipVia_ID" Title="Ship Via ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" Context="canErp2ModelsDbAtVdc2TblGnShipVium" Property="ShipVia_ID" Title="Ship Via ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" Context="erpCanModelsCanErpDbAt132TblGnShipVium" Property="Description" Title="Description" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" Context="canErp2ModelsDbAtVdc2TblGnShipVium" Property="Description" Title="Description">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" Context="erpCanModelsCanErpDbAt132TblGnShipVium" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnShipVium">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnShipVium))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" Context="canErp2ModelsDbAtVdc2TblGnShipVium" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnShipVium">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnShipVium))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

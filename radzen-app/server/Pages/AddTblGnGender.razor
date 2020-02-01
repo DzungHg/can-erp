@@ -1,15 +1,15 @@
 ﻿@page "/add-tbl-gn-gender"
 @layout MainLayout
-@inherits ErpCan.Pages.AddTblGnGenderComponent
+@inherits CanErp2.Pages.AddTblGnGenderComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblgngender)" Visible="@(tblgngender != null)" TItem="ErpCan.Models.CanErpDbAt132.TblGnGender" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@(tblgngender)" Visible="@(tblgngender != null)" TItem="CanErp2.Models.DbAtVdc2.TblGnGender" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -17,7 +17,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="6" style="width: 100%" @bind-Value="@((tblgngender.Gender_ID))" Name="Gender_ID">
+                <RadzenTextBox MaxLength="6" style="width: 100%" @bind-Value="@(tblgngender.Gender_ID)" Name="Gender_ID">
                 </RadzenTextBox>
               </div>
             </div>
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgngender.Gender))" Name="Gender">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgngender.Gender)" Name="Gender">
                 </RadzenTextBox>
               </div>
             </div>

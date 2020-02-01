@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblIcClassificationComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        ErpCan.Models.CanErpDbAt132.TblIcClassification _tblicclassification;
-        protected ErpCan.Models.CanErpDbAt132.TblIcClassification tblicclassification
+        CanErp2.Models.DbAtVdc2.TblIcClassification _tblicclassification;
+        protected CanErp2.Models.DbAtVdc2.TblIcClassification tblicclassification
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblicclassification != value)
+                if(!object.Equals(_tblicclassification, value))
                 {
                     _tblicclassification = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -43,28 +51,27 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            tblicclassification = new ErpCan.Models.CanErpDbAt132.TblIcClassification();
+            tblicclassification = new CanErp2.Models.DbAtVdc2.TblIcClassification();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcClassification args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcClassification args)
         {
             try
             {
-                var canErpDbAt132CreateTblIcClassificationResult = await CanErpDbAt132.CreateTblIcClassification(tblicclassification);
+                var dbAtVdc2CreateTblIcClassificationResult = await DbAtVdc2.CreateTblIcClassification(tblicclassification);
                 DialogService.Close(tblicclassification);
             }
-            catch (Exception canErpDbAt132CreateTblIcClassificationException)
+            catch (Exception dbAtVdc2CreateTblIcClassificationException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblIcClassification!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

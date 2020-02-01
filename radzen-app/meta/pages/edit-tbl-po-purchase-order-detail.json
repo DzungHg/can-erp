@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Tbl Po Purchase Order",
                               "component": "PO_FK",
+                              "name": "PO_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -92,6 +93,7 @@
                               "textProperty": "POStatus_FK",
                               "valueProperty": "PO_ID",
                               "placeholder": "Choose TblPoPurchaseOrder",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "PO_FK",
                               "style": {
@@ -127,6 +129,7 @@
                               "type": "label",
                               "text": "Tbl Ic Inventory",
                               "component": "Inventory_FK",
+                              "name": "Inventory_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -142,6 +145,7 @@
                               "textProperty": "Warehouse_FK",
                               "valueProperty": "Inventory_SEQ",
                               "placeholder": "Choose TblIcInventory",
+                              "valueType": "int",
                               "type": "dropdown",
                               "name": "Inventory_FK",
                               "style": {
@@ -177,6 +181,7 @@
                               "type": "label",
                               "text": "Unit Price",
                               "component": "Unit_Price",
+                              "name": "Unit_PriceLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -188,6 +193,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Unit_Price",
                               "style": {
@@ -213,6 +219,7 @@
                               "type": "label",
                               "text": "Qty Ordered",
                               "component": "QtyOrdered",
+                              "name": "QtyOrderedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -224,6 +231,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "QtyOrdered",
                               "style": {
@@ -249,6 +257,7 @@
                               "type": "label",
                               "text": "Qty Received",
                               "component": "QtyReceived",
+                              "name": "QtyReceivedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -260,6 +269,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "QtyReceived",
                               "style": {
@@ -285,6 +295,7 @@
                               "type": "label",
                               "text": "Tax Rate",
                               "component": "TaxRate",
+                              "name": "TaxRateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -296,6 +307,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "TaxRate",
                               "style": {
@@ -321,6 +333,7 @@
                               "type": "label",
                               "text": "Discount Percent",
                               "component": "DiscountPercent",
+                              "name": "DiscountPercentLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -332,6 +345,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "DiscountPercent",
                               "style": {
@@ -385,7 +399,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.updateTblPoPurchaseOrderDetail",
+                        "name": "DB_At_VDC2.updateTblPoPurchaseOrderDetail",
                         "parameters": [
                           {
                             "name": "PO_FK",
@@ -406,12 +420,11 @@
                             "result": "${tblpopurchaseorderdetail}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail"
+                        "type": "invoke"
                       }
                     ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail",
                   "data": "${tblpopurchaseorderdetail}",
                   "visible": "${tblpopurchaseorderdetail != null && canEdit}"
                 }
@@ -431,7 +444,7 @@
         "valueType": "bool"
       },
       {
-        "name": "CanERP_DB_AT132.getTblPoPurchaseOrderDetailByPO_FKAndInventory_FK",
+        "name": "DB_At_VDC2.getTblPoPurchaseOrderDetailByPO_FKAndInventory_FK",
         "parameters": [
           {
             "name": "PO_FK",
@@ -447,34 +460,34 @@
             "name": "tblpopurchaseorderdetail",
             "type": "set",
             "value": "${result}",
-            "valueType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail"
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail"
           }
         ],
         "error": [],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblPoPurchaseOrders",
+        "name": "DB_At_VDC2.getTblPoPurchaseOrders",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoPurchaseOrdersResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblIcInventories",
+        "name": "DB_At_VDC2.getTblIcInventories",
         "parameters": [],
         "then": [
           {
             "name": "getTblIcInventoriesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory>"
           }
         ],
         "type": "invoke"

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblPoApInvoiceComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Vendor_ID { get; set; }
@@ -39,7 +47,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -47,8 +55,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoApInvoice _tblpoapinvoice;
-        protected ErpCan.Models.CanErpDbAt132.TblPoApInvoice tblpoapinvoice
+        CanErp2.Models.DbAtVdc2.TblPoApInvoice _tblpoapinvoice;
+        protected CanErp2.Models.DbAtVdc2.TblPoApInvoice tblpoapinvoice
         {
             get
             {
@@ -56,7 +64,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpoapinvoice != value)
+                if(!object.Equals(_tblpoapinvoice, value))
                 {
                     _tblpoapinvoice = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -64,8 +72,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> _getTblPoVendorsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> getTblPoVendorsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> _getTblPoVendorsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> getTblPoVendorsResult
         {
             get
             {
@@ -73,7 +81,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoVendorsResult != value)
+                if(!object.Equals(_getTblPoVendorsResult, value))
                 {
                     _getTblPoVendorsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -83,39 +91,38 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblPoApInvoiceByVendorIdAndInvoiceNoResult = await CanErpDbAt132.GetTblPoApInvoiceByVendorIdAndInvoiceNo($"{Vendor_ID}", $"{Invoice_No}");
-            tblpoapinvoice = canErpDbAt132GetTblPoApInvoiceByVendorIdAndInvoiceNoResult;
+            var dbAtVdc2GetTblPoApInvoiceByVendorIdAndInvoiceNoResult = await DbAtVdc2.GetTblPoApInvoiceByVendorIdAndInvoiceNo($"{Vendor_ID}", $"{Invoice_No}");
+            tblpoapinvoice = dbAtVdc2GetTblPoApInvoiceByVendorIdAndInvoiceNoResult;
 
-            var canErpDbAt132GetTblPoVendorsResult = await CanErpDbAt132.GetTblPoVendors();
-            getTblPoVendorsResult = canErpDbAt132GetTblPoVendorsResult;
+            var dbAtVdc2GetTblPoVendorsResult = await DbAtVdc2.GetTblPoVendors();
+            getTblPoVendorsResult = dbAtVdc2GetTblPoVendorsResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoApInvoice args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoApInvoice args)
         {
             try
             {
-                var canErpDbAt132UpdateTblPoApInvoiceResult = await CanErpDbAt132.UpdateTblPoApInvoice($"{Vendor_ID}", $"{Invoice_No}", tblpoapinvoice);
+                var dbAtVdc2UpdateTblPoApInvoiceResult = await DbAtVdc2.UpdateTblPoApInvoice($"{Vendor_ID}", $"{Invoice_No}", tblpoapinvoice);
                 DialogService.Close(tblpoapinvoice);
             }
-            catch (Exception canErpDbAt132UpdateTblPoApInvoiceException)
+            catch (Exception dbAtVdc2UpdateTblPoApInvoiceException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblPoApInvoice");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

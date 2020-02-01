@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Warehouse Id",
                               "component": "Warehouse_ID",
+                              "name": "Warehouse_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
                               "name": "Warehouse_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Warehouse Name",
                               "component": "WarehouseName",
+                              "name": "WarehouseNameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "WarehouseName",
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "Warehouse Address",
                               "component": "WarehouseAddress",
+                              "name": "WarehouseAddressLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 100,
                               "type": "textbox",
                               "name": "WarehouseAddress",
@@ -150,6 +156,7 @@
                               "type": "label",
                               "text": "Inactive",
                               "component": "Inactive",
+                              "name": "InactiveLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -161,6 +168,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Inactive",
                               "triState": true,
@@ -202,11 +210,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblIcWarehouse!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblIcWarehouse",
+                        "parameters": [
+                          {
+                            "name": "TblIcWarehouse",
+                            "value": "${tblicwarehouse}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblicwarehouse}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblicwarehouse}",
                   "visible": "${tblicwarehouse != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcWarehouse"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcWarehouse"
                 }
               ]
             }
@@ -220,8 +253,8 @@
       {
         "name": "tblicwarehouse",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblIcWarehouse()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblIcWarehouse"
+        "value": "new CanErp2.Models.DbAtVdc2.TblIcWarehouse()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblIcWarehouse"
       }
     ]
   },

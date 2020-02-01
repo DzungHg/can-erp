@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblGnPaymentTermsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> getTblGnPaymentTermsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> getTblGnPaymentTermsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnPaymentTermsResult != value)
+                if(!object.Equals(_getTblGnPaymentTermsResult, value))
                 {
                     _getTblGnPaymentTermsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnPaymentTermsResult = await CanErpDbAt132.GetTblGnPaymentTerms();
-            getTblGnPaymentTermsResult = canErpDbAt132GetTblGnPaymentTermsResult;
+            var dbAtVdc2GetTblGnPaymentTermsResult = await DbAtVdc2.GetTblGnPaymentTerms();
+            getTblGnPaymentTermsResult = dbAtVdc2GetTblGnPaymentTermsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblGnPaymentTerm>("Add Tbl Gn Payment Term", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblGnPaymentTerm args)
         {
             var result = await DialogService.OpenAsync<EditTblGnPaymentTerm>("Edit Tbl Gn Payment Term", new Dictionary<string, object>() { {"PaymentTerm_SEQ", args.PaymentTerm_SEQ} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblGnPaymentTermResult = await CanErpDbAt132.DeleteTblGnPaymentTerm(data.PaymentTerm_SEQ);
-                if (canErpDbAt132DeleteTblGnPaymentTermResult != null) {
+                var dbAtVdc2DeleteTblGnPaymentTermResult = await DbAtVdc2.DeleteTblGnPaymentTerm(data.PaymentTerm_SEQ);
+                if (dbAtVdc2DeleteTblGnPaymentTermResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblGnPaymentTermException)
+            catch (Exception dbAtVdc2DeleteTblGnPaymentTermException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblGnPaymentTerm");
             }

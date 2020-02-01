@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblGnShipViaComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblGnShipVium> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblGnShipVium> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnShipVium> _getTblGnShipViaResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnShipVium> getTblGnShipViaResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium> _getTblGnShipViaResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium> getTblGnShipViaResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnShipViaResult != value)
+                if(!object.Equals(_getTblGnShipViaResult, value))
                 {
                     _getTblGnShipViaResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnShipViaResult = await CanErpDbAt132.GetTblGnShipVia();
-            getTblGnShipViaResult = canErpDbAt132GetTblGnShipViaResult;
+            var dbAtVdc2GetTblGnShipViaResult = await DbAtVdc2.GetTblGnShipVia();
+            getTblGnShipViaResult = dbAtVdc2GetTblGnShipViaResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblGnShipVium>("Add Tbl Gn Ship Vium", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblGnShipVium args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblGnShipVium args)
         {
             var result = await DialogService.OpenAsync<EditTblGnShipVium>("Edit Tbl Gn Ship Vium", new Dictionary<string, object>() { {"ShipVia_SEQ", args.ShipVia_SEQ} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblGnShipVium data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblGnShipViumResult = await CanErpDbAt132.DeleteTblGnShipVium(data.ShipVia_SEQ);
-                if (canErpDbAt132DeleteTblGnShipViumResult != null) {
+                var dbAtVdc2DeleteTblGnShipViumResult = await DbAtVdc2.DeleteTblGnShipVium(data.ShipVia_SEQ);
+                if (dbAtVdc2DeleteTblGnShipViumResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblGnShipViumException)
+            catch (Exception dbAtVdc2DeleteTblGnShipViumException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblGnShipVium");
             }

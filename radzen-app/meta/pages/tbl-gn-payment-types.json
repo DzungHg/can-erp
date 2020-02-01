@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnPaymentTypesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-payment-type",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentType",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,27 +75,29 @@
                   "columns": [
                     {
                       "property": "PaymentType_SEQ",
-                      "title": "Payment Type SEQ",
-                      "type": "integer"
+                      "title": "Payment Type SEQ"
                     },
                     {
                       "property": "PaymentType_ID",
-                      "title": "Payment Type ID",
-                      "type": "string"
+                      "title": "Payment Type ID"
                     },
                     {
                       "property": "PaymentTypeText",
-                      "title": "Payment Type Text",
-                      "type": "string"
+                      "title": "Payment Type Text"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -113,7 +115,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnPaymentType",
+                                "name": "DB_At_VDC2.deleteTblGnPaymentType",
                                 "parameters": [
                                   {
                                     "name": "PaymentType_SEQ",
@@ -127,8 +129,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentType"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -137,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentType"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnPaymentType"
                 }
               ]
             }
@@ -147,7 +148,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnPaymentTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnPaymentTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Payment Types",
   "layout": "Main"

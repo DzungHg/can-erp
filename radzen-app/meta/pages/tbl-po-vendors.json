@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -75,106 +75,82 @@
                   "columns": [
                     {
                       "property": "Vendor_ID",
-                      "title": "Vendor ID",
-                      "type": "string"
+                      "title": "Vendor ID"
                     },
                     {
                       "property": "LastName",
-                      "title": "Last Name",
-                      "type": "string"
+                      "title": "Last Name"
                     },
                     {
                       "property": "FirstName",
-                      "title": "First Name",
-                      "type": "string"
+                      "title": "First Name"
                     },
                     {
                       "property": "VendorAddressBook_FK",
                       "sortProperty": "TblGnAddressBook.AddressBook_ID",
                       "filterProperty": "TblGnAddressBook.AddressBook_ID",
                       "template": "${data.TblGnAddressBook?.AddressBook_ID}",
-                      "title": "Tbl Gn Address Book",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book"
                     },
                     {
                       "property": "Performing_Rating",
-                      "title": "Performing Rating",
-                      "type": "string"
+                      "title": "Performing Rating"
                     },
                     {
-                      "format": "decimal",
                       "property": "AP_Balance",
-                      "title": "AP Balance",
-                      "type": "number"
+                      "title": "AP Balance"
                     },
                     {
-                      "format": "decimal",
                       "property": "Outstand_Inv_Amt",
-                      "title": "Outstand Inv Amt",
-                      "type": "number"
+                      "title": "Outstand Inv Amt"
                     },
                     {
-                      "format": "decimal",
                       "property": "Outstand_Credit",
-                      "title": "Outstand Credit",
-                      "type": "number"
+                      "title": "Outstand Credit"
                     },
                     {
-                      "format": "date-time",
                       "property": "Last_Purchase_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Purchase Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Purchase Date"
                     },
                     {
-                      "format": "date-time",
                       "property": "Last_Payment_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Payment Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Payment Date"
                     },
                     {
-                      "format": "decimal",
-                      "property": "Current_MTD_Returns",
-                      "title": "Current MTD Returns",
-                      "type": "number"
-                    },
-                    {
-                      "format": "decimal",
                       "property": "MTD_Purchase",
-                      "title": "MTD Purchase",
-                      "type": "number"
+                      "title": "MTD Purchase"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_Purchase",
-                      "title": "YTD Purchase",
-                      "type": "number"
+                      "title": "YTD Purchase"
                     },
                     {
-                      "format": "decimal",
                       "property": "LYR_Purchase",
-                      "title": "LYR Purchase",
-                      "type": "number"
+                      "title": "LYR Purchase"
                     },
                     {
                       "property": "Notes",
-                      "title": "Notes",
-                      "type": "string"
+                      "title": "Notes"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -192,7 +168,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoVendor",
+                                "name": "DB_At_VDC2.deleteTblPoVendor",
                                 "parameters": [
                                   {
                                     "name": "Vendor_ID",
@@ -215,7 +191,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoVendor"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoVendor"
                 }
               ]
             }
@@ -227,14 +203,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblPoVendors",
+        "name": "DB_At_VDC2.getTblPoVendors",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoVendorsResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor>"
           }
         ],
         "type": "invoke"

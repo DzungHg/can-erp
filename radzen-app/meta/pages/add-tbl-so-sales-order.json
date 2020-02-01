@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "So Id",
                               "component": "SO_ID",
+                              "name": "SO_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "SO_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "So Date",
                               "component": "SODate",
+                              "name": "SODateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,7 +90,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "SODate",
                               "style": {
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "Created By Fk",
                               "component": "CreatedBy_FK",
+                              "name": "CreatedBy_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "CreatedBy_FK",
                               "style": {
@@ -149,6 +155,7 @@
                               "type": "label",
                               "text": "Tbl So Order Status",
                               "component": "SOStatus_FK",
+                              "name": "SOStatus_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -164,6 +171,7 @@
                               "textProperty": "SOStatus_ID",
                               "valueProperty": "SOStatus_SEQ",
                               "placeholder": "Choose TblSoOrderStatus",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "SOStatus_FK",
                               "style": {
@@ -189,6 +197,7 @@
                               "type": "label",
                               "text": "Tbl So Customer",
                               "component": "Customer_FK",
+                              "name": "Customer_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -204,6 +213,7 @@
                               "textProperty": "Customer_ID",
                               "valueProperty": "Customer_SEQ",
                               "placeholder": "Choose TblSoCustomer",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Customer_FK",
                               "style": {
@@ -229,6 +239,7 @@
                               "type": "label",
                               "text": "Customer Po Number",
                               "component": "CustomerPONumber",
+                              "name": "CustomerPONumberLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -240,6 +251,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "CustomerPONumber",
@@ -266,6 +278,7 @@
                               "type": "label",
                               "text": "Customer Po Date",
                               "component": "CustomerPODate",
+                              "name": "CustomerPODateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -277,7 +290,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "CustomerPODate",
                               "style": {
@@ -303,6 +317,7 @@
                               "type": "label",
                               "text": "Bill To Fk",
                               "component": "BillTo_FK",
+                              "name": "BillTo_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -314,6 +329,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "BillTo_FK",
                               "style": {
@@ -339,6 +355,7 @@
                               "type": "label",
                               "text": "Tbl Gn Ship Vium",
                               "component": "ShipTo_FK",
+                              "name": "ShipTo_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -354,6 +371,7 @@
                               "textProperty": "ShipVia_ID",
                               "valueProperty": "ShipVia_SEQ",
                               "placeholder": "Choose TblGnShipVium",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "ShipTo_FK",
                               "style": {
@@ -379,6 +397,7 @@
                               "type": "label",
                               "text": "Attention",
                               "component": "Attention",
+                              "name": "AttentionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -390,6 +409,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 100,
                               "type": "textbox",
                               "name": "Attention",
@@ -416,6 +436,7 @@
                               "type": "label",
                               "text": "Ship Via Fk",
                               "component": "ShipVia_FK",
+                              "name": "ShipVia_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -427,6 +448,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "ShipVia_FK",
                               "style": {
@@ -452,6 +474,7 @@
                               "type": "label",
                               "text": "Actual Ship Date",
                               "component": "ActualShipDate",
+                              "name": "ActualShipDateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -463,7 +486,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "ActualShipDate",
                               "style": {
@@ -489,6 +513,7 @@
                               "type": "label",
                               "text": "Expected Ship Date",
                               "component": "ExpectedShipDate",
+                              "name": "ExpectedShipDateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -500,7 +525,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "ExpectedShipDate",
                               "style": {
@@ -526,6 +552,7 @@
                               "type": "label",
                               "text": "Shipper Fk",
                               "component": "Shipper_FK",
+                              "name": "Shipper_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -537,6 +564,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "Shipper_FK",
                               "style": {
@@ -562,6 +590,7 @@
                               "type": "label",
                               "text": "Tbl Gn Payment Term",
                               "component": "PaymentTerm_FK",
+                              "name": "PaymentTerm_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -577,6 +606,7 @@
                               "textProperty": "PaymentTerm_ID",
                               "valueProperty": "PaymentTerm_SEQ",
                               "placeholder": "Choose TblGnPaymentTerm",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "PaymentTerm_FK",
                               "style": {
@@ -602,6 +632,7 @@
                               "type": "label",
                               "text": "Tbl Gn Payment Type",
                               "component": "PaymentType_FK",
+                              "name": "PaymentType_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -617,6 +648,7 @@
                               "textProperty": "PaymentType_ID",
                               "valueProperty": "PaymentType_SEQ",
                               "placeholder": "Choose TblGnPaymentType",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "PaymentType_FK",
                               "style": {
@@ -642,6 +674,7 @@
                               "type": "label",
                               "text": "Sales Persion Fk",
                               "component": "SalesPersion_FK",
+                              "name": "SalesPersion_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -653,6 +686,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "SalesPersion_FK",
                               "style": {
@@ -678,6 +712,7 @@
                               "type": "label",
                               "text": "Commission",
                               "component": "Commission",
+                              "name": "CommissionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -689,6 +724,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Commission",
                               "style": {
@@ -714,6 +750,7 @@
                               "type": "label",
                               "text": "Pick No",
                               "component": "Pick_No",
+                              "name": "Pick_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -725,6 +762,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "Pick_No",
                               "style": {
@@ -750,6 +788,7 @@
                               "type": "label",
                               "text": "Ship No",
                               "component": "Ship_No",
+                              "name": "Ship_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -761,6 +800,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "Ship_No",
                               "style": {
@@ -786,6 +826,7 @@
                               "type": "label",
                               "text": "Tax Yn",
                               "component": "TaxYN",
+                              "name": "TaxYNLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -797,6 +838,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "TaxYN",
                               "triState": true,
@@ -820,6 +862,7 @@
                               "type": "label",
                               "text": "Taxt Rate",
                               "component": "TaxtRate",
+                              "name": "TaxtRateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -831,6 +874,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "TaxtRate",
                               "style": {
@@ -856,6 +900,7 @@
                               "type": "label",
                               "text": "Subtotal",
                               "component": "Subtotal",
+                              "name": "SubtotalLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -867,6 +912,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Subtotal",
                               "style": {
@@ -892,6 +938,7 @@
                               "type": "label",
                               "text": "Taxt Amount",
                               "component": "Taxt_Amount",
+                              "name": "Taxt_AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -903,6 +950,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Taxt_Amount",
                               "style": {
@@ -928,6 +976,7 @@
                               "type": "label",
                               "text": "Discount Amt",
                               "component": "Discount_Amt",
+                              "name": "Discount_AmtLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -939,6 +988,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Discount_Amt",
                               "style": {
@@ -964,6 +1014,7 @@
                               "type": "label",
                               "text": "Freight",
                               "component": "Freight",
+                              "name": "FreightLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -975,6 +1026,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Freight",
                               "style": {
@@ -1000,6 +1052,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1011,6 +1064,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "type": "textbox",
                               "name": "Description",
                               "style": {
@@ -1036,6 +1090,7 @@
                               "type": "label",
                               "text": "Change Long",
                               "component": "ChangeLong",
+                              "name": "ChangeLongLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1047,6 +1102,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "type": "textbox",
                               "name": "ChangeLong",
                               "style": {
@@ -1072,6 +1128,7 @@
                               "type": "label",
                               "text": "Notes",
                               "component": "Notes",
+                              "name": "NotesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1083,6 +1140,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "type": "textbox",
                               "name": "Notes",
                               "style": {
@@ -1108,6 +1166,7 @@
                               "type": "label",
                               "text": "Last Updated Date",
                               "component": "LastUpdatedDate",
+                              "name": "LastUpdatedDateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1119,7 +1178,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "LastUpdatedDate",
                               "style": {
@@ -1145,6 +1205,7 @@
                               "type": "label",
                               "text": "Last Updated By Fk",
                               "component": "LastUpdatedBy_FK",
+                              "name": "LastUpdatedBy_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1156,6 +1217,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "LastUpdatedBy_FK",
                               "style": {
@@ -1181,6 +1243,7 @@
                               "type": "label",
                               "text": "Inactive",
                               "component": "Inactive",
+                              "name": "InactiveLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1192,6 +1255,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Inactive",
                               "triState": true,
@@ -1215,6 +1279,7 @@
                               "type": "label",
                               "text": "Sequence",
                               "component": "Sequence",
+                              "name": "SequenceLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1226,6 +1291,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "Sequence",
                               "style": {
@@ -1279,7 +1345,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.createTblSoSalesOrder",
+                        "name": "DB_At_VDC2.createTblSoSalesOrder",
                         "parameters": [
                           {
                             "name": "TblSoSalesOrder",
@@ -1292,14 +1358,13 @@
                             "result": "${tblsosalesorder}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder"
+                        "type": "invoke"
                       }
                     ]
                   },
                   "data": "${tblsosalesorder}",
                   "visible": "${tblsosalesorder != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoSalesOrder"
                 }
               ]
             }
@@ -1311,66 +1376,66 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderStatuses",
+        "name": "DB_At_VDC2.getTblSoOrderStatuses",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoOrderStatusesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderStatus>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderStatus>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblSoCustomers",
+        "name": "DB_At_VDC2.getTblSoCustomers",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoCustomersResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoCustomer>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoCustomer>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnShipVia",
+        "name": "DB_At_VDC2.getTblGnShipVia",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnShipViaResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnShipVium>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnPaymentTerms",
+        "name": "DB_At_VDC2.getTblGnPaymentTerms",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnPaymentTermsResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnPaymentTypes",
+        "name": "DB_At_VDC2.getTblGnPaymentTypes",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnPaymentTypesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType>"
           }
         ],
         "type": "invoke"
@@ -1378,8 +1443,8 @@
       {
         "name": "tblsosalesorder",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblSoSalesOrder()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder"
+        "value": "new CanErp2.Models.DbAtVdc2.TblSoSalesOrder()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblSoSalesOrder"
       }
     ]
   },

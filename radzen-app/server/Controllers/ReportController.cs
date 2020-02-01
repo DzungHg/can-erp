@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ErpCan.Controllers
+namespace CanErp2.Controllers
 {
     public partial class ReportController : Controller
     {

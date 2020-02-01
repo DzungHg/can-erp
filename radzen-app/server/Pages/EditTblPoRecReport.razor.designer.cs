@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblPoRecReportComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic RR_No { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoRecReport _tblporecreport;
-        protected ErpCan.Models.CanErpDbAt132.TblPoRecReport tblporecreport
+        CanErp2.Models.DbAtVdc2.TblPoRecReport _tblporecreport;
+        protected CanErp2.Models.DbAtVdc2.TblPoRecReport tblporecreport
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblporecreport != value)
+                if(!object.Equals(_tblporecreport, value))
                 {
                     _tblporecreport = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> _getTblGnAddressBooksResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> getTblGnAddressBooksResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> _getTblGnAddressBooksResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> getTblGnAddressBooksResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBooksResult != value)
+                if(!object.Equals(_getTblGnAddressBooksResult, value))
                 {
                     _getTblGnAddressBooksResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> _getTblPoVendorsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> getTblPoVendorsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> _getTblPoVendorsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> getTblPoVendorsResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoVendorsResult != value)
+                if(!object.Equals(_getTblPoVendorsResult, value))
                 {
                     _getTblPoVendorsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -97,42 +105,41 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblPoRecReportByRrNoResult = await CanErpDbAt132.GetTblPoRecReportByRrNo($"{RR_No}");
-            tblporecreport = canErpDbAt132GetTblPoRecReportByRrNoResult;
+            var dbAtVdc2GetTblPoRecReportByRrNoResult = await DbAtVdc2.GetTblPoRecReportByRrNo($"{RR_No}");
+            tblporecreport = dbAtVdc2GetTblPoRecReportByRrNoResult;
 
-            var canErpDbAt132GetTblGnAddressBooksResult = await CanErpDbAt132.GetTblGnAddressBooks();
-            getTblGnAddressBooksResult = canErpDbAt132GetTblGnAddressBooksResult;
+            var dbAtVdc2GetTblGnAddressBooksResult = await DbAtVdc2.GetTblGnAddressBooks();
+            getTblGnAddressBooksResult = dbAtVdc2GetTblGnAddressBooksResult;
 
-            var canErpDbAt132GetTblPoVendorsResult = await CanErpDbAt132.GetTblPoVendors();
-            getTblPoVendorsResult = canErpDbAt132GetTblPoVendorsResult;
+            var dbAtVdc2GetTblPoVendorsResult = await DbAtVdc2.GetTblPoVendors();
+            getTblPoVendorsResult = dbAtVdc2GetTblPoVendorsResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoRecReport args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoRecReport args)
         {
             try
             {
-                var canErpDbAt132UpdateTblPoRecReportResult = await CanErpDbAt132.UpdateTblPoRecReport($"{RR_No}", tblporecreport);
+                var dbAtVdc2UpdateTblPoRecReportResult = await DbAtVdc2.UpdateTblPoRecReport($"{RR_No}", tblporecreport);
                 DialogService.Close(tblporecreport);
             }
-            catch (Exception canErpDbAt132UpdateTblPoRecReportException)
+            catch (Exception dbAtVdc2UpdateTblPoRecReportException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblPoRecReport");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Gender Id",
                               "component": "Gender_ID",
+                              "name": "Gender_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 6,
                               "type": "textbox",
                               "name": "Gender_ID",
@@ -114,6 +116,7 @@
                               "type": "label",
                               "text": "Gender",
                               "component": "Gender",
+                              "name": "GenderLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -125,6 +128,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Gender",
@@ -169,9 +173,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblGnGender",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblGnGender",
+                        "parameters": [
+                          {
+                            "name": "Gender_SEQ",
+                            "value": "${parameters.Gender_SEQ}"
+                          },
+                          {
+                            "name": "TblGnGender",
+                            "value": "${tblgngender}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgngender}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnGender",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnGender",
+                  "data": "${tblgngender}",
                   "visible": "${tblgngender != null && canEdit}"
                 }
               ]
@@ -188,6 +222,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnGenderByGender_SEQ",
+        "parameters": [
+          {
+            "name": "Gender_SEQ",
+            "value": "${parameters.Gender_SEQ}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblgngender",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblGnGender"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

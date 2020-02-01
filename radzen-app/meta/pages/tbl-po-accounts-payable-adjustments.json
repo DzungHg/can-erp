@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoAccountsPayableAdjustmentsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-po-accounts-payable-adjustment",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,82 +75,71 @@
                   "columns": [
                     {
                       "property": "Voucher_No",
-                      "title": "Voucher No",
-                      "type": "string"
+                      "title": "Voucher No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Voucher_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Voucher Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Voucher Date"
                     },
                     {
                       "property": "Vendor_FK",
-                      "title": "Vendor FK",
-                      "type": "string"
+                      "title": "Vendor FK"
                     },
                     {
                       "property": "Transact_ID",
-                      "title": "Transact ID",
-                      "type": "string"
+                      "title": "Transact ID"
                     },
                     {
                       "property": "Record_Code",
-                      "title": "Record Code",
-                      "type": "string"
+                      "title": "Record Code"
                     },
                     {
                       "property": "PO_No",
-                      "title": "PO No",
-                      "type": "string"
+                      "title": "PO No"
                     },
                     {
                       "property": "Invoice_No",
-                      "title": "Invoice No",
-                      "type": "string"
+                      "title": "Invoice No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Invoice_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Invoice Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Invoice Date"
                     },
                     {
                       "property": "Debit_Account",
-                      "title": "Debit Account",
-                      "type": "string"
+                      "title": "Debit Account"
                     },
                     {
                       "property": "Credit_Account",
-                      "title": "Credit Account",
-                      "type": "string"
+                      "title": "Credit Account"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
-                      "format": "decimal",
                       "property": "Amount",
-                      "title": "Amount",
-                      "type": "number"
+                      "title": "Amount"
                     },
                     {
                       "property": "Authorize_By",
-                      "title": "Authorize By",
-                      "type": "integer"
+                      "title": "Authorize By"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -168,7 +157,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoAccountsPayableAdjustment",
+                                "name": "DB_At_VDC2.deleteTblPoAccountsPayableAdjustment",
                                 "parameters": [
                                   {
                                     "name": "Voucher_No",
@@ -182,8 +171,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -192,7 +180,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment"
                 }
               ]
             }
@@ -202,7 +190,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoAccountsPayableAdjustments",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoAccountsPayableAdjustmentsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Accounts Payable Adjustments",
   "layout": "Main"

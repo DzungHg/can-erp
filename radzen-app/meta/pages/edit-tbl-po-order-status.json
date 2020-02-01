@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Po Status Id",
                               "component": "POStatus_ID",
+                              "name": "POStatus_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "POStatus_ID",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Po Status Text",
                               "component": "POStatusText",
+                              "name": "POStatusTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,6 +138,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "POStatusText",
@@ -161,6 +165,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -172,6 +177,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 100,
                               "type": "textbox",
                               "name": "Description",
@@ -216,9 +222,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoOrderStatus",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblPoOrderStatus",
+                        "parameters": [
+                          {
+                            "name": "POStatus_ID",
+                            "value": "${parameters.POStatus_ID}"
+                          },
+                          {
+                            "name": "TblPoOrderStatus",
+                            "value": "${tblpoorderstatus}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpoorderstatus}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoOrderStatus",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoOrderStatus",
+                  "data": "${tblpoorderstatus}",
                   "visible": "${tblpoorderstatus != null && canEdit}"
                 }
               ]
@@ -235,6 +271,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoOrderStatusByPOStatus_ID",
+        "parameters": [
+          {
+            "name": "POStatus_ID",
+            "value": "${parameters.POStatus_ID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblpoorderstatus",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoOrderStatus"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

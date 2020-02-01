@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-so-sales-order",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,219 +75,177 @@
                   "columns": [
                     {
                       "property": "SO_SEQ",
-                      "title": "SO SEQ",
-                      "type": "integer"
+                      "title": "SO SEQ"
                     },
                     {
                       "property": "SO_ID",
-                      "title": "SO ID",
-                      "type": "string"
+                      "title": "SO ID"
                     },
                     {
-                      "format": "date-time",
                       "property": "SODate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "SO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "SO Date"
                     },
                     {
                       "property": "CreatedBy_FK",
-                      "title": "Created By FK",
-                      "type": "integer"
+                      "title": "Created By FK"
                     },
                     {
                       "property": "SOStatus_FK",
                       "sortProperty": "TblSoOrderStatus.SOStatus_ID",
                       "filterProperty": "TblSoOrderStatus.SOStatus_ID",
                       "template": "${data.TblSoOrderStatus?.SOStatus_ID}",
-                      "title": "Tbl So Order Status",
-                      "type": "string"
+                      "title": "Tbl So Order Status"
                     },
                     {
                       "property": "Customer_FK",
                       "sortProperty": "TblSoCustomer.Customer_ID",
                       "filterProperty": "TblSoCustomer.Customer_ID",
                       "template": "${data.TblSoCustomer?.Customer_ID}",
-                      "title": "Tbl So Customer",
-                      "type": "string"
+                      "title": "Tbl So Customer"
                     },
                     {
                       "property": "CustomerPONumber",
-                      "title": "Customer PO Number",
-                      "type": "string"
+                      "title": "Customer PO Number"
                     },
                     {
-                      "format": "date-time",
                       "property": "CustomerPODate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Customer PO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Customer PO Date"
                     },
                     {
                       "property": "BillTo_FK",
-                      "title": "Bill To FK",
-                      "type": "integer"
+                      "title": "Bill To FK"
                     },
                     {
                       "property": "ShipTo_FK",
                       "sortProperty": "TblGnShipVium.ShipVia_ID",
                       "filterProperty": "TblGnShipVium.ShipVia_ID",
                       "template": "${data.TblGnShipVium?.ShipVia_ID}",
-                      "title": "Tbl Gn Ship Vium",
-                      "type": "string"
+                      "title": "Tbl Gn Ship Vium"
                     },
                     {
                       "property": "Attention",
-                      "title": "Attention",
-                      "type": "string"
+                      "title": "Attention"
                     },
                     {
                       "property": "ShipVia_FK",
-                      "title": "Ship Via FK",
-                      "type": "integer"
+                      "title": "Ship Via FK"
                     },
                     {
-                      "format": "date-time",
                       "property": "ActualShipDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Actual Ship Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Actual Ship Date"
                     },
                     {
-                      "format": "date-time",
                       "property": "ExpectedShipDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Expected Ship Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Expected Ship Date"
                     },
                     {
                       "property": "Shipper_FK",
-                      "title": "Shipper FK",
-                      "type": "integer"
+                      "title": "Shipper FK"
                     },
                     {
                       "property": "PaymentTerm_FK",
                       "sortProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "filterProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "template": "${data.TblGnPaymentTerm?.PaymentTerm_ID}",
-                      "title": "Tbl Gn Payment Term",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Term"
                     },
                     {
                       "property": "PaymentType_FK",
                       "sortProperty": "TblGnPaymentType.PaymentType_ID",
                       "filterProperty": "TblGnPaymentType.PaymentType_ID",
                       "template": "${data.TblGnPaymentType?.PaymentType_ID}",
-                      "title": "Tbl Gn Payment Type",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Type"
                     },
                     {
                       "property": "SalesPersion_FK",
-                      "title": "Sales Persion FK",
-                      "type": "integer"
+                      "title": "Sales Persion FK"
                     },
                     {
-                      "format": "decimal",
                       "property": "Commission",
-                      "title": "Commission",
-                      "type": "number"
+                      "title": "Commission"
                     },
                     {
                       "property": "Pick_No",
-                      "title": "Pick No",
-                      "type": "integer"
+                      "title": "Pick No"
                     },
                     {
                       "property": "Ship_No",
-                      "title": "Ship No",
-                      "type": "integer"
+                      "title": "Ship No"
                     },
                     {
                       "property": "TaxYN",
-                      "title": "Tax YN",
-                      "type": "boolean"
+                      "title": "Tax YN"
                     },
                     {
-                      "format": "decimal",
                       "property": "TaxtRate",
-                      "title": "Taxt Rate",
-                      "type": "number"
+                      "title": "Taxt Rate"
                     },
                     {
-                      "format": "decimal",
                       "property": "Subtotal",
-                      "title": "Subtotal",
-                      "type": "number"
+                      "title": "Subtotal"
                     },
                     {
-                      "format": "decimal",
                       "property": "Taxt_Amount",
-                      "title": "Taxt Amount",
-                      "type": "number"
+                      "title": "Taxt Amount"
                     },
                     {
-                      "format": "decimal",
                       "property": "Discount_Amt",
-                      "title": "Discount Amt",
-                      "type": "number"
+                      "title": "Discount Amt"
                     },
                     {
-                      "format": "decimal",
                       "property": "Freight",
-                      "title": "Freight",
-                      "type": "number"
+                      "title": "Freight"
                     },
                     {
-                      "format": "decimal",
                       "property": "Total_Order",
-                      "title": "Total Order",
-                      "type": "number"
+                      "title": "Total Order"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "property": "ChangeLong",
-                      "title": "Change Long",
-                      "type": "string"
+                      "title": "Change Long"
                     },
                     {
                       "property": "Notes",
-                      "title": "Notes",
-                      "type": "string"
+                      "title": "Notes"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastUpdatedDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Updated Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Updated Date"
                     },
                     {
                       "property": "LastUpdatedBy_FK",
-                      "title": "Last Updated By FK",
-                      "type": "integer"
+                      "title": "Last Updated By FK"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "property": "Sequence",
-                      "title": "Sequence",
-                      "type": "integer"
+                      "title": "Sequence"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -306,7 +263,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblSoSalesOrder",
+                                "name": "DB_At_VDC2.deleteTblSoSalesOrder",
                                 "parameters": [
                                   {
                                     "name": "SO_SEQ",
@@ -320,8 +277,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -330,7 +286,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoSalesOrder"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoSalesOrder"
                 }
               ]
             }
@@ -342,14 +298,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoSalesOrders",
+        "name": "DB_At_VDC2.getTblSoSalesOrders",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoSalesOrdersResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder>"
           }
         ],
         "type": "invoke"

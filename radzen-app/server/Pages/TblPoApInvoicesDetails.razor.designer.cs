@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblPoApInvoicesDetailsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail> _getTblPoApInvoicesDetailsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail> getTblPoApInvoicesDetailsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail> _getTblPoApInvoicesDetailsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail> getTblPoApInvoicesDetailsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoApInvoicesDetailsResult != value)
+                if(!object.Equals(_getTblPoApInvoicesDetailsResult, value))
                 {
                     _getTblPoApInvoicesDetailsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoApInvoicesDetailsResult = await CanErpDbAt132.GetTblPoApInvoicesDetails();
-            getTblPoApInvoicesDetailsResult = canErpDbAt132GetTblPoApInvoicesDetailsResult;
+            var dbAtVdc2GetTblPoApInvoicesDetailsResult = await DbAtVdc2.GetTblPoApInvoicesDetails();
+            getTblPoApInvoicesDetailsResult = dbAtVdc2GetTblPoApInvoicesDetailsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblPoApInvoicesDetail>("Add Tbl Po Ap Invoices Detail", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail args)
         {
             var result = await DialogService.OpenAsync<EditTblPoApInvoicesDetail>("Edit Tbl Po Ap Invoices Detail", new Dictionary<string, object>() { {"Vendor_ID", args.Vendor_ID}, {"Invoice_No", args.Invoice_No} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblPoApInvoicesDetailResult = await CanErpDbAt132.DeleteTblPoApInvoicesDetail($"{data.Vendor_ID}", $"{data.Invoice_No}");
-                if (canErpDbAt132DeleteTblPoApInvoicesDetailResult != null) {
+                var dbAtVdc2DeleteTblPoApInvoicesDetailResult = await DbAtVdc2.DeleteTblPoApInvoicesDetail($"{data.Vendor_ID}", $"{data.Invoice_No}");
+                if (dbAtVdc2DeleteTblPoApInvoicesDetailResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblPoApInvoicesDetailException)
+            catch (Exception dbAtVdc2DeleteTblPoApInvoicesDetailException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblPoApInvoicesDetail");
             }

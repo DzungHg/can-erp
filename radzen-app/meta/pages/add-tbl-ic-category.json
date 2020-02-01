@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Category Id",
                               "component": "Category_ID",
+                              "name": "Category_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
                               "name": "Category_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Category Text",
                               "component": "CategoryText",
+                              "name": "CategoryTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "CategoryText",
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "Inactive",
                               "component": "Inactive",
+                              "name": "InactiveLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Inactive",
                               "triState": true,
@@ -165,11 +171,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblIcCategory!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblIcCategory",
+                        "parameters": [
+                          {
+                            "name": "TblIcCategory",
+                            "value": "${tbliccategory}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tbliccategory}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tbliccategory}",
                   "visible": "${tbliccategory != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcCategory"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcCategory"
                 }
               ]
             }
@@ -183,8 +214,8 @@
       {
         "name": "tbliccategory",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblIcCategory()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblIcCategory"
+        "value": "new CanErp2.Models.DbAtVdc2.TblIcCategory()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblIcCategory"
       }
     ]
   },

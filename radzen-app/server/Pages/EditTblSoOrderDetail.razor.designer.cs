@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblSoOrderDetailComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic SODetail_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblSoOrderDetail _tblsoorderdetail;
-        protected ErpCan.Models.CanErpDbAt132.TblSoOrderDetail tblsoorderdetail
+        CanErp2.Models.DbAtVdc2.TblSoOrderDetail _tblsoorderdetail;
+        protected CanErp2.Models.DbAtVdc2.TblSoOrderDetail tblsoorderdetail
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblsoorderdetail != value)
+                if(!object.Equals(_tblsoorderdetail, value))
                 {
                     _tblsoorderdetail = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus> _getTblSoOrderDetailStatusesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus> getTblSoOrderDetailStatusesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus> _getTblSoOrderDetailStatusesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus> getTblSoOrderDetailStatusesResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblSoOrderDetailStatusesResult != value)
+                if(!object.Equals(_getTblSoOrderDetailStatusesResult, value))
                 {
                     _getTblSoOrderDetailStatusesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder> _getTblSoSalesOrdersResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder> getTblSoSalesOrdersResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder> _getTblSoSalesOrdersResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder> getTblSoSalesOrdersResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblSoSalesOrdersResult != value)
+                if(!object.Equals(_getTblSoSalesOrdersResult, value))
                 {
                     _getTblSoSalesOrdersResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -95,8 +103,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory> _getTblIcInventoriesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory> getTblIcInventoriesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory> _getTblIcInventoriesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory> getTblIcInventoriesResult
         {
             get
             {
@@ -104,7 +112,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcInventoriesResult != value)
+                if(!object.Equals(_getTblIcInventoriesResult, value))
                 {
                     _getTblIcInventoriesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -114,45 +122,44 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblSoOrderDetailBySoDetailSeqResult = await CanErpDbAt132.GetTblSoOrderDetailBySoDetailSeq(int.Parse($"{SODetail_SEQ}"));
-            tblsoorderdetail = canErpDbAt132GetTblSoOrderDetailBySoDetailSeqResult;
+            var dbAtVdc2GetTblSoOrderDetailBySoDetailSeqResult = await DbAtVdc2.GetTblSoOrderDetailBySoDetailSeq(int.Parse($"{SODetail_SEQ}"));
+            tblsoorderdetail = dbAtVdc2GetTblSoOrderDetailBySoDetailSeqResult;
 
-            var canErpDbAt132GetTblSoOrderDetailStatusesResult = await CanErpDbAt132.GetTblSoOrderDetailStatuses();
-            getTblSoOrderDetailStatusesResult = canErpDbAt132GetTblSoOrderDetailStatusesResult;
+            var dbAtVdc2GetTblSoOrderDetailStatusesResult = await DbAtVdc2.GetTblSoOrderDetailStatuses();
+            getTblSoOrderDetailStatusesResult = dbAtVdc2GetTblSoOrderDetailStatusesResult;
 
-            var canErpDbAt132GetTblSoSalesOrdersResult = await CanErpDbAt132.GetTblSoSalesOrders();
-            getTblSoSalesOrdersResult = canErpDbAt132GetTblSoSalesOrdersResult;
+            var dbAtVdc2GetTblSoSalesOrdersResult = await DbAtVdc2.GetTblSoSalesOrders();
+            getTblSoSalesOrdersResult = dbAtVdc2GetTblSoSalesOrdersResult;
 
-            var canErpDbAt132GetTblIcInventoriesResult = await CanErpDbAt132.GetTblIcInventories();
-            getTblIcInventoriesResult = canErpDbAt132GetTblIcInventoriesResult;
+            var dbAtVdc2GetTblIcInventoriesResult = await DbAtVdc2.GetTblIcInventories();
+            getTblIcInventoriesResult = dbAtVdc2GetTblIcInventoriesResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblSoOrderDetail args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblSoOrderDetail args)
         {
             try
             {
-                var canErpDbAt132UpdateTblSoOrderDetailResult = await CanErpDbAt132.UpdateTblSoOrderDetail(int.Parse($"{SODetail_SEQ}"), tblsoorderdetail);
+                var dbAtVdc2UpdateTblSoOrderDetailResult = await DbAtVdc2.UpdateTblSoOrderDetail(int.Parse($"{SODetail_SEQ}"), tblsoorderdetail);
                 DialogService.Close(tblsoorderdetail);
             }
-            catch (Exception canErpDbAt132UpdateTblSoOrderDetailException)
+            catch (Exception dbAtVdc2UpdateTblSoOrderDetailException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblSoOrderDetail");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

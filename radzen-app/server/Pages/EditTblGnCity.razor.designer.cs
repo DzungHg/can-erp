@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblGnCityComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic City_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblGnCity _tblgncity;
-        protected ErpCan.Models.CanErpDbAt132.TblGnCity tblgncity
+        CanErp2.Models.DbAtVdc2.TblGnCity _tblgncity;
+        protected CanErp2.Models.DbAtVdc2.TblGnCity tblgncity
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgncity != value)
+                if(!object.Equals(_tblgncity, value))
                 {
                     _tblgncity = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblGnCityByCitySeqResult = await CanErpDbAt132.GetTblGnCityByCitySeq(int.Parse($"{City_SEQ}"));
-            tblgncity = canErpDbAt132GetTblGnCityByCitySeqResult;
+            var dbAtVdc2GetTblGnCityByCitySeqResult = await DbAtVdc2.GetTblGnCityByCitySeq(int.Parse($"{City_SEQ}"));
+            tblgncity = dbAtVdc2GetTblGnCityByCitySeqResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnCity args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnCity args)
         {
             try
             {
-                var canErpDbAt132UpdateTblGnCityResult = await CanErpDbAt132.UpdateTblGnCity(int.Parse($"{City_SEQ}"), tblgncity);
+                var dbAtVdc2UpdateTblGnCityResult = await DbAtVdc2.UpdateTblGnCity(int.Parse($"{City_SEQ}"), tblgncity);
                 DialogService.Close(tblgncity);
             }
-            catch (Exception canErpDbAt132UpdateTblGnCityException)
+            catch (Exception dbAtVdc2UpdateTblGnCityException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnCity");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

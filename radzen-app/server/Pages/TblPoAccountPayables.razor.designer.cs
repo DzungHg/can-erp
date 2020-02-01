@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblPoAccountPayablesComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblPoAccountPayable> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblPoAccountPayable> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoAccountPayable> _getTblPoAccountPayablesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoAccountPayable> getTblPoAccountPayablesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountPayable> _getTblPoAccountPayablesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountPayable> getTblPoAccountPayablesResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoAccountPayablesResult != value)
+                if(!object.Equals(_getTblPoAccountPayablesResult, value))
                 {
                     _getTblPoAccountPayablesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoAccountPayablesResult = await CanErpDbAt132.GetTblPoAccountPayables();
-            getTblPoAccountPayablesResult = canErpDbAt132GetTblPoAccountPayablesResult;
+            var dbAtVdc2GetTblPoAccountPayablesResult = await DbAtVdc2.GetTblPoAccountPayables();
+            getTblPoAccountPayablesResult = dbAtVdc2GetTblPoAccountPayablesResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblPoAccountPayable>("Add Tbl Po Account Payable", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblPoAccountPayable args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblPoAccountPayable args)
         {
             var result = await DialogService.OpenAsync<EditTblPoAccountPayable>("Edit Tbl Po Account Payable", new Dictionary<string, object>() { {"AP_No", args.AP_No} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblPoAccountPayable data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblPoAccountPayableResult = await CanErpDbAt132.DeleteTblPoAccountPayable($"{data.AP_No}");
-                if (canErpDbAt132DeleteTblPoAccountPayableResult != null) {
+                var dbAtVdc2DeleteTblPoAccountPayableResult = await DbAtVdc2.DeleteTblPoAccountPayable($"{data.AP_No}");
+                if (dbAtVdc2DeleteTblPoAccountPayableResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblPoAccountPayableException)
+            catch (Exception dbAtVdc2DeleteTblPoAccountPayableException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblPoAccountPayable");
             }

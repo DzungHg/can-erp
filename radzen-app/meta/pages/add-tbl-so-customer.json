@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Customer Id",
                               "component": "Customer_ID",
+                              "name": "Customer_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Customer_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Last Name",
                               "component": "LastName",
+                              "name": "LastNameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "LastName",
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "First Name",
                               "component": "FirstName",
+                              "name": "FirstNameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "FirstName",
@@ -150,6 +156,7 @@
                               "type": "label",
                               "text": "Tbl Gn Address Book",
                               "component": "CustomerAdressBook_FK",
+                              "name": "CustomerAdressBook_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -165,6 +172,7 @@
                               "textProperty": "AddressBook_ID",
                               "valueProperty": "AddressBook_SEQ",
                               "placeholder": "Choose TblGnAddressBook",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "CustomerAdressBook_FK",
                               "style": {
@@ -190,6 +198,7 @@
                               "type": "label",
                               "text": "Credit Limit",
                               "component": "CreditLimit",
+                              "name": "CreditLimitLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -201,6 +210,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "CreditLimit",
                               "style": {
@@ -226,6 +236,7 @@
                               "type": "label",
                               "text": "Last Revised Credit Limit Date",
                               "component": "LastRevisedCreditLimitDate",
+                              "name": "LastRevisedCreditLimitDateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -237,7 +248,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "LastRevisedCreditLimitDate",
                               "style": {
@@ -263,6 +275,7 @@
                               "type": "label",
                               "text": "Tbl Gn Payment Term",
                               "component": "PaymentTerm_FK",
+                              "name": "PaymentTerm_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -278,6 +291,7 @@
                               "textProperty": "PaymentTerm_ID",
                               "valueProperty": "PaymentTerm_SEQ",
                               "placeholder": "Choose TblGnPaymentTerm",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "PaymentTerm_FK",
                               "style": {
@@ -303,6 +317,7 @@
                               "type": "label",
                               "text": "Tbl Gn Payment Type",
                               "component": "PaymentType_FK",
+                              "name": "PaymentType_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -318,6 +333,7 @@
                               "textProperty": "PaymentType_ID",
                               "valueProperty": "PaymentType_SEQ",
                               "placeholder": "Choose TblGnPaymentType",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "PaymentType_FK",
                               "style": {
@@ -343,6 +359,7 @@
                               "type": "label",
                               "text": "Discount Percent",
                               "component": "DiscountPercent",
+                              "name": "DiscountPercentLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -354,6 +371,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "DiscountPercent",
                               "style": {
@@ -379,6 +397,7 @@
                               "type": "label",
                               "text": "Current Mtd Sales",
                               "component": "Current_MTD_Sales",
+                              "name": "Current_MTD_SalesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -390,6 +409,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Current_MTD_Sales",
                               "style": {
@@ -415,6 +435,7 @@
                               "type": "label",
                               "text": "Current Mtd Returns",
                               "component": "Current_MTD_Returns",
+                              "name": "Current_MTD_ReturnsLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -426,6 +447,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Current_MTD_Returns",
                               "style": {
@@ -451,6 +473,7 @@
                               "type": "label",
                               "text": "Ytd Gross Sales",
                               "component": "YTD_GrossSales",
+                              "name": "YTD_GrossSalesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -462,6 +485,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "YTD_GrossSales",
                               "style": {
@@ -487,6 +511,7 @@
                               "type": "label",
                               "text": "Ytd Returns",
                               "component": "YTD_Returns",
+                              "name": "YTD_ReturnsLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -498,6 +523,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "YTD_Returns",
                               "style": {
@@ -523,6 +549,7 @@
                               "type": "label",
                               "text": "Ytd Cogs",
                               "component": "YTD_COGS",
+                              "name": "YTD_COGSLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -534,6 +561,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "YTD_COGS",
                               "style": {
@@ -559,6 +587,7 @@
                               "type": "label",
                               "text": "Lyr Gross Sales",
                               "component": "LYR_GrossSales",
+                              "name": "LYR_GrossSalesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -570,6 +599,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "LYR_GrossSales",
                               "style": {
@@ -595,6 +625,7 @@
                               "type": "label",
                               "text": "Lyr Cogs",
                               "component": "LYR_COGS",
+                              "name": "LYR_COGSLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -606,6 +637,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "LYR_COGS",
                               "style": {
@@ -631,6 +663,7 @@
                               "type": "label",
                               "text": "Last Amount Sales",
                               "component": "LastAmountSales",
+                              "name": "LastAmountSalesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -642,6 +675,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "LastAmountSales",
                               "style": {
@@ -667,6 +701,7 @@
                               "type": "label",
                               "text": "Sales Person Adress Book Fk",
                               "component": "SalesPersonAdressBook_FK",
+                              "name": "SalesPersonAdressBook_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -678,6 +713,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "SalesPersonAdressBook_FK",
                               "style": {
@@ -703,6 +739,7 @@
                               "type": "label",
                               "text": "Commission Percent",
                               "component": "CommissionPercent",
+                              "name": "CommissionPercentLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -714,6 +751,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "CommissionPercent",
                               "style": {
@@ -739,6 +777,7 @@
                               "type": "label",
                               "text": "Sales Person Mtd Goal",
                               "component": "SalesPerson_MTD_Goal",
+                              "name": "SalesPerson_MTD_GoalLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -750,6 +789,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "SalesPerson_MTD_Goal",
                               "style": {
@@ -775,6 +815,7 @@
                               "type": "label",
                               "text": "Sales Person Ytd Goal",
                               "component": "SalesPerson_YTD_Goal",
+                              "name": "SalesPerson_YTD_GoalLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -786,6 +827,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "SalesPerson_YTD_Goal",
                               "style": {
@@ -811,6 +853,7 @@
                               "type": "label",
                               "text": "Charge Interest",
                               "component": "ChargeInterest",
+                              "name": "ChargeInterestLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -822,6 +865,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "ChargeInterest",
                               "triState": true,
@@ -845,6 +889,7 @@
                               "type": "label",
                               "text": "Statement",
                               "component": "Statement",
+                              "name": "StatementLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -856,6 +901,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Statement",
                               "triState": true,
@@ -879,6 +925,7 @@
                               "type": "label",
                               "text": "Aging 30 Day Amout",
                               "component": "Aging30DayAmout",
+                              "name": "Aging30DayAmoutLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -890,6 +937,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Aging30DayAmout",
                               "style": {
@@ -915,6 +963,7 @@
                               "type": "label",
                               "text": "Aging 60 Day Amout",
                               "component": "Aging60DayAmout",
+                              "name": "Aging60DayAmoutLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -926,6 +975,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Aging60DayAmout",
                               "style": {
@@ -951,6 +1001,7 @@
                               "type": "label",
                               "text": "Aging 90 Day Amout",
                               "component": "Aging90DayAmout",
+                              "name": "Aging90DayAmoutLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -962,6 +1013,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Aging90DayAmout",
                               "style": {
@@ -987,6 +1039,7 @@
                               "type": "label",
                               "text": "Notes",
                               "component": "Notes",
+                              "name": "NotesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -998,6 +1051,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "type": "textbox",
                               "name": "Notes",
                               "style": {
@@ -1023,6 +1077,7 @@
                               "type": "label",
                               "text": "Last Updated Date",
                               "component": "LastUpdatedDate",
+                              "name": "LastUpdatedDateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1034,7 +1089,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "LastUpdatedDate",
                               "style": {
@@ -1060,6 +1116,7 @@
                               "type": "label",
                               "text": "Last Udpated By",
                               "component": "LastUdpatedBy",
+                              "name": "LastUdpatedByLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1071,6 +1128,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "LastUdpatedBy",
                               "style": {
@@ -1096,6 +1154,7 @@
                               "type": "label",
                               "text": "Inactive",
                               "component": "Inactive",
+                              "name": "InactiveLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -1107,6 +1166,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Inactive",
                               "triState": true,
@@ -1158,7 +1218,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.createTblSoCustomer",
+                        "name": "DB_At_VDC2.createTblSoCustomer",
                         "parameters": [
                           {
                             "name": "TblSoCustomer",
@@ -1171,14 +1231,13 @@
                             "result": "${tblsocustomer}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                        "type": "invoke"
                       }
                     ]
                   },
                   "data": "${tblsocustomer}",
                   "visible": "${tblsocustomer != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoCustomer"
                 }
               ]
             }
@@ -1190,40 +1249,40 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblGnAddressBooks",
+        "name": "DB_At_VDC2.getTblGnAddressBooks",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnAddressBooksResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnPaymentTerms",
+        "name": "DB_At_VDC2.getTblGnPaymentTerms",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnPaymentTermsResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnPaymentTypes",
+        "name": "DB_At_VDC2.getTblGnPaymentTypes",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnPaymentTypesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType>"
           }
         ],
         "type": "invoke"
@@ -1231,8 +1290,8 @@
       {
         "name": "tblsocustomer",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblSoCustomer()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+        "value": "new CanErp2.Models.DbAtVdc2.TblSoCustomer()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblSoCustomer"
       }
     ]
   },

@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-ic-warehouse/{Warehouse_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblIcWarehouseComponent
+@inherits CanErp2.Pages.EditTblIcWarehouseComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblIcWarehouse" Data="@(tblicwarehouse)" Visible="@(tblicwarehouse != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblIcWarehouse" Data="@(tblicwarehouse)" Visible="@(tblicwarehouse != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@((tblicwarehouse.Warehouse_ID))" Name="Warehouse_ID">
+                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@(tblicwarehouse.Warehouse_ID)" Name="Warehouse_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Warehouse_ID" Text="Warehouse_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblicwarehouse.WarehouseName))" Name="WarehouseName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblicwarehouse.WarehouseName)" Name="WarehouseName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblicwarehouse.WarehouseAddress))" Name="WarehouseAddress">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblicwarehouse.WarehouseAddress)" Name="WarehouseAddress">
                 </RadzenTextBox>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox TriState="true" @bind-Value="@((tblicwarehouse.Inactive))" Name="Inactive">
+                <RadzenCheckBox TriState="true" @bind-Value="@(tblicwarehouse.Inactive)" Name="Inactive">
                 </RadzenCheckBox>
               </div>
             </div>

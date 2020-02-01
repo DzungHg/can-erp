@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnAddressBooksResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-address-book",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBook",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,93 +75,83 @@
                   "columns": [
                     {
                       "property": "AddressBook_SEQ",
-                      "title": "Address Book SEQ",
-                      "type": "integer"
+                      "title": "Address Book SEQ"
                     },
                     {
                       "property": "AddressBook_ID",
-                      "title": "Address Book ID",
-                      "type": "string"
+                      "title": "Address Book ID"
                     },
                     {
                       "property": "AddressBookType_FK",
                       "sortProperty": "TblGnAddressBookType.AddressBookType_ID",
                       "filterProperty": "TblGnAddressBookType.AddressBookType_ID",
                       "template": "${data.TblGnAddressBookType?.AddressBookType_ID}",
-                      "title": "Tbl Gn Address Book Type",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book Type"
                     },
                     {
                       "property": "LastName",
-                      "title": "Last Name",
-                      "type": "string"
+                      "title": "Last Name"
                     },
                     {
                       "property": "FirstName",
-                      "title": "First Name",
-                      "type": "string"
+                      "title": "First Name"
                     },
                     {
                       "property": "Gender_FK",
                       "sortProperty": "TblGnGender.Gender_ID",
                       "filterProperty": "TblGnGender.Gender_ID",
                       "template": "${data.TblGnGender?.Gender_ID}",
-                      "title": "Tbl Gn Gender",
-                      "type": "string"
+                      "title": "Tbl Gn Gender"
                     },
                     {
-                      "format": "date-time",
                       "property": "DOB",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "DOB",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "DOB"
                     },
                     {
                       "property": "Origin",
-                      "title": "Origin",
-                      "type": "string"
+                      "title": "Origin"
                     },
                     {
                       "property": "IDNumber",
-                      "title": "ID Number",
-                      "type": "string"
+                      "title": "ID Number"
                     },
                     {
                       "property": "TaxIDNumber",
-                      "title": "Tax ID Number",
-                      "type": "string"
+                      "title": "Tax ID Number"
                     },
                     {
                       "property": "OrganizationName",
-                      "title": "Organization Name",
-                      "type": "string"
+                      "title": "Organization Name"
                     },
                     {
                       "property": "JobPosition",
-                      "title": "Job Position",
-                      "type": "string"
+                      "title": "Job Position"
                     },
                     {
                       "property": "Address",
-                      "title": "Address",
-                      "type": "string"
+                      "title": "Address"
                     },
                     {
                       "property": "City_FK",
                       "sortProperty": "TblGnCity.City_ID",
                       "filterProperty": "TblGnCity.City_ID",
                       "template": "${data.TblGnCity?.City_ID}",
-                      "title": "Tbl Gn City",
-                      "type": "string"
+                      "title": "Tbl Gn City"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -179,7 +169,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnAddressBook",
+                                "name": "DB_At_VDC2.deleteTblGnAddressBook",
                                 "parameters": [
                                   {
                                     "name": "AddressBook_SEQ",
@@ -193,8 +183,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBook"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -203,7 +192,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBook"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnAddressBook"
                 }
               ]
             }
@@ -213,7 +202,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnAddressBooks",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnAddressBooksResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Address Books",
   "layout": "Main"

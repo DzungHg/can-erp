@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-gn-department/{Department_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblGnDepartmentComponent
+@inherits CanErp2.Pages.EditTblGnDepartmentComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblGnDepartment" Data="@(tblgndepartment)" Visible="@(tblgndepartment != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnDepartment" Data="@(tblgndepartment)" Visible="@(tblgndepartment != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@((tblgndepartment.Department_ID))" Name="Department_ID">
+                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@(tblgndepartment.Department_ID)" Name="Department_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Department_ID" Text="Department_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="15" style="width: 100%" @bind-Value="@((tblgndepartment.Deparment_Name))" Name="Deparment_Name">
+                <RadzenTextBox MaxLength="15" style="width: 100%" @bind-Value="@(tblgndepartment.Deparment_Name)" Name="Deparment_Name">
                 </RadzenTextBox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@((tblgndepartment.Description))" Name="Description">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(tblgndepartment.Description)" Name="Description">
                 </RadzenTextBox>
               </div>
             </div>

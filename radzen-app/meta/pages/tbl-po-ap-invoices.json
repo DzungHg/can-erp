@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoApInvoicesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -65,7 +66,6 @@
                         ],
                         "path": "edit-tbl-po-ap-invoice",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -82,70 +82,60 @@
                       "sortProperty": "TblPoVendor.LastName",
                       "filterProperty": "TblPoVendor.LastName",
                       "template": "${data.TblPoVendor?.LastName}",
-                      "title": "Tbl Po Vendor",
-                      "type": "string"
+                      "title": "Tbl Po Vendor"
                     },
                     {
                       "property": "Invoice_No",
-                      "title": "Invoice No",
-                      "type": "string"
+                      "title": "Invoice No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Invoice_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Invoice Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Invoice Date"
                     },
                     {
                       "property": "PO_ID",
-                      "title": "PO ID",
-                      "type": "string"
+                      "title": "PO ID"
                     },
                     {
-                      "format": "date-time",
                       "property": "PO_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "PO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "PO Date"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
-                      "format": "decimal",
                       "property": "Invoice_Amount",
-                      "title": "Invoice Amount",
-                      "type": "number"
+                      "title": "Invoice Amount"
                     },
                     {
-                      "format": "decimal",
                       "property": "Discount_Amount",
-                      "title": "Discount Amount",
-                      "type": "number"
+                      "title": "Discount Amount"
                     },
                     {
-                      "format": "date-time",
                       "property": "Due_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Due Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Due Date"
                     },
                     {
                       "property": "Paid",
-                      "title": "Paid",
-                      "type": "boolean"
+                      "title": "Paid"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -163,7 +153,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoApInvoice",
+                                "name": "DB_At_VDC2.deleteTblPoApInvoice",
                                 "parameters": [
                                   {
                                     "name": "Vendor_ID",
@@ -181,8 +171,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -191,7 +180,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoApInvoice"
                 }
               ]
             }
@@ -201,7 +190,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoApInvoices",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoApInvoicesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoApInvoice>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Ap Invoices",
   "layout": "Main"

@@ -1,11 +1,11 @@
 ﻿@page "/tbl-po-order-statuses"
 @layout MainLayout
-@inherits ErpCan.Pages.TblPoOrderStatusesComponent
+@inherits CanErp2.Pages.TblPoOrderStatusesComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Po Order Statuses">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoOrderStatusesResult)" TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoOrderStatusesResult)" TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" Context="erpCanModelsCanErpDbAt132TblPoOrderStatus" Property="POStatus_ID" Title="PO Status ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" Context="canErp2ModelsDbAtVdc2TblPoOrderStatus" Property="POStatus_ID" Title="PO Status ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" Context="erpCanModelsCanErpDbAt132TblPoOrderStatus" Property="POStatusText" Title="PO Status Text" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" Context="canErp2ModelsDbAtVdc2TblPoOrderStatus" Property="POStatusText" Title="PO Status Text">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" Context="erpCanModelsCanErpDbAt132TblPoOrderStatus" Property="Description" Title="Description" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" Context="canErp2ModelsDbAtVdc2TblPoOrderStatus" Property="Description" Title="Description">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" Context="erpCanModelsCanErpDbAt132TblPoOrderStatus" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblPoOrderStatus">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblPoOrderStatus))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" Context="canErp2ModelsDbAtVdc2TblPoOrderStatus" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblPoOrderStatus">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblPoOrderStatus))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

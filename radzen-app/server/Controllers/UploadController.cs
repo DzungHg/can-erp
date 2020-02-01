@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ErpCan
+namespace CanErp2
 {
     public partial class UploadController : Controller
     {

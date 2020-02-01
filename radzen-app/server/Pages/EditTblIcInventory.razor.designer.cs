@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblIcInventoryComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Inventory_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblIcInventory _tblicinventory;
-        protected ErpCan.Models.CanErpDbAt132.TblIcInventory tblicinventory
+        CanErp2.Models.DbAtVdc2.TblIcInventory _tblicinventory;
+        protected CanErp2.Models.DbAtVdc2.TblIcInventory tblicinventory
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblicinventory != value)
+                if(!object.Equals(_tblicinventory, value))
                 {
                     _tblicinventory = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcWarehouse> _getTblIcWarehousesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcWarehouse> getTblIcWarehousesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse> _getTblIcWarehousesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse> getTblIcWarehousesResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcWarehousesResult != value)
+                if(!object.Equals(_getTblIcWarehousesResult, value))
                 {
                     _getTblIcWarehousesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcCategory> _getTblIcCategoriesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcCategory> getTblIcCategoriesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcCategory> _getTblIcCategoriesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcCategory> getTblIcCategoriesResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcCategoriesResult != value)
+                if(!object.Equals(_getTblIcCategoriesResult, value))
                 {
                     _getTblIcCategoriesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -95,8 +103,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcClassification> _getTblIcClassificationsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcClassification> getTblIcClassificationsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcClassification> _getTblIcClassificationsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcClassification> getTblIcClassificationsResult
         {
             get
             {
@@ -104,7 +112,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcClassificationsResult != value)
+                if(!object.Equals(_getTblIcClassificationsResult, value))
                 {
                     _getTblIcClassificationsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -112,8 +120,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnProduct> _getTblGnProductsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnProduct> getTblGnProductsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct> _getTblGnProductsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct> getTblGnProductsResult
         {
             get
             {
@@ -121,7 +129,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnProductsResult != value)
+                if(!object.Equals(_getTblGnProductsResult, value))
                 {
                     _getTblGnProductsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -129,8 +137,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcUnit> _getTblIcUnitsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcUnit> getTblIcUnitsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcUnit> _getTblIcUnitsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcUnit> getTblIcUnitsResult
         {
             get
             {
@@ -138,7 +146,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcUnitsResult != value)
+                if(!object.Equals(_getTblIcUnitsResult, value))
                 {
                     _getTblIcUnitsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -148,51 +156,50 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblIcInventoryByInventorySeqResult = await CanErpDbAt132.GetTblIcInventoryByInventorySeq(int.Parse($"{Inventory_SEQ}"));
-            tblicinventory = canErpDbAt132GetTblIcInventoryByInventorySeqResult;
+            var dbAtVdc2GetTblIcInventoryByInventorySeqResult = await DbAtVdc2.GetTblIcInventoryByInventorySeq(int.Parse($"{Inventory_SEQ}"));
+            tblicinventory = dbAtVdc2GetTblIcInventoryByInventorySeqResult;
 
-            var canErpDbAt132GetTblIcWarehousesResult = await CanErpDbAt132.GetTblIcWarehouses();
-            getTblIcWarehousesResult = canErpDbAt132GetTblIcWarehousesResult;
+            var dbAtVdc2GetTblIcWarehousesResult = await DbAtVdc2.GetTblIcWarehouses();
+            getTblIcWarehousesResult = dbAtVdc2GetTblIcWarehousesResult;
 
-            var canErpDbAt132GetTblIcCategoriesResult = await CanErpDbAt132.GetTblIcCategories();
-            getTblIcCategoriesResult = canErpDbAt132GetTblIcCategoriesResult;
+            var dbAtVdc2GetTblIcCategoriesResult = await DbAtVdc2.GetTblIcCategories();
+            getTblIcCategoriesResult = dbAtVdc2GetTblIcCategoriesResult;
 
-            var canErpDbAt132GetTblIcClassificationsResult = await CanErpDbAt132.GetTblIcClassifications();
-            getTblIcClassificationsResult = canErpDbAt132GetTblIcClassificationsResult;
+            var dbAtVdc2GetTblIcClassificationsResult = await DbAtVdc2.GetTblIcClassifications();
+            getTblIcClassificationsResult = dbAtVdc2GetTblIcClassificationsResult;
 
-            var canErpDbAt132GetTblGnProductsResult = await CanErpDbAt132.GetTblGnProducts();
-            getTblGnProductsResult = canErpDbAt132GetTblGnProductsResult;
+            var dbAtVdc2GetTblGnProductsResult = await DbAtVdc2.GetTblGnProducts();
+            getTblGnProductsResult = dbAtVdc2GetTblGnProductsResult;
 
-            var canErpDbAt132GetTblIcUnitsResult = await CanErpDbAt132.GetTblIcUnits();
-            getTblIcUnitsResult = canErpDbAt132GetTblIcUnitsResult;
+            var dbAtVdc2GetTblIcUnitsResult = await DbAtVdc2.GetTblIcUnits();
+            getTblIcUnitsResult = dbAtVdc2GetTblIcUnitsResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcInventory args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcInventory args)
         {
             try
             {
-                var canErpDbAt132UpdateTblIcInventoryResult = await CanErpDbAt132.UpdateTblIcInventory(int.Parse($"{Inventory_SEQ}"), tblicinventory);
+                var dbAtVdc2UpdateTblIcInventoryResult = await DbAtVdc2.UpdateTblIcInventory(int.Parse($"{Inventory_SEQ}"), tblicinventory);
                 DialogService.Close(tblicinventory);
             }
-            catch (Exception canErpDbAt132UpdateTblIcInventoryException)
+            catch (Exception dbAtVdc2UpdateTblIcInventoryException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblIcInventory");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblGnPaymentTypeComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        ErpCan.Models.CanErpDbAt132.TblGnPaymentType _tblgnpaymenttype;
-        protected ErpCan.Models.CanErpDbAt132.TblGnPaymentType tblgnpaymenttype
+        CanErp2.Models.DbAtVdc2.TblGnPaymentType _tblgnpaymenttype;
+        protected CanErp2.Models.DbAtVdc2.TblGnPaymentType tblgnpaymenttype
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnpaymenttype != value)
+                if(!object.Equals(_tblgnpaymenttype, value))
                 {
                     _tblgnpaymenttype = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -43,28 +51,27 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            tblgnpaymenttype = new ErpCan.Models.CanErpDbAt132.TblGnPaymentType();
+            tblgnpaymenttype = new CanErp2.Models.DbAtVdc2.TblGnPaymentType();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnPaymentType args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnPaymentType args)
         {
             try
             {
-                var canErpDbAt132CreateTblGnPaymentTypeResult = await CanErpDbAt132.CreateTblGnPaymentType(tblgnpaymenttype);
+                var dbAtVdc2CreateTblGnPaymentTypeResult = await DbAtVdc2.CreateTblGnPaymentType(tblgnpaymenttype);
                 DialogService.Close(tblgnpaymenttype);
             }
-            catch (Exception canErpDbAt132CreateTblGnPaymentTypeException)
+            catch (Exception dbAtVdc2CreateTblGnPaymentTypeException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblGnPaymentType!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

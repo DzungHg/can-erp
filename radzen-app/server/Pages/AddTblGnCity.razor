@@ -1,49 +1,49 @@
 ﻿@page "/add-tbl-gn-city"
 @layout MainLayout
-@inherits ErpCan.Pages.AddTblGnCityComponent
+@inherits CanErp2.Pages.AddTblGnCityComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblgncity)" TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Visible="@(tblgncity != null)" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@(tblgncity)" Visible="@(tblgncity != null)" TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="City_ID" style="width: 100%" Text="Mã Tỉnh Thành">
+                <RadzenLabel Text="City Id" Component="City_ID" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgncity.City_ID))" Name="City_ID">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgncity.City_ID)" Name="City_ID">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="CityName" style="width: 100%" Text="Tên Tỉnh Thành">
+                <RadzenLabel Text="City Name" Component="CityName" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgncity.CityName))" Name="CityName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgncity.CityName)" Name="CityName">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="CityAbbreviation" style="width: 100%" Text="Viết Tắt">
+                <RadzenLabel Text="City Abbreviation" Component="CityAbbreviation" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgncity.CityAbbreviation))" Name="CityAbbreviation">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgncity.CityAbbreviation)" Name="CityAbbreviation">
                 </RadzenTextBox>
               </div>
             </div>
             <div class="row">
               <div class="col offset-sm-3">
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
                 </RadzenButton>
                 <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button2Click">
                 </RadzenButton>

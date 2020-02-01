@@ -17,10 +17,10 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using ErpCan.Data;
+using CanErp2.Data;
 using Radzen;
 
-namespace ErpCan
+namespace CanErp2
 {
     public partial class Startup
     {
@@ -49,11 +49,11 @@ namespace ErpCan
 
             services.AddHttpClient();
 
-            services.AddScoped<CanErpDbAt132Service>();
+            services.AddScoped<DbAtVdc2Service>();
 
-            services.AddDbContext<ErpCan.Data.CanErpDbAt132Context>(options =>
+            services.AddDbContext<CanErp2.Data.DbAtVdc2Context>(options =>
             {
-              options.UseSqlServer(Configuration.GetConnectionString("CanErpDbAt132Connection"));
+              options.UseSqlServer(Configuration.GetConnectionString("DbAtVdc2Connection"));
             });
 
             services.AddRazorPages();
@@ -73,6 +73,7 @@ namespace ErpCan
         {
             if (env.IsDevelopment())
             {
+                Microsoft.IdentityModel.Logging.IdentityModelEventSource.ShowPII = true;
                 app.UseDeveloperExceptionPage();
             }
             else

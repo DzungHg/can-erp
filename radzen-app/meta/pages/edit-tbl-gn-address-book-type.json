@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Address Book Type Id",
                               "component": "AddressBookType_ID",
+                              "name": "AddressBookType_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "AddressBookType_ID",
@@ -114,6 +116,7 @@
                               "type": "label",
                               "text": "Address Book Type Text",
                               "component": "AddressBookTypeText",
+                              "name": "AddressBookTypeTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -125,6 +128,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "AddressBookTypeText",
@@ -169,9 +173,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblGnAddressBookType",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblGnAddressBookType",
+                        "parameters": [
+                          {
+                            "name": "AddressBookType_SEQ",
+                            "value": "${parameters.AddressBookType_SEQ}"
+                          },
+                          {
+                            "name": "TblGnAddressBookType",
+                            "value": "${tblgnaddressbooktype}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgnaddressbooktype}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnAddressBookType",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnAddressBookType",
+                  "data": "${tblgnaddressbooktype}",
                   "visible": "${tblgnaddressbooktype != null && canEdit}"
                 }
               ]
@@ -188,6 +222,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnAddressBookTypeByAddressBookType_SEQ",
+        "parameters": [
+          {
+            "name": "AddressBookType_SEQ",
+            "value": "${parameters.AddressBookType_SEQ}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblgnaddressbooktype",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblGnAddressBookType"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -66,7 +66,6 @@
                         ],
                         "path": "edit-tbl-po-purchase-order-detail",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -83,73 +82,60 @@
                       "sortProperty": "TblPoPurchaseOrder.POStatus_FK",
                       "filterProperty": "TblPoPurchaseOrder.POStatus_FK",
                       "template": "${data.TblPoPurchaseOrder?.POStatus_FK}",
-                      "title": "Tbl Po Purchase Order",
-                      "type": "string"
+                      "title": "Tbl Po Purchase Order"
                     },
                     {
                       "property": "Inventory_FK",
                       "sortProperty": "TblIcInventory.Warehouse_FK",
                       "filterProperty": "TblIcInventory.Warehouse_FK",
                       "template": "${data.TblIcInventory?.Warehouse_FK}",
-                      "title": "Tbl Ic Inventory",
-                      "type": "string"
+                      "title": "Tbl Ic Inventory"
                     },
                     {
-                      "format": "decimal",
                       "property": "Unit_Price",
-                      "title": "Unit Price",
-                      "type": "number"
+                      "title": "Unit Price"
                     },
                     {
-                      "format": "double",
                       "property": "QtyOrdered",
-                      "title": "Qty Ordered",
-                      "type": "number"
+                      "title": "Qty Ordered"
                     },
                     {
-                      "format": "double",
                       "property": "QtyReceived",
-                      "title": "Qty Received",
-                      "type": "number"
+                      "title": "Qty Received"
                     },
                     {
-                      "format": "double",
                       "property": "SubTotal",
-                      "title": "Sub Total",
-                      "type": "number"
+                      "title": "Sub Total"
                     },
                     {
-                      "format": "double",
                       "property": "TaxRate",
-                      "title": "Tax Rate",
-                      "type": "number"
+                      "title": "Tax Rate"
                     },
                     {
-                      "format": "double",
                       "property": "DiscountPercent",
-                      "title": "Discount Percent",
-                      "type": "number"
+                      "title": "Discount Percent"
                     },
                     {
-                      "format": "double",
                       "property": "Discount",
-                      "title": "Discount",
-                      "type": "number"
+                      "title": "Discount"
                     },
                     {
-                      "format": "double",
                       "property": "Tax",
-                      "title": "Tax",
-                      "type": "number"
+                      "title": "Tax"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -167,7 +153,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoPurchaseOrderDetail",
+                                "name": "DB_At_VDC2.deleteTblPoPurchaseOrderDetail",
                                 "parameters": [
                                   {
                                     "name": "PO_FK",
@@ -185,8 +171,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -195,7 +180,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail"
                 }
               ]
             }
@@ -207,14 +192,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblPoPurchaseOrderDetails",
+        "name": "DB_At_VDC2.getTblPoPurchaseOrderDetails",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoPurchaseOrderDetailsResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail>"
           }
         ],
         "type": "invoke"

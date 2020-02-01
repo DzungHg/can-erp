@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -412,7 +412,7 @@
                           "components": [
                             {
                               "valueType": "DateTime?",
-                              "dateFormat": "MM/dd/yyyy",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Last_Purchase_Date",
                               "style": {
@@ -451,7 +451,7 @@
                           "components": [
                             {
                               "valueType": "DateTime?",
-                              "dateFormat": "MM/dd/yyyy",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Last_Payment_Date",
                               "style": {
@@ -693,7 +693,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.updateTblPoVendor",
+                        "name": "DB_At_VDC2.updateTblPoVendor",
                         "parameters": [
                           {
                             "name": "Vendor_ID",
@@ -714,7 +714,7 @@
                       }
                     ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoVendor",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoVendor",
                   "data": "${tblpovendor}",
                   "visible": "${tblpovendor != null && canEdit}"
                 }
@@ -734,7 +734,7 @@
         "valueType": "bool"
       },
       {
-        "name": "CanERP_DB_AT132.getTblPoVendorByVendor_ID",
+        "name": "DB_At_VDC2.getTblPoVendorByVendor_ID",
         "parameters": [
           {
             "name": "Vendor_ID",
@@ -746,21 +746,21 @@
             "name": "tblpovendor",
             "type": "set",
             "value": "${result}",
-            "valueType": "ErpCan.Models.CanErpDbAt132.TblPoVendor"
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoVendor"
           }
         ],
         "error": [],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblGnAddressBooks",
+        "name": "DB_At_VDC2.getTblGnAddressBooks",
         "parameters": [],
         "then": [
           {
             "name": "getTblGnAddressBooksResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook>"
           }
         ],
         "type": "invoke"

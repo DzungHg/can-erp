@@ -1,11 +1,11 @@
 ﻿@page "/tbl-ic-classifications"
 @layout MainLayout
-@inherits ErpCan.Pages.TblIcClassificationsComponent
+@inherits CanErp2.Pages.TblIcClassificationsComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Ic Classifications">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcClassificationsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblIcClassification" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcClassificationsResult)" TItem="CanErp2.Models.DbAtVdc2.TblIcClassification" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcClassification" Context="erpCanModelsCanErpDbAt132TblIcClassification" Property="Classifi_ID" Title="Classifi ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcClassification" Context="canErp2ModelsDbAtVdc2TblIcClassification" Property="Classifi_ID" Title="Classifi ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcClassification" Context="erpCanModelsCanErpDbAt132TblIcClassification" Property="Classifi_Name" Title="Classifi Name" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcClassification" Context="canErp2ModelsDbAtVdc2TblIcClassification" Property="Classifi_Name" Title="Classifi Name">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcClassification" Context="erpCanModelsCanErpDbAt132TblIcClassification" Property="Inactive" Title="Inactive" Type="boolean">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcClassification" Context="canErp2ModelsDbAtVdc2TblIcClassification" Property="Inactive" Title="Inactive">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblIcClassification" Context="erpCanModelsCanErpDbAt132TblIcClassification" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblIcClassification">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblIcClassification))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcClassification" Context="canErp2ModelsDbAtVdc2TblIcClassification" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblIcClassification">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblIcClassification))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

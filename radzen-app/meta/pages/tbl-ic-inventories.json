@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblIcInventoriesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-ic-inventory",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblIcInventory",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,295 +75,225 @@
                   "columns": [
                     {
                       "property": "Inventory_SEQ",
-                      "title": "Inventory SEQ",
-                      "type": "integer"
+                      "title": "Inventory SEQ"
                     },
                     {
                       "property": "Warehouse_FK",
                       "sortProperty": "TblIcWarehouse.WarehouseName",
                       "filterProperty": "TblIcWarehouse.WarehouseName",
                       "template": "${data.TblIcWarehouse?.WarehouseName}",
-                      "title": "Tbl Ic Warehouse",
-                      "type": "string"
+                      "title": "Tbl Ic Warehouse"
                     },
                     {
                       "property": "Category_FK",
                       "sortProperty": "TblIcCategory.CategoryText",
                       "filterProperty": "TblIcCategory.CategoryText",
                       "template": "${data.TblIcCategory?.CategoryText}",
-                      "title": "Tbl Ic Category",
-                      "type": "string"
+                      "title": "Tbl Ic Category"
                     },
                     {
                       "property": "Classifi_FK",
                       "sortProperty": "TblIcClassification.Classifi_Name",
                       "filterProperty": "TblIcClassification.Classifi_Name",
                       "template": "${data.TblIcClassification?.Classifi_Name}",
-                      "title": "Tbl Ic Classification",
-                      "type": "string"
+                      "title": "Tbl Ic Classification"
                     },
                     {
-                      "property": "Item_SK",
+                      "property": "Item_FK",
                       "sortProperty": "TblGnProduct.Product_ID",
                       "filterProperty": "TblGnProduct.Product_ID",
                       "template": "${data.TblGnProduct?.Product_ID}",
-                      "title": "Tbl Gn Product",
-                      "type": "string"
+                      "title": "Tbl Gn Product"
                     },
                     {
                       "property": "Product_Code",
-                      "title": "Product Code",
-                      "type": "string"
+                      "title": "Product Code"
                     },
                     {
                       "property": "ProductDesc",
-                      "title": "Product Desc",
-                      "type": "string"
+                      "title": "Product Desc"
                     },
                     {
                       "property": "FixAsset",
-                      "title": "Fix Asset",
-                      "type": "boolean"
+                      "title": "Fix Asset"
                     },
                     {
                       "property": "Unit_FK",
                       "sortProperty": "TblIcUnit.UnitText",
                       "filterProperty": "TblIcUnit.UnitText",
                       "template": "${data.TblIcUnit?.UnitText}",
-                      "title": "Tbl Ic Unit",
-                      "type": "string"
+                      "title": "Tbl Ic Unit"
                     },
                     {
-                      "format": "double",
                       "property": "QuantityPerUnit",
-                      "title": "Quantity Per Unit",
-                      "type": "number"
+                      "title": "Quantity Per Unit"
                     },
                     {
                       "property": "Location",
-                      "title": "Location",
-                      "type": "string"
+                      "title": "Location"
                     },
                     {
                       "property": "Taxable",
-                      "title": "Taxable",
-                      "type": "boolean"
+                      "title": "Taxable"
                     },
                     {
-                      "format": "double",
                       "property": "TaxRate",
-                      "title": "Tax Rate",
-                      "type": "number"
+                      "title": "Tax Rate"
                     },
                     {
-                      "format": "double",
                       "property": "ROP",
-                      "title": "ROP",
-                      "type": "number"
+                      "title": "ROP"
                     },
                     {
-                      "format": "double",
                       "property": "EOQ",
-                      "title": "EOQ",
-                      "type": "number"
+                      "title": "EOQ"
                     },
                     {
-                      "format": "decimal",
                       "property": "UnitPrice",
-                      "title": "Unit Price",
-                      "type": "number"
+                      "title": "Unit Price"
                     },
                     {
                       "property": "GL_Asset",
-                      "title": "GL Asset",
-                      "type": "string"
+                      "title": "GL Asset"
                     },
                     {
                       "property": "GL_COGS",
-                      "title": "GL COGS",
-                      "type": "string"
+                      "title": "GL COGS"
                     },
                     {
                       "property": "GL_Sales",
-                      "title": "GL Sales",
-                      "type": "string"
+                      "title": "GL Sales"
                     },
                     {
                       "property": "GL_NonTaxSales",
-                      "title": "GL Non Tax Sales",
-                      "type": "string"
+                      "title": "GL Non Tax Sales"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastSaleDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Sale Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Sale Date"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastPODate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last PO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last PO Date"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastReceiptDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Receipt Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Receipt Date"
                     },
                     {
-                      "format": "date-time",
                       "property": "Leadtime",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Leadtime",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Leadtime"
                     },
                     {
-                      "format": "decimal",
                       "property": "LastCost",
-                      "title": "Last Cost",
-                      "type": "number"
+                      "title": "Last Cost"
                     },
                     {
-                      "format": "decimal",
                       "property": "EverageCost",
-                      "title": "Everage Cost",
-                      "type": "number"
+                      "title": "Everage Cost"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_On_Order",
-                      "title": "Qty On Order",
-                      "type": "number"
+                      "title": "Qty On Order"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_In_Stock",
-                      "title": "Qty In Stock",
-                      "type": "number"
+                      "title": "Qty In Stock"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_On_Hand",
-                      "title": "Qty On Hand",
-                      "type": "number"
+                      "title": "Qty On Hand"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_Allocated",
-                      "title": "Qty Allocated",
-                      "type": "number"
+                      "title": "Qty Allocated"
                     },
                     {
-                      "format": "double",
                       "property": "TotalInventory",
-                      "title": "Total Inventory",
-                      "type": "number"
+                      "title": "Total Inventory"
                     },
                     {
-                      "format": "double",
                       "property": "MTD_Qty_Sold",
-                      "title": "MTD Qty Sold",
-                      "type": "number"
+                      "title": "MTD Qty Sold"
                     },
                     {
-                      "format": "decimal",
                       "property": "MTD_Gross_Sales",
-                      "title": "MTD Gross Sales",
-                      "type": "number"
+                      "title": "MTD Gross Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "MTD_COGS",
-                      "title": "MTD COGS",
-                      "type": "number"
+                      "title": "MTD COGS"
                     },
                     {
-                      "format": "double",
                       "property": "YTD_Qty_Sold",
-                      "title": "YTD Qty Sold",
-                      "type": "number"
+                      "title": "YTD Qty Sold"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_Gross_Sales",
-                      "title": "YTD Gross Sales",
-                      "type": "number"
+                      "title": "YTD Gross Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_COGS",
-                      "title": "YTD COGS",
-                      "type": "number"
+                      "title": "YTD COGS"
                     },
                     {
-                      "format": "double",
                       "property": "YTD_Qty_Returned",
-                      "title": "YTD Qty Returned",
-                      "type": "number"
+                      "title": "YTD Qty Returned"
                     },
                     {
-                      "format": "double",
                       "property": "LTD_Qty_Sold",
-                      "title": "LTD Qty Sold",
-                      "type": "number"
+                      "title": "LTD Qty Sold"
                     },
                     {
-                      "format": "decimal",
                       "property": "LTD_Gross_Sales",
-                      "title": "LTD Gross Sales",
-                      "type": "number"
+                      "title": "LTD Gross Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "LTD_COGS",
-                      "title": "LTD COGS",
-                      "type": "number"
+                      "title": "LTD COGS"
                     },
                     {
-                      "format": "double",
                       "property": "NetGrossRate",
-                      "title": "Net Gross Rate",
-                      "type": "number"
+                      "title": "Net Gross Rate"
                     },
                     {
                       "property": "VendorNumber_FK",
-                      "title": "Vendor Number FK",
-                      "type": "integer"
+                      "title": "Vendor Number FK"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastUpdatedDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Updated Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Updated Date"
                     },
                     {
                       "property": "LastUpdatedBy_FK",
-                      "title": "Last Updated By FK",
-                      "type": "integer"
+                      "title": "Last Updated By FK"
                     },
                     {
                       "property": "Notes",
-                      "title": "Notes",
-                      "type": "string"
+                      "title": "Notes"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -381,7 +311,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblIcInventory",
+                                "name": "DB_At_VDC2.deleteTblIcInventory",
                                 "parameters": [
                                   {
                                     "name": "Inventory_SEQ",
@@ -395,8 +325,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblIcInventory"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -405,7 +334,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcInventory"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcInventory"
                 }
               ]
             }
@@ -415,7 +344,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblIcInventories",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcInventoriesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Ic Inventories",
   "layout": "Main"

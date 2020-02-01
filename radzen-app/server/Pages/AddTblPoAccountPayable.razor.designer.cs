@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblPoAccountPayableComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> _getTblPoVendorsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoVendor> getTblPoVendorsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> _getTblPoVendorsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> getTblPoVendorsResult
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoVendorsResult != value)
+                if(!object.Equals(_getTblPoVendorsResult, value))
                 {
                     _getTblPoVendorsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -41,8 +49,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnDepartment> _getTblGnDepartmentsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnDepartment> getTblGnDepartmentsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnDepartment> _getTblGnDepartmentsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnDepartment> getTblGnDepartmentsResult
         {
             get
             {
@@ -50,7 +58,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnDepartmentsResult != value)
+                if(!object.Equals(_getTblGnDepartmentsResult, value))
                 {
                     _getTblGnDepartmentsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -58,8 +66,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoAccountPayable _tblpoaccountpayable;
-        protected ErpCan.Models.CanErpDbAt132.TblPoAccountPayable tblpoaccountpayable
+        CanErp2.Models.DbAtVdc2.TblPoAccountPayable _tblpoaccountpayable;
+        protected CanErp2.Models.DbAtVdc2.TblPoAccountPayable tblpoaccountpayable
         {
             get
             {
@@ -67,7 +75,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpoaccountpayable != value)
+                if(!object.Equals(_tblpoaccountpayable, value))
                 {
                     _tblpoaccountpayable = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -77,34 +85,33 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoVendorsResult = await CanErpDbAt132.GetTblPoVendors();
-            getTblPoVendorsResult = canErpDbAt132GetTblPoVendorsResult;
+            var dbAtVdc2GetTblPoVendorsResult = await DbAtVdc2.GetTblPoVendors();
+            getTblPoVendorsResult = dbAtVdc2GetTblPoVendorsResult;
 
-            var canErpDbAt132GetTblGnDepartmentsResult = await CanErpDbAt132.GetTblGnDepartments();
-            getTblGnDepartmentsResult = canErpDbAt132GetTblGnDepartmentsResult;
+            var dbAtVdc2GetTblGnDepartmentsResult = await DbAtVdc2.GetTblGnDepartments();
+            getTblGnDepartmentsResult = dbAtVdc2GetTblGnDepartmentsResult;
 
-            tblpoaccountpayable = new ErpCan.Models.CanErpDbAt132.TblPoAccountPayable();
+            tblpoaccountpayable = new CanErp2.Models.DbAtVdc2.TblPoAccountPayable();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoAccountPayable args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoAccountPayable args)
         {
             try
             {
-                var canErpDbAt132CreateTblPoAccountPayableResult = await CanErpDbAt132.CreateTblPoAccountPayable(tblpoaccountpayable);
+                var dbAtVdc2CreateTblPoAccountPayableResult = await DbAtVdc2.CreateTblPoAccountPayable(tblpoaccountpayable);
                 DialogService.Close(tblpoaccountpayable);
             }
-            catch (Exception canErpDbAt132CreateTblPoAccountPayableException)
+            catch (Exception dbAtVdc2CreateTblPoAccountPayableException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblPoAccountPayable!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

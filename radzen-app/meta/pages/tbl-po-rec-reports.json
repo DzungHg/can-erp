@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-po-rec-report",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,112 +75,95 @@
                   "columns": [
                     {
                       "property": "RR_No",
-                      "title": "RR No",
-                      "type": "string"
+                      "title": "RR No"
                     },
                     {
-                      "format": "date-time",
                       "property": "RRDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "RR Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "RR Date"
                     },
                     {
                       "property": "CreatedBy_FK",
                       "sortProperty": "TblGnAddressBook.AddressBook_ID",
                       "filterProperty": "TblGnAddressBook.AddressBook_ID",
                       "template": "${data.TblGnAddressBook?.AddressBook_ID}",
-                      "title": "Tbl Gn Address Book",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book"
                     },
                     {
                       "property": "PO_ID",
-                      "title": "PO ID",
-                      "type": "string"
+                      "title": "PO ID"
                     },
                     {
                       "property": "POStatus_FK",
-                      "title": "PO Status FK",
-                      "type": "integer"
+                      "title": "PO Status FK"
                     },
                     {
-                      "format": "date-time",
                       "property": "PODate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "PO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "PO Date"
                     },
                     {
                       "property": "Vendor_FK",
                       "sortProperty": "TblPoVendor.LastName",
                       "filterProperty": "TblPoVendor.LastName",
                       "template": "${data.TblPoVendor?.LastName}",
-                      "title": "Tbl Po Vendor",
-                      "type": "string"
+                      "title": "Tbl Po Vendor"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "property": "Invoice_No",
-                      "title": "Invoice No",
-                      "type": "string"
+                      "title": "Invoice No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Invoice_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Invoice Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Invoice Date"
                     },
                     {
                       "property": "Ship_No",
-                      "title": "Ship No",
-                      "type": "string"
+                      "title": "Ship No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Ship_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Ship Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Ship Date"
                     },
                     {
                       "property": "Receiver_FK",
-                      "title": "Receiver FK",
-                      "type": "integer"
+                      "title": "Receiver FK"
                     },
                     {
                       "property": "BillOf_Loading_No",
-                      "title": "Bill Of Loading No",
-                      "type": "string"
+                      "title": "Bill Of Loading No"
                     },
                     {
-                      "format": "decimal",
                       "property": "PO_Amount",
-                      "title": "PO Amount",
-                      "type": "number"
+                      "title": "PO Amount"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "property": "Warhoused",
-                      "title": "Warhoused",
-                      "type": "boolean"
+                      "title": "Warhoused"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -199,7 +181,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoRecReport",
+                                "name": "DB_At_VDC2.deleteTblPoRecReport",
                                 "parameters": [
                                   {
                                     "name": "RR_No",
@@ -213,8 +195,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -223,7 +204,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoRecReport"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoRecReport"
                 }
               ]
             }
@@ -235,14 +216,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblPoRecReports",
+        "name": "DB_At_VDC2.getTblPoRecReports",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoRecReportsResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRecReport>"
           }
         ],
         "type": "invoke"

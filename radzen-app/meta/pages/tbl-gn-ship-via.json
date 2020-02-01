@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnShipViaResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-ship-vium",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,27 +75,29 @@
                   "columns": [
                     {
                       "property": "ShipVia_SEQ",
-                      "title": "Ship Via SEQ",
-                      "type": "integer"
+                      "title": "Ship Via SEQ"
                     },
                     {
                       "property": "ShipVia_ID",
-                      "title": "Ship Via ID",
-                      "type": "string"
+                      "title": "Ship Via ID"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -113,7 +115,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnShipVium",
+                                "name": "DB_At_VDC2.deleteTblGnShipVium",
                                 "parameters": [
                                   {
                                     "name": "ShipVia_SEQ",
@@ -127,8 +129,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -137,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnShipVium"
                 }
               ]
             }
@@ -147,7 +148,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnShipVia",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnShipViaResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Ship Via",
   "layout": "Main"

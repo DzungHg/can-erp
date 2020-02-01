@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Product Id",
                               "component": "Product_ID",
+                              "name": "Product_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
                               "name": "Product_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Product Name",
                               "component": "ProductName",
+                              "name": "ProductNameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "ProductName",
@@ -141,11 +145,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblGnProduct!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblGnProduct",
+                        "parameters": [
+                          {
+                            "name": "TblGnProduct",
+                            "value": "${tblgnproduct}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgnproduct}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblgnproduct}",
                   "visible": "${tblgnproduct != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnProduct"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnProduct"
                 }
               ]
             }
@@ -159,8 +188,8 @@
       {
         "name": "tblgnproduct",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblGnProduct()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnProduct"
+        "value": "new CanErp2.Models.DbAtVdc2.TblGnProduct()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblGnProduct"
       }
     ]
   },

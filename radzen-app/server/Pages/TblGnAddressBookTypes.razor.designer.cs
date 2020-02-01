@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblGnAddressBookTypesComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblGnAddressBookType> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblGnAddressBookType> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBookType> _getTblGnAddressBookTypesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBookType> getTblGnAddressBookTypesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBookType> _getTblGnAddressBookTypesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBookType> getTblGnAddressBookTypesResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBookTypesResult != value)
+                if(!object.Equals(_getTblGnAddressBookTypesResult, value))
                 {
                     _getTblGnAddressBookTypesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnAddressBookTypesResult = await CanErpDbAt132.GetTblGnAddressBookTypes();
-            getTblGnAddressBookTypesResult = canErpDbAt132GetTblGnAddressBookTypesResult;
+            var dbAtVdc2GetTblGnAddressBookTypesResult = await DbAtVdc2.GetTblGnAddressBookTypes();
+            getTblGnAddressBookTypesResult = dbAtVdc2GetTblGnAddressBookTypesResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblGnAddressBookType>("Add Tbl Gn Address Book Type", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblGnAddressBookType args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblGnAddressBookType args)
         {
             var result = await DialogService.OpenAsync<EditTblGnAddressBookType>("Edit Tbl Gn Address Book Type", new Dictionary<string, object>() { {"AddressBookType_SEQ", args.AddressBookType_SEQ} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblGnAddressBookType data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblGnAddressBookTypeResult = await CanErpDbAt132.DeleteTblGnAddressBookType(data.AddressBookType_SEQ);
-                if (canErpDbAt132DeleteTblGnAddressBookTypeResult != null) {
+                var dbAtVdc2DeleteTblGnAddressBookTypeResult = await DbAtVdc2.DeleteTblGnAddressBookType(data.AddressBookType_SEQ);
+                if (dbAtVdc2DeleteTblGnAddressBookTypeResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblGnAddressBookTypeException)
+            catch (Exception dbAtVdc2DeleteTblGnAddressBookTypeException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblGnAddressBookType");
             }

@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoAccountPayablesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-po-account-payable",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountPayable",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,66 +75,60 @@
                   "columns": [
                     {
                       "property": "AP_No",
-                      "title": "AP No",
-                      "type": "string"
+                      "title": "AP No"
                     },
                     {
                       "property": "Vendor_FK",
                       "sortProperty": "TblPoVendor.LastName",
                       "filterProperty": "TblPoVendor.LastName",
                       "template": "${data.TblPoVendor?.LastName}",
-                      "title": "Tbl Po Vendor",
-                      "type": "string"
+                      "title": "Tbl Po Vendor"
                     },
                     {
                       "property": "Transact_No",
-                      "title": "Transact No",
-                      "type": "string"
+                      "title": "Transact No"
                     },
                     {
                       "property": "Record_Code",
-                      "title": "Record Code",
-                      "type": "string"
+                      "title": "Record Code"
                     },
                     {
                       "property": "PO_No",
-                      "title": "PO No",
-                      "type": "string"
+                      "title": "PO No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Transact_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Transact Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Transact Date"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
-                      "format": "decimal",
                       "property": "Amount",
-                      "title": "Amount",
-                      "type": "number"
+                      "title": "Amount"
                     },
                     {
                       "property": "Department_FK",
                       "sortProperty": "TblGnDepartment.Deparment_Name",
                       "filterProperty": "TblGnDepartment.Deparment_Name",
                       "template": "${data.TblGnDepartment?.Deparment_Name}",
-                      "title": "Tbl Gn Department",
-                      "type": "string"
+                      "title": "Tbl Gn Department"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -152,7 +146,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoAccountPayable",
+                                "name": "DB_At_VDC2.deleteTblPoAccountPayable",
                                 "parameters": [
                                   {
                                     "name": "AP_No",
@@ -166,8 +160,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoAccountPayable"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -176,7 +169,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoAccountPayable"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoAccountPayable"
                 }
               ]
             }
@@ -186,7 +179,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoAccountPayables",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoAccountPayablesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoAccountPayable>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Account Payables",
   "layout": "Main"

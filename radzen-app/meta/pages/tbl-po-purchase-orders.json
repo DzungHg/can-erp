@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoPurchaseOrdersResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-po-purchase-order",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,109 +75,105 @@
                   "columns": [
                     {
                       "property": "PO_ID",
-                      "title": "PO ID",
-                      "type": "string"
+                      "title": "PO ID"
                     },
                     {
-                      "format": "date-time",
                       "property": "PODate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "PO Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "PO Date"
                     },
                     {
                       "property": "CreatedBy_FK",
                       "sortProperty": "TblGnAddressBook.AddressBook_ID",
                       "filterProperty": "TblGnAddressBook.AddressBook_ID",
                       "template": "${data.TblGnAddressBook?.AddressBook_ID}",
-                      "title": "Tbl Gn Address Book",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book"
                     },
                     {
                       "property": "POStatus_FK",
                       "sortProperty": "TblPoOrderStatus.POStatusText",
                       "filterProperty": "TblPoOrderStatus.POStatusText",
                       "template": "${data.TblPoOrderStatus?.POStatusText}",
-                      "title": "Tbl Po Order Status",
-                      "type": "string"
+                      "title": "Tbl Po Order Status"
                     },
                     {
                       "property": "Vendor_FK",
                       "sortProperty": "TblPoVendor.LastName",
                       "filterProperty": "TblPoVendor.LastName",
                       "template": "${data.TblPoVendor?.LastName}",
-                      "title": "Tbl Po Vendor",
-                      "type": "string"
+                      "title": "Tbl Po Vendor"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
-                      "property": "Incoterm_ID",
-                      "title": "Incoterm ID",
-                      "type": "string"
+                      "property": "Incoterm_FK",
+                      "sortProperty": "TblGnIncoterm.Incoterm_Name",
+                      "filterProperty": "TblGnIncoterm.Incoterm_Name",
+                      "template": "${data.TblGnIncoterm?.Incoterm_Name}",
+                      "title": "Tbl Gn Incoterm"
                     },
                     {
                       "property": "ShipVia_FK",
                       "sortProperty": "TblGnShipVium.ShipVia_ID",
                       "filterProperty": "TblGnShipVium.ShipVia_ID",
                       "template": "${data.TblGnShipVium?.ShipVia_ID}",
-                      "title": "Tbl Gn Ship Vium",
-                      "type": "string"
+                      "title": "Tbl Gn Ship Vium"
                     },
                     {
                       "property": "PaymentTerm_FK",
                       "sortProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "filterProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "template": "${data.TblGnPaymentTerm?.PaymentTerm_ID}",
-                      "title": "Tbl Gn Payment Term",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Term"
                     },
                     {
                       "property": "PaymentType_FK",
                       "sortProperty": "TblGnPaymentType.PaymentType_ID",
                       "filterProperty": "TblGnPaymentType.PaymentType_ID",
                       "template": "${data.TblGnPaymentType?.PaymentType_ID}",
-                      "title": "Tbl Gn Payment Type",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Type"
                     },
                     {
                       "property": "Buyer_FK",
-                      "title": "Buyer FK",
-                      "type": "integer"
+                      "sortProperty": "TblGnAddressBook1.AddressBook_ID",
+                      "filterProperty": "TblGnAddressBook1.AddressBook_ID",
+                      "template": "${data.TblGnAddressBook1?.AddressBook_ID}",
+                      "title": "Tbl Gn Address Book"
                     },
                     {
                       "property": "TaxYN",
-                      "title": "Tax YN",
-                      "type": "boolean"
+                      "title": "Tax YN"
                     },
                     {
-                      "format": "double",
                       "property": "TaxtRate",
-                      "title": "Taxt Rate",
-                      "type": "number"
+                      "title": "Taxt Rate"
                     },
                     {
                       "property": "Department_FK",
-                      "title": "Department FK",
-                      "type": "string"
+                      "sortProperty": "TblGnDepartment.Deparment_Name",
+                      "filterProperty": "TblGnDepartment.Deparment_Name",
+                      "template": "${data.TblGnDepartment?.Deparment_Name}",
+                      "title": "Tbl Gn Department"
                     },
                     {
-                      "format": "decimal",
                       "property": "PO_Amount",
-                      "title": "PO Amount",
-                      "type": "number"
+                      "title": "PO Amount"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -195,7 +191,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoPurchaseOrder",
+                                "name": "DB_At_VDC2.deleteTblPoPurchaseOrder",
                                 "parameters": [
                                   {
                                     "name": "PO_ID",
@@ -209,8 +205,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -219,7 +214,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder"
                 }
               ]
             }
@@ -229,7 +224,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoPurchaseOrders",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoPurchaseOrdersResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Purchase Orders",
   "layout": "Main"

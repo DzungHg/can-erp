@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-so-order-detail",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,102 +75,86 @@
                   "columns": [
                     {
                       "property": "SODetail_SEQ",
-                      "title": "SO Detail SEQ",
-                      "type": "integer"
+                      "title": "SO Detail SEQ"
                     },
                     {
                       "property": "SODetailStatus_FK",
                       "sortProperty": "TblSoOrderDetailStatus.SODetailStatusText",
                       "filterProperty": "TblSoOrderDetailStatus.SODetailStatusText",
                       "template": "${data.TblSoOrderDetailStatus?.SODetailStatusText}",
-                      "title": "Tbl So Order Detail Status",
-                      "type": "string"
+                      "title": "Tbl So Order Detail Status"
                     },
                     {
                       "property": "SO_FK",
                       "sortProperty": "TblSoSalesOrder.SO_ID",
                       "filterProperty": "TblSoSalesOrder.SO_ID",
                       "template": "${data.TblSoSalesOrder?.SO_ID}",
-                      "title": "Tbl So Sales Order",
-                      "type": "string"
+                      "title": "Tbl So Sales Order"
                     },
                     {
                       "property": "Inventory_FK",
                       "sortProperty": "TblIcInventory.Warehouse_FK",
                       "filterProperty": "TblIcInventory.Warehouse_FK",
                       "template": "${data.TblIcInventory?.Warehouse_FK}",
-                      "title": "Tbl Ic Inventory",
-                      "type": "string"
+                      "title": "Tbl Ic Inventory"
                     },
                     {
-                      "format": "decimal",
                       "property": "UnitPrice",
-                      "title": "Unit Price",
-                      "type": "number"
+                      "title": "Unit Price"
                     },
                     {
                       "property": "QtyOnHand",
-                      "title": "Qty On Hand",
-                      "type": "integer"
+                      "title": "Qty On Hand"
                     },
                     {
                       "property": "QtyOrdered",
-                      "title": "Qty Ordered",
-                      "type": "integer"
+                      "title": "Qty Ordered"
                     },
                     {
                       "property": "QtyOrderedNow",
-                      "title": "Qty Ordered Now",
-                      "type": "integer"
+                      "title": "Qty Ordered Now"
                     },
                     {
                       "property": "QtyBackOrdered",
-                      "title": "Qty Back Ordered",
-                      "type": "integer"
+                      "title": "Qty Back Ordered"
                     },
                     {
                       "property": "QtyPicked",
-                      "title": "Qty Picked",
-                      "type": "integer"
+                      "title": "Qty Picked"
                     },
                     {
-                      "format": "decimal",
                       "property": "SubTotal",
-                      "title": "Sub Total",
-                      "type": "number"
+                      "title": "Sub Total"
                     },
                     {
-                      "format": "decimal",
                       "property": "DiscountPercent",
-                      "title": "Discount Percent",
-                      "type": "number"
+                      "title": "Discount Percent"
                     },
                     {
-                      "format": "decimal",
                       "property": "Discount",
-                      "title": "Discount",
-                      "type": "number"
+                      "title": "Discount"
                     },
                     {
-                      "format": "decimal",
                       "property": "TaxRate",
-                      "title": "Tax Rate",
-                      "type": "number"
+                      "title": "Tax Rate"
                     },
                     {
-                      "format": "decimal",
                       "property": "Tax",
-                      "title": "Tax",
-                      "type": "number"
+                      "title": "Tax"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -189,7 +172,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblSoOrderDetail",
+                                "name": "DB_At_VDC2.deleteTblSoOrderDetail",
                                 "parameters": [
                                   {
                                     "name": "SODetail_SEQ",
@@ -203,8 +186,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -213,7 +195,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetail"
                 }
               ]
             }
@@ -225,14 +207,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderDetails",
+        "name": "DB_At_VDC2.getTblSoOrderDetails",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoOrderDetailsResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetail>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderDetail>"
           }
         ],
         "type": "invoke"

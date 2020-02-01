@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Unit Text",
                               "component": "UnitText",
+                              "name": "UnitTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 25,
                               "type": "textbox",
                               "name": "UnitText",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Unit Fk",
                               "component": "Unit_FK",
+                              "name": "Unit_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 20,
                               "type": "textbox",
                               "name": "Unit_FK",
@@ -141,11 +145,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblIcUnit!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblIcUnit",
+                        "parameters": [
+                          {
+                            "name": "TblIcUnit",
+                            "value": "${tblicunit}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblicunit}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblicunit}",
                   "visible": "${tblicunit != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcUnit"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcUnit"
                 }
               ]
             }
@@ -159,8 +188,8 @@
       {
         "name": "tblicunit",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblIcUnit()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblIcUnit"
+        "value": "new CanErp2.Models.DbAtVdc2.TblIcUnit()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblIcUnit"
       }
     ]
   },

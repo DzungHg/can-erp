@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Trans No",
                               "component": "Trans_No",
+                              "name": "Trans_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "Trans_No",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Tbl Ic Transaction Type",
                               "component": "Trans_Code",
+                              "name": "Trans_CodeLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,9 +90,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblIcTransactionTypesResult}",
                               "textProperty": "Transaction_Name",
                               "valueProperty": "Transaction_ID",
                               "placeholder": "Choose TblIcTransactionType",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Trans_Code",
                               "style": {
@@ -125,6 +130,7 @@
                               "type": "label",
                               "text": "Trans Date",
                               "component": "Trans_Date",
+                              "name": "Trans_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -136,7 +142,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Trans_Date",
                               "style": {
@@ -162,6 +169,7 @@
                               "type": "label",
                               "text": "Tbl Ic Warehouse",
                               "component": "Warehouse_ID",
+                              "name": "Warehouse_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -173,9 +181,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblIcWarehousesResult}",
                               "textProperty": "WarehouseName",
                               "valueProperty": "Warehouse_ID",
                               "placeholder": "Choose TblIcWarehouse",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Warehouse_ID",
                               "style": {
@@ -211,6 +221,7 @@
                               "type": "label",
                               "text": "Tbl Gn Product",
                               "component": "Item_FK",
+                              "name": "Item_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -222,9 +233,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblGnProductsResult}",
                               "textProperty": "Product_ID",
                               "valueProperty": "Product_SEQ",
                               "placeholder": "Choose TblGnProduct",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Item_FK",
                               "style": {
@@ -250,6 +263,7 @@
                               "type": "label",
                               "text": "Reference No",
                               "component": "Reference_No",
+                              "name": "Reference_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -261,6 +275,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Reference_No",
@@ -287,6 +302,7 @@
                               "type": "label",
                               "text": "Reference Date",
                               "component": "Reference_Date",
+                              "name": "Reference_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -298,7 +314,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Reference_Date",
                               "style": {
@@ -324,6 +341,7 @@
                               "type": "label",
                               "text": "Taxable",
                               "component": "Taxable",
+                              "name": "TaxableLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -335,6 +353,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Taxable",
                               "triState": true,
@@ -358,6 +377,7 @@
                               "type": "label",
                               "text": "Cust Vend War Id",
                               "component": "Cust_Vend_WarID",
+                              "name": "Cust_Vend_WarIDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -369,6 +389,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Cust_Vend_WarID",
@@ -395,6 +416,7 @@
                               "type": "label",
                               "text": "Trans Qty",
                               "component": "Trans_Qty",
+                              "name": "Trans_QtyLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -406,6 +428,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "Trans_Qty",
                               "style": {
@@ -431,6 +454,7 @@
                               "type": "label",
                               "text": "Uom",
                               "component": "UOM",
+                              "name": "UOMLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -442,6 +466,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "UOM",
@@ -468,6 +493,7 @@
                               "type": "label",
                               "text": "Trans Amount",
                               "component": "Trans_Amount",
+                              "name": "Trans_AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -479,6 +505,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Trans_Amount",
                               "style": {
@@ -504,6 +531,7 @@
                               "type": "label",
                               "text": "Qty On Hand Eob",
                               "component": "Qty_On_Hand_EOB",
+                              "name": "Qty_On_Hand_EOBLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -515,6 +543,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "Qty_On_Hand_EOB",
                               "style": {
@@ -540,6 +569,7 @@
                               "type": "label",
                               "text": "Qty On Order Eob",
                               "component": "Qty_On_Order_EOB",
+                              "name": "Qty_On_Order_EOBLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -551,6 +581,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "Qty_On_Order_EOB",
                               "style": {
@@ -576,6 +607,7 @@
                               "type": "label",
                               "text": "Qty On Allowed Eob",
                               "component": "Qty_On_Allowed_EOB",
+                              "name": "Qty_On_Allowed_EOBLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -587,6 +619,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "Qty_On_Allowed_EOB",
                               "style": {
@@ -612,6 +645,7 @@
                               "type": "label",
                               "text": "Gl Asset",
                               "component": "GL_Asset",
+                              "name": "GL_AssetLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -623,6 +657,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "GL_Asset",
@@ -649,6 +684,7 @@
                               "type": "label",
                               "text": "Gl Cogs",
                               "component": "GL_COGS",
+                              "name": "GL_COGSLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -660,6 +696,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "GL_COGS",
@@ -686,6 +723,7 @@
                               "type": "label",
                               "text": "Gl Sales",
                               "component": "GL_Sales",
+                              "name": "GL_SalesLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -697,6 +735,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "GL_Sales",
@@ -741,11 +780,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblIcTransaction!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblIcTransaction",
+                        "parameters": [
+                          {
+                            "name": "TblIcTransaction",
+                            "value": "${tblictransaction}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblictransaction}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblictransaction}",
                   "visible": "${tblictransaction != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcTransaction"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcTransaction"
                 }
               ]
             }
@@ -757,10 +821,49 @@
   "events": {
     "load": [
       {
+        "name": "DB_At_VDC2.getTblIcTransactionTypes",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcTransactionTypesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcTransactionType>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblIcWarehouses",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcWarehousesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnProducts",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnProductsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
         "name": "tblictransaction",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblIcTransaction()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblIcTransaction"
+        "value": "new CanErp2.Models.DbAtVdc2.TblIcTransaction()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblIcTransaction"
       }
     ]
   },

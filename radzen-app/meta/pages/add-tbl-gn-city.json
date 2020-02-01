@@ -1,174 +1,205 @@
 {
   "components": [
     {
+      "type": "content",
+      "container": "main",
       "components": [
         {
+          "type": "row",
           "components": [
             {
+              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
+                  "type": "template-form",
+                  "name": "form0",
                   "components": [
                     {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
                       "components": [
                         {
+                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
+                              "type": "label",
+                              "text": "City Id",
                               "component": "City_ID",
+                              "name": "City_IDLabel",
                               "style": {
                                 "width": "100%"
-                              },
-                              "text": "Mã Tỉnh Thành",
-                              "type": "label"
+                              }
                             }
-                          ],
-                          "type": "col"
+                          ]
                         },
                         {
+                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
+                              "type": "textbox",
                               "name": "City_ID",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox",
                               "value": "${tblgncity.City_ID}"
                             }
-                          ],
-                          "type": "col"
+                          ]
                         }
-                      ],
+                      ]
+                    },
+                    {
+                      "type": "row",
                       "style": {
                         "marginBottom": "1rem"
                       },
-                      "type": "row"
-                    },
-                    {
                       "components": [
                         {
+                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
+                              "type": "label",
+                              "text": "City Name",
                               "component": "CityName",
+                              "name": "CityNameLabel",
                               "style": {
                                 "width": "100%"
-                              },
-                              "text": "Tên Tỉnh Thành",
-                              "type": "label"
+                              }
                             }
-                          ],
-                          "type": "col"
+                          ]
                         },
                         {
+                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
+                              "type": "textbox",
                               "name": "CityName",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox",
                               "value": "${tblgncity.CityName}"
                             }
-                          ],
-                          "type": "col"
+                          ]
                         }
-                      ],
+                      ]
+                    },
+                    {
+                      "type": "row",
                       "style": {
                         "marginBottom": "1rem"
                       },
-                      "type": "row"
-                    },
-                    {
                       "components": [
                         {
+                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
+                              "type": "label",
+                              "text": "City Abbreviation",
                               "component": "CityAbbreviation",
+                              "name": "CityAbbreviationLabel",
                               "style": {
                                 "width": "100%"
-                              },
-                              "text": "Viết Tắt",
-                              "type": "label"
+                              }
                             }
-                          ],
-                          "type": "col"
+                          ]
                         },
                         {
+                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
+                              "type": "textbox",
                               "name": "CityAbbreviation",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox",
                               "value": "${tblgncity.CityAbbreviation}"
                             }
-                          ],
-                          "type": "col"
+                          ]
                         }
-                      ],
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
+                      ]
                     },
                     {
+                      "type": "row",
                       "components": [
                         {
+                          "type": "col",
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "buttonStyle": "primary",
+                              "type": "button",
                               "buttonType": "submit",
                               "icon": "save",
                               "text": "Save",
-                              "type": "button"
+                              "buttonStyle": "primary"
                             },
                             {
+                              "type": "button",
                               "buttonStyle": "light",
+                              "text": "Cancel",
                               "events": {
                                 "click": [
                                   {
                                     "type": "close-popup"
                                   }
                                 ]
-                              },
-                              "text": "Cancel",
-                              "type": "button"
+                              }
                             }
-                          ],
-                          "type": "col"
+                          ]
                         }
-                      ],
-                      "type": "row"
+                      ]
                     }
                   ],
-                  "data": "${tblgncity}",
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblGnCity!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblGnCity",
+                        "parameters": [
+                          {
+                            "name": "TblGnCity",
+                            "value": "${tblgncity}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgncity}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnCity",
-                  "name": "form0",
-                  "type": "template-form",
-                  "visible": "${tblgncity != null}"
+                  "data": "${tblgncity}",
+                  "visible": "${tblgncity != null}",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnCity"
                 }
-              ],
-              "type": "col"
+              ]
             }
-          ],
-          "type": "row"
+          ]
         }
-      ],
-      "container": "contentContainer0",
-      "type": "content"
+      ]
     }
   ],
   "events": {
@@ -176,11 +207,11 @@
       {
         "name": "tblgncity",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblGnCity()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblGnCity"
+        "value": "new CanErp2.Models.DbAtVdc2.TblGnCity()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblGnCity"
       }
     ]
   },
-  "layout": "Main",
-  "name": "Add Tbl Gn City"
+  "name": "Add Tbl Gn City",
+  "layout": "Main"
 }

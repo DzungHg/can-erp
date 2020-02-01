@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblGnShipViumComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        ErpCan.Models.CanErpDbAt132.TblGnShipVium _tblgnshipvium;
-        protected ErpCan.Models.CanErpDbAt132.TblGnShipVium tblgnshipvium
+        CanErp2.Models.DbAtVdc2.TblGnShipVium _tblgnshipvium;
+        protected CanErp2.Models.DbAtVdc2.TblGnShipVium tblgnshipvium
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnshipvium != value)
+                if(!object.Equals(_tblgnshipvium, value))
                 {
                     _tblgnshipvium = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -43,28 +51,27 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            tblgnshipvium = new ErpCan.Models.CanErpDbAt132.TblGnShipVium();
+            tblgnshipvium = new CanErp2.Models.DbAtVdc2.TblGnShipVium();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnShipVium args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnShipVium args)
         {
             try
             {
-                var canErpDbAt132CreateTblGnShipViumResult = await CanErpDbAt132.CreateTblGnShipVium(tblgnshipvium);
+                var dbAtVdc2CreateTblGnShipViumResult = await DbAtVdc2.CreateTblGnShipVium(tblgnshipvium);
                 DialogService.Close(tblgnshipvium);
             }
-            catch (Exception canErpDbAt132CreateTblGnShipViumException)
+            catch (Exception dbAtVdc2CreateTblGnShipViumException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblGnShipVium!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

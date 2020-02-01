@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-po-order-status/{POStatus_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblPoOrderStatusComponent
+@inherits CanErp2.Pages.EditTblPoOrderStatusComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblPoOrderStatus" Data="@(tblpoorderstatus)" Visible="@(tblpoorderstatus != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblPoOrderStatus" Data="@(tblpoorderstatus)" Visible="@(tblpoorderstatus != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@((tblpoorderstatus.POStatus_ID))" Name="POStatus_ID">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(tblpoorderstatus.POStatus_ID)" Name="POStatus_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="POStatus_ID" Text="POStatus_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblpoorderstatus.POStatusText))" Name="POStatusText">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblpoorderstatus.POStatusText)" Name="POStatusText">
                 </RadzenTextBox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblpoorderstatus.Description))" Name="Description">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblpoorderstatus.Description)" Name="Description">
                 </RadzenTextBox>
               </div>
             </div>

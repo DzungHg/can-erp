@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnProductsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-product",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnProduct",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,27 +75,29 @@
                   "columns": [
                     {
                       "property": "Product_SEQ",
-                      "title": "Product SEQ",
-                      "type": "integer"
+                      "title": "Product SEQ"
                     },
                     {
                       "property": "Product_ID",
-                      "title": "Product ID",
-                      "type": "string"
+                      "title": "Product ID"
                     },
                     {
                       "property": "ProductName",
-                      "title": "Product Name",
-                      "type": "string"
+                      "title": "Product Name"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -113,7 +115,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnProduct",
+                                "name": "DB_At_VDC2.deleteTblGnProduct",
                                 "parameters": [
                                   {
                                     "name": "Product_SEQ",
@@ -127,8 +129,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnProduct"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -137,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnProduct"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnProduct"
                 }
               ]
             }
@@ -147,7 +148,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnProducts",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnProductsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Products",
   "layout": "Main"

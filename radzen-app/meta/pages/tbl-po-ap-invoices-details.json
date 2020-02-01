@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoApInvoicesDetailsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -65,7 +66,6 @@
                         ],
                         "path": "edit-tbl-po-ap-invoices-detail",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -82,57 +82,52 @@
                       "sortProperty": "TblPoVendor.LastName",
                       "filterProperty": "TblPoVendor.LastName",
                       "template": "${data.TblPoVendor?.LastName}",
-                      "title": "Tbl Po Vendor",
-                      "type": "string"
+                      "title": "Tbl Po Vendor"
                     },
                     {
                       "property": "Invoice_No",
-                      "title": "Invoice No",
-                      "type": "string"
+                      "title": "Invoice No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Invoice_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Invoice Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Invoice Date"
                     },
                     {
                       "property": "Inventory_FK",
                       "sortProperty": "TblIcInventory.Warehouse_FK",
                       "filterProperty": "TblIcInventory.Warehouse_FK",
                       "template": "${data.TblIcInventory?.Warehouse_FK}",
-                      "title": "Tbl Ic Inventory",
-                      "type": "string"
+                      "title": "Tbl Ic Inventory"
                     },
                     {
                       "property": "Unit_FK",
                       "sortProperty": "TblIcUnit.UnitText",
                       "filterProperty": "TblIcUnit.UnitText",
                       "template": "${data.TblIcUnit?.UnitText}",
-                      "title": "Tbl Ic Unit",
-                      "type": "string"
+                      "title": "Tbl Ic Unit"
                     },
                     {
-                      "format": "decimal",
                       "property": "Unit_Price",
-                      "title": "Unit Price",
-                      "type": "number"
+                      "title": "Unit Price"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_Ordered",
-                      "title": "Qty Ordered",
-                      "type": "number"
+                      "title": "Qty Ordered"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -150,7 +145,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoApInvoicesDetail",
+                                "name": "DB_At_VDC2.deleteTblPoApInvoicesDetail",
                                 "parameters": [
                                   {
                                     "name": "Vendor_ID",
@@ -168,8 +163,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -178,7 +172,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail"
                 }
               ]
             }
@@ -188,7 +182,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoApInvoicesDetails",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoApInvoicesDetailsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Ap Invoices Details",
   "layout": "Main"

@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-gn-incoterm/{Incoterm_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblGnIncotermComponent
+@inherits CanErp2.Pages.EditTblGnIncotermComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,43 +19,43 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblgnincoterm)" TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Visible="@(tblgnincoterm != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" Data="@(tblgnincoterm)" Visible="@(tblgnincoterm != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Incoterm_ID" style="width: 100%" Text="Incoterm ID">
+                <RadzenLabel Text="Incoterm Id" Component="Incoterm_ID" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="3" ReadOnly="true" style="display: block; width: 100%" @bind-Value="@((tblgnincoterm.Incoterm_ID))" Name="Incoterm_ID">
+                <RadzenTextBox MaxLength="3" style="display: block; width: 100%" @bind-Value="@(tblgnincoterm.Incoterm_ID)" Name="Incoterm_ID">
                 </RadzenTextBox>
-                <RadzenRequiredValidator Component="Incoterm_ID" style="position: absolute" Text="Incoterm_ID is required">
+                <RadzenRequiredValidator Component="Incoterm_ID" Text="Incoterm_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Incoterm_Name" style="width: 100%" Text="Tên">
+                <RadzenLabel Text="Incoterm Name" Component="Incoterm_Name" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="15" style="width: 100%" @bind-Value="@((tblgnincoterm.Incoterm_Name))" Name="Incoterm_Name">
+                <RadzenTextBox MaxLength="15" style="width: 100%" @bind-Value="@(tblgnincoterm.Incoterm_Name)" Name="Incoterm_Name">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Component="Description" style="width: 100%" Text="Diễn giải">
+                <RadzenLabel Text="Description" Component="Description" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextArea style="width: 635px" @bind-Value="@((tblgnincoterm.Description))" Name="Textarea0">
-                </RadzenTextArea>
+                <RadzenTextBox MaxLength="250" style="width: 100%" @bind-Value="@(tblgnincoterm.Description)" Name="Description">
+                </RadzenTextBox>
               </div>
             </div>
             <div class="row">
               <div class="col offset-sm-3">
-                <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save">
+                <RadzenButton ButtonType="ButtonType.Submit" Icon="save" Text="Save" ButtonStyle="ButtonStyle.Primary">
                 </RadzenButton>
                 <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Click="@Button3Click">
                 </RadzenButton>

@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -66,7 +66,6 @@
                         ],
                         "path": "edit-tbl-po-rr-order-detail",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -83,43 +82,40 @@
                       "sortProperty": "TblPoRecReport.PO_ID",
                       "filterProperty": "TblPoRecReport.PO_ID",
                       "template": "${data.TblPoRecReport?.PO_ID}",
-                      "title": "Tbl Po Rec Report",
-                      "type": "string"
+                      "title": "Tbl Po Rec Report"
                     },
                     {
                       "property": "Inventory_FK",
                       "sortProperty": "TblIcInventory.Warehouse_FK",
                       "filterProperty": "TblIcInventory.Warehouse_FK",
                       "template": "${data.TblIcInventory?.Warehouse_FK}",
-                      "title": "Tbl Ic Inventory",
-                      "type": "string"
+                      "title": "Tbl Ic Inventory"
                     },
                     {
-                      "format": "decimal",
                       "property": "Unit_Price",
-                      "title": "Unit Price",
-                      "type": "number"
+                      "title": "Unit Price"
                     },
                     {
-                      "format": "double",
                       "property": "QtyOrdered",
-                      "title": "Qty Ordered",
-                      "type": "number"
+                      "title": "Qty Ordered"
                     },
                     {
-                      "format": "double",
                       "property": "QtyReceived",
-                      "title": "Qty Received",
-                      "type": "number"
+                      "title": "Qty Received"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -137,7 +133,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoRrOrderDetail",
+                                "name": "DB_At_VDC2.deleteTblPoRrOrderDetail",
                                 "parameters": [
                                   {
                                     "name": "RR_FK",
@@ -155,8 +151,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -165,7 +160,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail"
                 }
               ]
             }
@@ -177,14 +172,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblPoRrOrderDetails",
+        "name": "DB_At_VDC2.getTblPoRrOrderDetails",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoRrOrderDetailsResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail>"
           }
         ],
         "type": "invoke"

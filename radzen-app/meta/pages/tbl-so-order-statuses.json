@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-so-order-status",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,32 +75,33 @@
                   "columns": [
                     {
                       "property": "SOStatus_SEQ",
-                      "title": "SO Status SEQ",
-                      "type": "integer"
+                      "title": "SO Status SEQ"
                     },
                     {
                       "property": "SOStatus_ID",
-                      "title": "SO Status ID",
-                      "type": "string"
+                      "title": "SO Status ID"
                     },
                     {
                       "property": "SOStatusText",
-                      "title": "SO Status Text",
-                      "type": "string"
+                      "title": "SO Status Text"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -119,7 +119,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblSoOrderStatus",
+                                "name": "DB_At_VDC2.deleteTblSoOrderStatus",
                                 "parameters": [
                                   {
                                     "name": "SOStatus_SEQ",
@@ -133,8 +133,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -143,7 +142,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderStatus"
                 }
               ]
             }
@@ -155,14 +154,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderStatuses",
+        "name": "DB_At_VDC2.getTblSoOrderStatuses",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoOrderStatusesResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderStatus>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderStatus>"
           }
         ],
         "type": "invoke"

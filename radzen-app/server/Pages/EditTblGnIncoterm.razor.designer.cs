@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblGnIncotermComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Incoterm_ID { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblGnIncoterm _tblgnincoterm;
-        protected ErpCan.Models.CanErpDbAt132.TblGnIncoterm tblgnincoterm
+        CanErp2.Models.DbAtVdc2.TblGnIncoterm _tblgnincoterm;
+        protected CanErp2.Models.DbAtVdc2.TblGnIncoterm tblgnincoterm
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnincoterm != value)
+                if(!object.Equals(_tblgnincoterm, value))
                 {
                     _tblgnincoterm = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblGnIncotermByIncotermIdResult = await CanErpDbAt132.GetTblGnIncotermByIncotermId($"{Incoterm_ID}");
-            tblgnincoterm = canErpDbAt132GetTblGnIncotermByIncotermIdResult;
+            var dbAtVdc2GetTblGnIncotermByIncotermIdResult = await DbAtVdc2.GetTblGnIncotermByIncotermId($"{Incoterm_ID}");
+            tblgnincoterm = dbAtVdc2GetTblGnIncotermByIncotermIdResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnIncoterm args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnIncoterm args)
         {
             try
             {
-                var canErpDbAt132UpdateTblGnIncotermResult = await CanErpDbAt132.UpdateTblGnIncoterm($"{Incoterm_ID}", tblgnincoterm);
+                var dbAtVdc2UpdateTblGnIncotermResult = await DbAtVdc2.UpdateTblGnIncoterm($"{Incoterm_ID}", tblgnincoterm);
                 DialogService.Close(tblgnincoterm);
             }
-            catch (Exception canErpDbAt132UpdateTblGnIncotermException)
+            catch (Exception dbAtVdc2UpdateTblGnIncotermException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnIncoterm");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblPoCashDisbursementComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> _getTblGnAddressBooksResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> getTblGnAddressBooksResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> _getTblGnAddressBooksResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> getTblGnAddressBooksResult
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBooksResult != value)
+                if(!object.Equals(_getTblGnAddressBooksResult, value))
                 {
                     _getTblGnAddressBooksResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -41,8 +49,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement _tblpocashdisbursement;
-        protected ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement tblpocashdisbursement
+        CanErp2.Models.DbAtVdc2.TblPoCashDisbursement _tblpocashdisbursement;
+        protected CanErp2.Models.DbAtVdc2.TblPoCashDisbursement tblpocashdisbursement
         {
             get
             {
@@ -50,7 +58,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpocashdisbursement != value)
+                if(!object.Equals(_tblpocashdisbursement, value))
                 {
                     _tblpocashdisbursement = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -60,31 +68,30 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnAddressBooksResult = await CanErpDbAt132.GetTblGnAddressBooks();
-            getTblGnAddressBooksResult = canErpDbAt132GetTblGnAddressBooksResult;
+            var dbAtVdc2GetTblGnAddressBooksResult = await DbAtVdc2.GetTblGnAddressBooks();
+            getTblGnAddressBooksResult = dbAtVdc2GetTblGnAddressBooksResult;
 
-            tblpocashdisbursement = new ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement();
+            tblpocashdisbursement = new CanErp2.Models.DbAtVdc2.TblPoCashDisbursement();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoCashDisbursement args)
         {
             try
             {
-                var canErpDbAt132CreateTblPoCashDisbursementResult = await CanErpDbAt132.CreateTblPoCashDisbursement(tblpocashdisbursement);
+                var dbAtVdc2CreateTblPoCashDisbursementResult = await DbAtVdc2.CreateTblPoCashDisbursement(tblpocashdisbursement);
                 DialogService.Close(tblpocashdisbursement);
             }
-            catch (Exception canErpDbAt132CreateTblPoCashDisbursementException)
+            catch (Exception dbAtVdc2CreateTblPoCashDisbursementException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblPoCashDisbursement!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

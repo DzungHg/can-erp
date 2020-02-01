@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
-namespace ErpCan.Layouts
+using CanErp2.Models.DbAtVdc2;
+namespace CanErp2.Layouts
 {
     public partial class LoginLayoutComponent : LayoutComponentBase
     {
@@ -20,7 +20,7 @@ namespace ErpCan.Layouts
         [Inject]
         protected NotificationService NotificationService { get; set; }
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
 
         protected RadzenBody body0;

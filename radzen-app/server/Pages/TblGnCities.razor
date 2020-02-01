@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-cities"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnCitiesComponent
+@inherits CanErp2.Pages.TblGnCitiesComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Cities">
     </RadzenHeading>
@@ -13,19 +13,19 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnCitiesResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnCitiesResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnCity" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Context="erpCanModelsCanErpDbAt132TblGnCity" Property="City_SEQ" Title="City SEQ" Type="integer">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Context="canErp2ModelsDbAtVdc2TblGnCity" Property="City_SEQ" Title="City SEQ">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Context="erpCanModelsCanErpDbAt132TblGnCity" Property="City_ID" Title="City ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Context="canErp2ModelsDbAtVdc2TblGnCity" Property="City_ID" Title="City ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Context="erpCanModelsCanErpDbAt132TblGnCity" Property="CityName" Title="City Name" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Context="canErp2ModelsDbAtVdc2TblGnCity" Property="CityName" Title="City Name">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Context="erpCanModelsCanErpDbAt132TblGnCity" Property="CityAbbreviation" Title="City Abbreviation" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Context="canErp2ModelsDbAtVdc2TblGnCity" Property="CityAbbreviation" Title="City Abbreviation">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnCity" Context="erpCanModelsCanErpDbAt132TblGnCity" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnCity">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnCity))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Context="canErp2ModelsDbAtVdc2TblGnCity" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnCity">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnCity))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

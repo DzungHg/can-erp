@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblIcCategoryComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Category_ID { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblIcCategory _tbliccategory;
-        protected ErpCan.Models.CanErpDbAt132.TblIcCategory tbliccategory
+        CanErp2.Models.DbAtVdc2.TblIcCategory _tbliccategory;
+        protected CanErp2.Models.DbAtVdc2.TblIcCategory tbliccategory
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tbliccategory != value)
+                if(!object.Equals(_tbliccategory, value))
                 {
                     _tbliccategory = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblIcCategoryByCategoryIdResult = await CanErpDbAt132.GetTblIcCategoryByCategoryId($"{Category_ID}");
-            tbliccategory = canErpDbAt132GetTblIcCategoryByCategoryIdResult;
+            var dbAtVdc2GetTblIcCategoryByCategoryIdResult = await DbAtVdc2.GetTblIcCategoryByCategoryId($"{Category_ID}");
+            tbliccategory = dbAtVdc2GetTblIcCategoryByCategoryIdResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcCategory args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcCategory args)
         {
             try
             {
-                var canErpDbAt132UpdateTblIcCategoryResult = await CanErpDbAt132.UpdateTblIcCategory($"{Category_ID}", tbliccategory);
+                var dbAtVdc2UpdateTblIcCategoryResult = await DbAtVdc2.UpdateTblIcCategory($"{Category_ID}", tbliccategory);
                 DialogService.Close(tbliccategory);
             }
-            catch (Exception canErpDbAt132UpdateTblIcCategoryException)
+            catch (Exception dbAtVdc2UpdateTblIcCategoryException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblIcCategory");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

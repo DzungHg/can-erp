@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblSoCustomerComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> _getTblGnAddressBooksResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> getTblGnAddressBooksResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> _getTblGnAddressBooksResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> getTblGnAddressBooksResult
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBooksResult != value)
+                if(!object.Equals(_getTblGnAddressBooksResult, value))
                 {
                     _getTblGnAddressBooksResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -41,8 +49,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> getTblGnPaymentTermsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> getTblGnPaymentTermsResult
         {
             get
             {
@@ -50,7 +58,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnPaymentTermsResult != value)
+                if(!object.Equals(_getTblGnPaymentTermsResult, value))
                 {
                     _getTblGnPaymentTermsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -58,8 +66,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType> _getTblGnPaymentTypesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType> getTblGnPaymentTypesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType> _getTblGnPaymentTypesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType> getTblGnPaymentTypesResult
         {
             get
             {
@@ -67,7 +75,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnPaymentTypesResult != value)
+                if(!object.Equals(_getTblGnPaymentTypesResult, value))
                 {
                     _getTblGnPaymentTypesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -75,8 +83,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblSoCustomer _tblsocustomer;
-        protected ErpCan.Models.CanErpDbAt132.TblSoCustomer tblsocustomer
+        CanErp2.Models.DbAtVdc2.TblSoCustomer _tblsocustomer;
+        protected CanErp2.Models.DbAtVdc2.TblSoCustomer tblsocustomer
         {
             get
             {
@@ -84,7 +92,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblsocustomer != value)
+                if(!object.Equals(_tblsocustomer, value))
                 {
                     _tblsocustomer = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -94,37 +102,36 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnAddressBooksResult = await CanErpDbAt132.GetTblGnAddressBooks();
-            getTblGnAddressBooksResult = canErpDbAt132GetTblGnAddressBooksResult;
+            var dbAtVdc2GetTblGnAddressBooksResult = await DbAtVdc2.GetTblGnAddressBooks();
+            getTblGnAddressBooksResult = dbAtVdc2GetTblGnAddressBooksResult;
 
-            var canErpDbAt132GetTblGnPaymentTermsResult = await CanErpDbAt132.GetTblGnPaymentTerms();
-            getTblGnPaymentTermsResult = canErpDbAt132GetTblGnPaymentTermsResult;
+            var dbAtVdc2GetTblGnPaymentTermsResult = await DbAtVdc2.GetTblGnPaymentTerms();
+            getTblGnPaymentTermsResult = dbAtVdc2GetTblGnPaymentTermsResult;
 
-            var canErpDbAt132GetTblGnPaymentTypesResult = await CanErpDbAt132.GetTblGnPaymentTypes();
-            getTblGnPaymentTypesResult = canErpDbAt132GetTblGnPaymentTypesResult;
+            var dbAtVdc2GetTblGnPaymentTypesResult = await DbAtVdc2.GetTblGnPaymentTypes();
+            getTblGnPaymentTypesResult = dbAtVdc2GetTblGnPaymentTypesResult;
 
-            tblsocustomer = new ErpCan.Models.CanErpDbAt132.TblSoCustomer();
+            tblsocustomer = new CanErp2.Models.DbAtVdc2.TblSoCustomer();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblSoCustomer args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblSoCustomer args)
         {
             try
             {
-                var canErpDbAt132CreateTblSoCustomerResult = await CanErpDbAt132.CreateTblSoCustomer(tblsocustomer);
+                var dbAtVdc2CreateTblSoCustomerResult = await DbAtVdc2.CreateTblSoCustomer(tblsocustomer);
                 DialogService.Close(tblsocustomer);
             }
-            catch (Exception canErpDbAt132CreateTblSoCustomerException)
+            catch (Exception dbAtVdc2CreateTblSoCustomerException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblSoCustomer!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

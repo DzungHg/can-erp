@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Department Id",
                               "component": "Department_ID",
+                              "name": "Department_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
                               "name": "Department_ID",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Deparment Name",
                               "component": "Deparment_Name",
+                              "name": "Deparment_NameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,6 +138,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Deparment_Name",
@@ -161,6 +165,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -172,6 +177,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "Description",
@@ -216,9 +222,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblGnDepartment",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblGnDepartment",
+                        "parameters": [
+                          {
+                            "name": "Department_ID",
+                            "value": "${parameters.Department_ID}"
+                          },
+                          {
+                            "name": "TblGnDepartment",
+                            "value": "${tblgndepartment}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgndepartment}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnDepartment",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnDepartment",
+                  "data": "${tblgndepartment}",
                   "visible": "${tblgndepartment != null && canEdit}"
                 }
               ]
@@ -235,6 +271,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnDepartmentByDepartment_ID",
+        "parameters": [
+          {
+            "name": "Department_ID",
+            "value": "${parameters.Department_ID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblgndepartment",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblGnDepartment"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

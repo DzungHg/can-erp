@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Voucher No",
                               "component": "Voucher_No",
+                              "name": "Voucher_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Voucher_No",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Voucher Date",
                               "component": "Voucher_Date",
+                              "name": "Voucher_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,7 +138,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Voucher_Date",
                               "style": {
@@ -161,6 +165,7 @@
                               "type": "label",
                               "text": "Vendor Fk",
                               "component": "Vendor_FK",
+                              "name": "Vendor_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -172,6 +177,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Vendor_FK",
@@ -198,6 +204,7 @@
                               "type": "label",
                               "text": "Transact Id",
                               "component": "Transact_ID",
+                              "name": "Transact_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -209,6 +216,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "Transact_ID",
@@ -235,6 +243,7 @@
                               "type": "label",
                               "text": "Record Code",
                               "component": "Record_Code",
+                              "name": "Record_CodeLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -246,6 +255,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "Record_Code",
@@ -272,6 +282,7 @@
                               "type": "label",
                               "text": "Po No",
                               "component": "PO_No",
+                              "name": "PO_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -283,6 +294,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "PO_No",
@@ -309,6 +321,7 @@
                               "type": "label",
                               "text": "Invoice No",
                               "component": "Invoice_No",
+                              "name": "Invoice_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -320,6 +333,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "Invoice_No",
@@ -346,6 +360,7 @@
                               "type": "label",
                               "text": "Invoice Date",
                               "component": "Invoice_Date",
+                              "name": "Invoice_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -357,7 +372,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Invoice_Date",
                               "style": {
@@ -383,6 +399,7 @@
                               "type": "label",
                               "text": "Debit Account",
                               "component": "Debit_Account",
+                              "name": "Debit_AccountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -394,6 +411,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "Debit_Account",
@@ -420,6 +438,7 @@
                               "type": "label",
                               "text": "Credit Account",
                               "component": "Credit_Account",
+                              "name": "Credit_AccountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -431,6 +450,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "Credit_Account",
@@ -457,6 +477,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -468,6 +489,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "Description",
@@ -494,6 +516,7 @@
                               "type": "label",
                               "text": "Amount",
                               "component": "Amount",
+                              "name": "AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -505,6 +528,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Amount",
                               "style": {
@@ -530,6 +554,7 @@
                               "type": "label",
                               "text": "Authorize By",
                               "component": "Authorize_By",
+                              "name": "Authorize_ByLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -541,6 +566,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "Authorize_By",
                               "style": {
@@ -584,9 +610,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoAccountsPayableAdjustment",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblPoAccountsPayableAdjustment",
+                        "parameters": [
+                          {
+                            "name": "Voucher_No",
+                            "value": "${parameters.Voucher_No}"
+                          },
+                          {
+                            "name": "TblPoAccountsPayableAdjustment",
+                            "value": "${tblpoaccountspayableadjustment}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpoaccountspayableadjustment}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment",
+                  "data": "${tblpoaccountspayableadjustment}",
                   "visible": "${tblpoaccountspayableadjustment != null && canEdit}"
                 }
               ]
@@ -603,6 +659,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoAccountsPayableAdjustmentByVoucher_No",
+        "parameters": [
+          {
+            "name": "Voucher_No",
+            "value": "${parameters.Voucher_No}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblpoaccountspayableadjustment",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

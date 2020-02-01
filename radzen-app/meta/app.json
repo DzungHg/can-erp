@@ -1,18 +1,15 @@
 {
   "dataSources": [
-    "CAN_ERP_AT_VDC2_2"
+    "DB_At_VDC2"
   ],
   "generator": "@radzen/blazor-server",
   "https": false,
-  "ignore": [
-    ""
-  ],
   "layouts": [
     "Login",
     "Main"
   ],
   "logo": "",
-  "name": "ErpCan",
+  "name": "CanErp2",
   "navigation": [
     "Tbl Gn Address Books",
     "Tbl Gn Address Book Types",
@@ -25,6 +22,7 @@
     "Tbl Gn Products",
     "Tbl Gn Ship Via",
     "Tbl Ic Categories",
+    "Tbl Ic Classifications",
     "Tbl Ic Inventories",
     "Tbl Ic Transactions",
     "Tbl Ic Transaction Types",
@@ -45,14 +43,7 @@
     "Tbl So Order Details",
     "Tbl So Order Detail Statuses",
     "Tbl So Order Statuses",
-    "Tbl So Sales Orders",
-    "Vw Customers",
-    "Vw Emp And Vends",
-    "Vw Employees",
-    "Vw Vendors",
-    "Tbl Ic Classifications",
-    "Tbl Po Purchase Order",
-    "Tbl PO List"
+    "Tbl So Sales Orders"
   ],
   "pages": [
     "Tbl Gn Address Books",
@@ -125,6 +116,7 @@
     "Add Tbl Po Order Status",
     "Edit Tbl Po Order Status",
     "Tbl Po Purchase Orders",
+    "Add Tbl Po Purchase Order",
     "Edit Tbl Po Purchase Order",
     "Tbl Po Purchase Order Details",
     "Add Tbl Po Purchase Order Detail",
@@ -152,22 +144,11 @@
     "Edit Tbl So Order Status",
     "Tbl So Sales Orders",
     "Add Tbl So Sales Order",
-    "Edit Tbl So Sales Order",
-    "Vw Customers",
-    "Vw Emp And Vends",
-    "Vw Employees",
-    "Vw Vendors",
-    "Add Tbl Po Purchase Order",
-    "Tbl Po Purchase Order",
-    "Tbl PO List",
-    "Add Tbl PO List",
-    "Edit Tbl PO List"
+    "Edit Tbl So Sales Order"
   ],
-  "port": 8000,
   "serverLang": "cs",
-  "serverPort": 5000,
   "serverProject": true,
   "serverVersion": "3",
   "startPage": "Tbl Gn Address Books",
-  "theme": "default"
+  "theme": "dark"
 }

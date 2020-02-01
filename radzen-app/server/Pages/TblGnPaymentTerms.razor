@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-payment-terms"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnPaymentTermsComponent
+@inherits CanErp2.Pages.TblGnPaymentTermsComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Payment Terms">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnPaymentTermsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnPaymentTermsResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnPaymentTerm" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" Context="erpCanModelsCanErpDbAt132TblGnPaymentTerm" Property="PaymentTerm_SEQ" Title="Payment Term SEQ" Type="integer">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnPaymentTerm" Context="canErp2ModelsDbAtVdc2TblGnPaymentTerm" Property="PaymentTerm_SEQ" Title="Payment Term SEQ">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" Context="erpCanModelsCanErpDbAt132TblGnPaymentTerm" Property="PaymentTerm_ID" Title="Payment Term ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnPaymentTerm" Context="canErp2ModelsDbAtVdc2TblGnPaymentTerm" Property="PaymentTerm_ID" Title="Payment Term ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" Context="erpCanModelsCanErpDbAt132TblGnPaymentTerm" Property="PaymentTermText" Title="Payment Term Text" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnPaymentTerm" Context="canErp2ModelsDbAtVdc2TblGnPaymentTerm" Property="PaymentTermText" Title="Payment Term Text">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm" Context="erpCanModelsCanErpDbAt132TblGnPaymentTerm" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnPaymentTerm">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnPaymentTerm))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnPaymentTerm" Context="canErp2ModelsDbAtVdc2TblGnPaymentTerm" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnPaymentTerm">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnPaymentTerm))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

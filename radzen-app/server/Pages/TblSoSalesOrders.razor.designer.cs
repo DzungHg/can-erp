@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblSoSalesOrdersComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblSoSalesOrder> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder> _getTblSoSalesOrdersResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder> getTblSoSalesOrdersResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder> _getTblSoSalesOrdersResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder> getTblSoSalesOrdersResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblSoSalesOrdersResult != value)
+                if(!object.Equals(_getTblSoSalesOrdersResult, value))
                 {
                     _getTblSoSalesOrdersResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblSoSalesOrdersResult = await CanErpDbAt132.GetTblSoSalesOrders();
-            getTblSoSalesOrdersResult = canErpDbAt132GetTblSoSalesOrdersResult;
+            var dbAtVdc2GetTblSoSalesOrdersResult = await DbAtVdc2.GetTblSoSalesOrders();
+            getTblSoSalesOrdersResult = dbAtVdc2GetTblSoSalesOrdersResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblSoSalesOrder>("Add Tbl So Sales Order", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblSoSalesOrder args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblSoSalesOrder args)
         {
             var result = await DialogService.OpenAsync<EditTblSoSalesOrder>("Edit Tbl So Sales Order", new Dictionary<string, object>() { {"SO_SEQ", args.SO_SEQ} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblSoSalesOrder data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblSoSalesOrderResult = await CanErpDbAt132.DeleteTblSoSalesOrder(data.SO_SEQ);
-                if (canErpDbAt132DeleteTblSoSalesOrderResult != null) {
+                var dbAtVdc2DeleteTblSoSalesOrderResult = await DbAtVdc2.DeleteTblSoSalesOrder(data.SO_SEQ);
+                if (dbAtVdc2DeleteTblSoSalesOrderResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblSoSalesOrderException)
+            catch (Exception dbAtVdc2DeleteTblSoSalesOrderException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblSoSalesOrder");
             }

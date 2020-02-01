@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblGnProductComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Product_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblGnProduct _tblgnproduct;
-        protected ErpCan.Models.CanErpDbAt132.TblGnProduct tblgnproduct
+        CanErp2.Models.DbAtVdc2.TblGnProduct _tblgnproduct;
+        protected CanErp2.Models.DbAtVdc2.TblGnProduct tblgnproduct
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnproduct != value)
+                if(!object.Equals(_tblgnproduct, value))
                 {
                     _tblgnproduct = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblGnProductByProductSeqResult = await CanErpDbAt132.GetTblGnProductByProductSeq(int.Parse($"{Product_SEQ}"));
-            tblgnproduct = canErpDbAt132GetTblGnProductByProductSeqResult;
+            var dbAtVdc2GetTblGnProductByProductSeqResult = await DbAtVdc2.GetTblGnProductByProductSeq(int.Parse($"{Product_SEQ}"));
+            tblgnproduct = dbAtVdc2GetTblGnProductByProductSeqResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnProduct args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnProduct args)
         {
             try
             {
-                var canErpDbAt132UpdateTblGnProductResult = await CanErpDbAt132.UpdateTblGnProduct(int.Parse($"{Product_SEQ}"), tblgnproduct);
+                var dbAtVdc2UpdateTblGnProductResult = await DbAtVdc2.UpdateTblGnProduct(int.Parse($"{Product_SEQ}"), tblgnproduct);
                 DialogService.Close(tblgnproduct);
             }
-            catch (Exception canErpDbAt132UpdateTblGnProductException)
+            catch (Exception dbAtVdc2UpdateTblGnProductException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnProduct");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

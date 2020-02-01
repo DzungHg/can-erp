@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblPoCashDisbursementsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-po-cash-disbursement",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,87 +75,74 @@
                   "columns": [
                     {
                       "property": "PO_CashDisb_No",
-                      "title": "PO Cash Disb No",
-                      "type": "string"
+                      "title": "PO Cash Disb No"
                     },
                     {
-                      "format": "date-time",
                       "property": "PO_CashDisb_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "PO Cash Disb Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "PO Cash Disb Date"
                     },
                     {
                       "property": "Customer_FK",
                       "sortProperty": "TblGnAddressBook.AddressBook_ID",
                       "filterProperty": "TblGnAddressBook.AddressBook_ID",
                       "template": "${data.TblGnAddressBook?.AddressBook_ID}",
-                      "title": "Tbl Gn Address Book",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "property": "Disbursement_Type",
-                      "title": "Disbursement Type",
-                      "type": "string"
+                      "title": "Disbursement Type"
                     },
                     {
-                      "format": "decimal",
                       "property": "Gross_Invt_Amt",
-                      "title": "Gross Invt Amt",
-                      "type": "number"
+                      "title": "Gross Invt Amt"
                     },
                     {
-                      "format": "decimal",
                       "property": "Discount_Invt_Amt",
-                      "title": "Discount Invt Amt",
-                      "type": "number"
+                      "title": "Discount Invt Amt"
                     },
                     {
                       "property": "Check_No",
-                      "title": "Check No",
-                      "type": "string"
+                      "title": "Check No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Check_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Check Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Check Date"
                     },
                     {
-                      "format": "decimal",
                       "property": "Check_Amount",
-                      "title": "Check Amount",
-                      "type": "number"
+                      "title": "Check Amount"
                     },
                     {
                       "property": "DebiAccount",
-                      "title": "Debi Account",
-                      "type": "string"
+                      "title": "Debi Account"
                     },
                     {
                       "property": "CreditAccount",
-                      "title": "Credit Account",
-                      "type": "string"
+                      "title": "Credit Account"
                     },
                     {
                       "property": "Payment",
-                      "title": "Payment",
-                      "type": "boolean"
+                      "title": "Payment"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -173,7 +160,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblPoCashDisbursement",
+                                "name": "DB_At_VDC2.deleteTblPoCashDisbursement",
                                 "parameters": [
                                   {
                                     "name": "PO_CashDisb_No",
@@ -187,8 +174,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -197,7 +183,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoCashDisbursement"
                 }
               ]
             }
@@ -207,7 +193,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblPoCashDisbursements",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoCashDisbursementsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoCashDisbursement>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Po Cash Disbursements",
   "layout": "Main"

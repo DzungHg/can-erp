@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-gn-address-book-type/{AddressBookType_SEQ}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblGnAddressBookTypeComponent
+@inherits CanErp2.Pages.EditTblGnAddressBookTypeComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Data="@(tblgnaddressbooktype)" Visible="@(tblgnaddressbooktype != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" Data="@(tblgnaddressbooktype)" Visible="@(tblgnaddressbooktype != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgnaddressbooktype.AddressBookType_ID))" Name="AddressBookType_ID">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgnaddressbooktype.AddressBookType_ID)" Name="AddressBookType_ID">
                 </RadzenTextBox>
               </div>
             </div>
@@ -37,7 +37,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@((tblgnaddressbooktype.AddressBookTypeText))" Name="AddressBookTypeText">
+                <RadzenTextBox MaxLength="150" style="width: 100%" @bind-Value="@(tblgnaddressbooktype.AddressBookTypeText)" Name="AddressBookTypeText">
                 </RadzenTextBox>
               </div>
             </div>

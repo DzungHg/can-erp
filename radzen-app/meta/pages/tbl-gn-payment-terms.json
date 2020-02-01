@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnPaymentTermsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-payment-term",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,27 +75,29 @@
                   "columns": [
                     {
                       "property": "PaymentTerm_SEQ",
-                      "title": "Payment Term SEQ",
-                      "type": "integer"
+                      "title": "Payment Term SEQ"
                     },
                     {
                       "property": "PaymentTerm_ID",
-                      "title": "Payment Term ID",
-                      "type": "string"
+                      "title": "Payment Term ID"
                     },
                     {
                       "property": "PaymentTermText",
-                      "title": "Payment Term Text",
-                      "type": "string"
+                      "title": "Payment Term Text"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -113,7 +115,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnPaymentTerm",
+                                "name": "DB_At_VDC2.deleteTblGnPaymentTerm",
                                 "parameters": [
                                   {
                                     "name": "PaymentTerm_SEQ",
@@ -127,8 +129,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -137,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnPaymentTerm"
                 }
               ]
             }
@@ -147,7 +148,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnPaymentTerms",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnPaymentTermsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Payment Terms",
   "layout": "Main"

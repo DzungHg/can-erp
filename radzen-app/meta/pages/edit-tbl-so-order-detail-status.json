@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "So Detail Status Id",
                               "component": "SODetailStatus_ID",
+                              "name": "SODetailStatus_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "SODetailStatus_ID",
                               "style": {
@@ -113,6 +115,7 @@
                               "type": "label",
                               "text": "So Detail Status Text",
                               "component": "SODetailStatusText",
+                              "name": "SODetailStatusTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +127,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "SODetailStatusText",
@@ -150,6 +154,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -161,6 +166,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 255,
                               "type": "textbox",
                               "name": "Description",
@@ -215,7 +221,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.updateTblSoOrderDetailStatus",
+                        "name": "DB_At_VDC2.updateTblSoOrderDetailStatus",
                         "parameters": [
                           {
                             "name": "SODetailStatus_SEQ",
@@ -232,12 +238,11 @@
                             "result": "${tblsoorderdetailstatus}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus"
+                        "type": "invoke"
                       }
                     ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus",
                   "data": "${tblsoorderdetailstatus}",
                   "visible": "${tblsoorderdetailstatus != null && canEdit}"
                 }
@@ -257,7 +262,7 @@
         "valueType": "bool"
       },
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderDetailStatusBySODetailStatus_SEQ",
+        "name": "DB_At_VDC2.getTblSoOrderDetailStatusBySODetailStatus_SEQ",
         "parameters": [
           {
             "name": "SODetailStatus_SEQ",
@@ -269,7 +274,7 @@
             "name": "tblsoorderdetailstatus",
             "type": "set",
             "value": "${result}",
-            "valueType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus"
+            "valueType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus"
           }
         ],
         "error": [],

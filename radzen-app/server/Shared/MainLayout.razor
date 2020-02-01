@@ -1,8 +1,8 @@
-﻿@inherits ErpCan.Layouts.MainLayoutComponent
+﻿@inherits CanErp2.Layouts.MainLayoutComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
+@using CanErp2.Models.DbAtVdc2
 <RadzenDialog />
 <RadzenNotification />
 
@@ -12,7 +12,7 @@
       <div class="col-md-6 d-flex align-items-center">
         <RadzenSidebarToggle Click="@SidebarToggle0Click">
         </RadzenSidebarToggle>
-        <RadzenLabel Text="ErpCan">
+        <RadzenLabel Text="CanErp2">
         </RadzenLabel>
       </div>
       <div class="col-md-6 text-lg-right">
@@ -22,72 +22,24 @@
 </RadzenHeader>
 <RadzenBody @ref="body0">
   <ChildContent>
-    <RadzenContentContainer style="height: 21px" Name="contentContainer0">
+    <RadzenContentContainer Name="main">
     @Body
     </RadzenContentContainer>
   </ChildContent>
 </RadzenBody>
 <RadzenSidebar @ref="sidebar0">
   <ChildContent>
-    <RadzenPanelMenu>
+    <RadzenPanelMenu style="height: 100%">
       <ChildContent>
-        <RadzenPanelMenuItem Text="Thu Mua">
+        <RadzenPanelMenuItem Text="Đơn Hàng">
           <ChildContent>
-            <RadzenPanelMenuItem Path="tbl-po-purchase-orders" Text="PO">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-po-vendors" Text="Vendor">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-po-list" Text="PO List">
+            <RadzenPanelMenuItem Path="tbl-po-purchase-orders" Text="DS Đơn">
             </RadzenPanelMenuItem>
           </ChildContent>
         </RadzenPanelMenuItem>
-      </ChildContent>
-    </RadzenPanelMenu>
-    <RadzenPanelMenu>
-      <ChildContent>
-        <RadzenPanelMenuItem Text="Tồn kho">
-          <ChildContent>
-            <RadzenPanelMenuItem Path="tbl-ic-inventories" Text="Bảng Tồn Kho">
-            </RadzenPanelMenuItem>
-          </ChildContent>
+        <RadzenPanelMenuItem Text="Mua Hàng">
         </RadzenPanelMenuItem>
-      </ChildContent>
-    </RadzenPanelMenu>
-    <RadzenPanelMenu>
-      <ChildContent>
-        <RadzenPanelMenuItem Text="Liên hệ">
-          <ChildContent>
-            <RadzenPanelMenuItem Path="tbl-gn-address-books" Text="DS Liên Hệ">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-cities" Text="Tỉnh Thành">
-            </RadzenPanelMenuItem>
-          </ChildContent>
-        </RadzenPanelMenuItem>
-      </ChildContent>
-    </RadzenPanelMenu>
-    <RadzenPanelMenu>
-      <ChildContent>
-        <RadzenPanelMenuItem Text="Cài đặt">
-          <ChildContent>
-            <RadzenPanelMenuItem Path="tbl-ic-categories" Text="DM Tồn Kho">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-ic-classifications" Text="P. Loại Tồn Kho">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-ic-warehouses" Text="DS Kho">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-incoterms" Text="Incoterm">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-payment-terms" Text="ĐK Thanh Toán">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-payment-types" Text="Kiểu Thanh Toán">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-ship-via" Text="Ship Via">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-po-order-statuses" Text="PO Status">
-            </RadzenPanelMenuItem>
-            <RadzenPanelMenuItem Path="tbl-gn-departments" Text="Phòng Ban">
-            </RadzenPanelMenuItem>
-          </ChildContent>
+        <RadzenPanelMenuItem Text="Cài Đặt">
         </RadzenPanelMenuItem>
       </ChildContent>
     </RadzenPanelMenu>
@@ -95,7 +47,7 @@
 </RadzenSidebar>
 <RadzenFooter>
   <ChildContent>
-    <RadzenLabel Text="ErpCan, Copyright &copy; 2019">
+    <RadzenLabel Text="CanErp2, Copyright Ⓒ 2020">
     </RadzenLabel>
   </ChildContent>
 </RadzenFooter>

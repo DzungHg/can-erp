@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-address-book-types"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnAddressBookTypesComponent
+@inherits CanErp2.Pages.TblGnAddressBookTypesComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Address Book Types">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnAddressBookTypesResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnAddressBookTypesResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookType_SEQ" Title="Address Book Type SEQ" Type="integer">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" Context="canErp2ModelsDbAtVdc2TblGnAddressBookType" Property="AddressBookType_SEQ" Title="Address Book Type SEQ">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookType_ID" Title="Address Book Type ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" Context="canErp2ModelsDbAtVdc2TblGnAddressBookType" Property="AddressBookType_ID" Title="Address Book Type ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Property="AddressBookTypeText" Title="Address Book Type Text" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" Context="canErp2ModelsDbAtVdc2TblGnAddressBookType" Property="AddressBookTypeText" Title="Address Book Type Text">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBookType" Context="erpCanModelsCanErpDbAt132TblGnAddressBookType" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnAddressBookType">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnAddressBookType))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBookType" Context="canErp2ModelsDbAtVdc2TblGnAddressBookType" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnAddressBookType">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnAddressBookType))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

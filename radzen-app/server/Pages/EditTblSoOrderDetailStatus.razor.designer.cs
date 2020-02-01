@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblSoOrderDetailStatusComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic SODetailStatus_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus _tblsoorderdetailstatus;
-        protected ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus tblsoorderdetailstatus
+        CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus _tblsoorderdetailstatus;
+        protected CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus tblsoorderdetailstatus
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblsoorderdetailstatus != value)
+                if(!object.Equals(_tblsoorderdetailstatus, value))
                 {
                     _tblsoorderdetailstatus = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblSoOrderDetailStatusBySoDetailStatusSeqResult = await CanErpDbAt132.GetTblSoOrderDetailStatusBySoDetailStatusSeq(int.Parse($"{SODetailStatus_SEQ}"));
-            tblsoorderdetailstatus = canErpDbAt132GetTblSoOrderDetailStatusBySoDetailStatusSeqResult;
+            var dbAtVdc2GetTblSoOrderDetailStatusBySoDetailStatusSeqResult = await DbAtVdc2.GetTblSoOrderDetailStatusBySoDetailStatusSeq(int.Parse($"{SODetailStatus_SEQ}"));
+            tblsoorderdetailstatus = dbAtVdc2GetTblSoOrderDetailStatusBySoDetailStatusSeqResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus args)
         {
             try
             {
-                var canErpDbAt132UpdateTblSoOrderDetailStatusResult = await CanErpDbAt132.UpdateTblSoOrderDetailStatus(int.Parse($"{SODetailStatus_SEQ}"), tblsoorderdetailstatus);
+                var dbAtVdc2UpdateTblSoOrderDetailStatusResult = await DbAtVdc2.UpdateTblSoOrderDetailStatus(int.Parse($"{SODetailStatus_SEQ}"), tblsoorderdetailstatus);
                 DialogService.Close(tblsoorderdetailstatus);
             }
-            catch (Exception canErpDbAt132UpdateTblSoOrderDetailStatusException)
+            catch (Exception dbAtVdc2UpdateTblSoOrderDetailStatusException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblSoOrderDetailStatus");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

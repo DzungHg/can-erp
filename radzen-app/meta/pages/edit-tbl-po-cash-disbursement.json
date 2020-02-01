@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Po Cash Disb No",
                               "component": "PO_CashDisb_No",
+                              "name": "PO_CashDisb_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "PO_CashDisb_No",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Po Cash Disb Date",
                               "component": "PO_CashDisb_Date",
+                              "name": "PO_CashDisb_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,7 +138,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "PO_CashDisb_Date",
                               "style": {
@@ -161,6 +165,7 @@
                               "type": "label",
                               "text": "Tbl Gn Address Book",
                               "component": "Customer_FK",
+                              "name": "Customer_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -172,9 +177,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblGnAddressBooksResult}",
                               "textProperty": "AddressBook_ID",
                               "valueProperty": "AddressBook_SEQ",
                               "placeholder": "Choose TblGnAddressBook",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Customer_FK",
                               "style": {
@@ -200,6 +207,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -211,6 +219,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "Description",
@@ -237,6 +246,7 @@
                               "type": "label",
                               "text": "Disbursement Type",
                               "component": "Disbursement_Type",
+                              "name": "Disbursement_TypeLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -248,6 +258,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "Disbursement_Type",
@@ -284,6 +295,7 @@
                               "type": "label",
                               "text": "Gross Invt Amt",
                               "component": "Gross_Invt_Amt",
+                              "name": "Gross_Invt_AmtLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -295,6 +307,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Gross_Invt_Amt",
                               "style": {
@@ -320,6 +333,7 @@
                               "type": "label",
                               "text": "Discount Invt Amt",
                               "component": "Discount_Invt_Amt",
+                              "name": "Discount_Invt_AmtLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -331,6 +345,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Discount_Invt_Amt",
                               "style": {
@@ -356,6 +371,7 @@
                               "type": "label",
                               "text": "Check No",
                               "component": "Check_No",
+                              "name": "Check_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -367,6 +383,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Check_No",
@@ -403,6 +420,7 @@
                               "type": "label",
                               "text": "Check Date",
                               "component": "Check_Date",
+                              "name": "Check_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -414,7 +432,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Check_Date",
                               "style": {
@@ -440,6 +459,7 @@
                               "type": "label",
                               "text": "Check Amount",
                               "component": "Check_Amount",
+                              "name": "Check_AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -451,6 +471,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Check_Amount",
                               "style": {
@@ -476,6 +497,7 @@
                               "type": "label",
                               "text": "Debi Account",
                               "component": "DebiAccount",
+                              "name": "DebiAccountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -487,6 +509,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "DebiAccount",
@@ -513,6 +536,7 @@
                               "type": "label",
                               "text": "Credit Account",
                               "component": "CreditAccount",
+                              "name": "CreditAccountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -524,6 +548,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 7,
                               "type": "textbox",
                               "name": "CreditAccount",
@@ -550,6 +575,7 @@
                               "type": "label",
                               "text": "Payment",
                               "component": "Payment",
+                              "name": "PaymentLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -561,6 +587,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Payment",
                               "triState": true,
@@ -602,9 +629,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoCashDisbursement",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblPoCashDisbursement",
+                        "parameters": [
+                          {
+                            "name": "PO_CashDisb_No",
+                            "value": "${parameters.PO_CashDisb_No}"
+                          },
+                          {
+                            "name": "TblPoCashDisbursement",
+                            "value": "${tblpocashdisbursement}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpocashdisbursement}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoCashDisbursement",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoCashDisbursement",
+                  "data": "${tblpocashdisbursement}",
                   "visible": "${tblpocashdisbursement != null && canEdit}"
                 }
               ]
@@ -621,6 +678,38 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoCashDisbursementByPO_CashDisb_No",
+        "parameters": [
+          {
+            "name": "PO_CashDisb_No",
+            "value": "${parameters.PO_CashDisb_No}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblpocashdisbursement",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoCashDisbursement"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnAddressBooks",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnAddressBooksResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook>"
+          }
+        ],
+        "type": "invoke"
       }
     ]
   },

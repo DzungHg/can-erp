@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Transaction Id",
                               "component": "Transaction_ID",
+                              "name": "Transaction_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "Transaction_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "Transaction Name",
                               "component": "Transaction_Name",
+                              "name": "Transaction_NameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 70,
                               "type": "textbox",
                               "name": "Transaction_Name",
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 250,
                               "type": "textbox",
                               "name": "Description",
@@ -168,11 +174,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblIcTransactionType!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblIcTransactionType",
+                        "parameters": [
+                          {
+                            "name": "TblIcTransactionType",
+                            "value": "${tblictransactiontype}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblictransactiontype}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblictransactiontype}",
                   "visible": "${tblictransactiontype != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcTransactionType"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcTransactionType"
                 }
               ]
             }
@@ -186,8 +217,8 @@
       {
         "name": "tblictransactiontype",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblIcTransactionType()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblIcTransactionType"
+        "value": "new CanErp2.Models.DbAtVdc2.TblIcTransactionType()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblIcTransactionType"
       }
     ]
   },

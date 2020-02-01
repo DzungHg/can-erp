@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Tbl Po Vendor",
                               "component": "Vendor_ID",
+                              "name": "Vendor_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,9 +89,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblPoVendorsResult}",
                               "textProperty": "LastName",
                               "valueProperty": "Vendor_ID",
                               "placeholder": "Choose TblPoVendor",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Vendor_ID",
                               "style": {
@@ -126,6 +129,7 @@
                               "type": "label",
                               "text": "Invoice No",
                               "component": "Invoice_No",
+                              "name": "Invoice_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -137,6 +141,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Invoice_No",
@@ -173,6 +178,7 @@
                               "type": "label",
                               "text": "Invoice Date",
                               "component": "Invoice_Date",
+                              "name": "Invoice_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -184,7 +190,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Invoice_Date",
                               "style": {
@@ -210,6 +217,7 @@
                               "type": "label",
                               "text": "Po Id",
                               "component": "PO_ID",
+                              "name": "PO_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -221,6 +229,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "PO_ID",
@@ -247,6 +256,7 @@
                               "type": "label",
                               "text": "Po Date",
                               "component": "PO_Date",
+                              "name": "PO_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -258,7 +268,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "PO_Date",
                               "style": {
@@ -284,6 +295,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -295,6 +307,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "Description",
@@ -321,6 +334,7 @@
                               "type": "label",
                               "text": "Invoice Amount",
                               "component": "Invoice_Amount",
+                              "name": "Invoice_AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -332,6 +346,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Invoice_Amount",
                               "style": {
@@ -357,6 +372,7 @@
                               "type": "label",
                               "text": "Discount Amount",
                               "component": "Discount_Amount",
+                              "name": "Discount_AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -368,6 +384,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Discount_Amount",
                               "style": {
@@ -393,6 +410,7 @@
                               "type": "label",
                               "text": "Due Date",
                               "component": "Due_Date",
+                              "name": "Due_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -404,7 +422,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Due_Date",
                               "style": {
@@ -430,6 +449,7 @@
                               "type": "label",
                               "text": "Paid",
                               "component": "Paid",
+                              "name": "PaidLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -441,6 +461,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Paid",
                               "triState": true,
@@ -482,9 +503,43 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoApInvoice",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblPoApInvoice",
+                        "parameters": [
+                          {
+                            "name": "Vendor_ID",
+                            "value": "${parameters.Vendor_ID}"
+                          },
+                          {
+                            "name": "Invoice_No",
+                            "value": "${parameters.Invoice_No}"
+                          },
+                          {
+                            "name": "TblPoApInvoice",
+                            "value": "${tblpoapinvoice}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpoapinvoice}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoice",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoApInvoice",
+                  "data": "${tblpoapinvoice}",
                   "visible": "${tblpoapinvoice != null && canEdit}"
                 }
               ]
@@ -501,6 +556,42 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoApInvoiceByVendor_IDAndInvoice_No",
+        "parameters": [
+          {
+            "name": "Vendor_ID",
+            "value": "${parameters.Vendor_ID}"
+          },
+          {
+            "name": "Invoice_No",
+            "value": "${parameters.Invoice_No}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblpoapinvoice",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoApInvoice"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoVendors",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoVendorsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor>"
+          }
+        ],
+        "type": "invoke"
       }
     ]
   },

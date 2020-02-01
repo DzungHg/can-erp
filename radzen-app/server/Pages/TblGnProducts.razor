@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-products"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnProductsComponent
+@inherits CanErp2.Pages.TblGnProductsComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Products">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnProductsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnProduct" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnProductsResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnProduct" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnProduct" Context="erpCanModelsCanErpDbAt132TblGnProduct" Property="Product_SEQ" Title="Product SEQ" Type="integer">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnProduct" Context="canErp2ModelsDbAtVdc2TblGnProduct" Property="Product_SEQ" Title="Product SEQ">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnProduct" Context="erpCanModelsCanErpDbAt132TblGnProduct" Property="Product_ID" Title="Product ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnProduct" Context="canErp2ModelsDbAtVdc2TblGnProduct" Property="Product_ID" Title="Product ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnProduct" Context="erpCanModelsCanErpDbAt132TblGnProduct" Property="ProductName" Title="Product Name" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnProduct" Context="canErp2ModelsDbAtVdc2TblGnProduct" Property="ProductName" Title="Product Name">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnProduct" Context="erpCanModelsCanErpDbAt132TblGnProduct" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnProduct">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnProduct))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnProduct" Context="canErp2ModelsDbAtVdc2TblGnProduct" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnProduct">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnProduct))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

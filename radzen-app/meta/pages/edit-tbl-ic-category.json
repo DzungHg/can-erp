@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -89,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
                               "name": "Category_ID",
@@ -137,6 +138,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "CategoryText",
@@ -175,6 +177,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "bool?",
                               "type": "checkbox",
                               "name": "Inactive",
                               "triState": true,
@@ -216,9 +219,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblIcCategory",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblIcCategory",
+                        "parameters": [
+                          {
+                            "name": "Category_ID",
+                            "value": "${parameters.Category_ID}"
+                          },
+                          {
+                            "name": "TblIcCategory",
+                            "value": "${tbliccategory}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tbliccategory}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcCategory",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcCategory",
+                  "data": "${tbliccategory}",
                   "visible": "${tbliccategory != null && canEdit}"
                 }
               ]
@@ -235,6 +268,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblIcCategoryByCategory_ID",
+        "parameters": [
+          {
+            "name": "Category_ID",
+            "value": "${parameters.Category_ID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tbliccategory",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblIcCategory"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

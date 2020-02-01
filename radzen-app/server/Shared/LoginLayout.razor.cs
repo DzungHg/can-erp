@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Radzen;
 using Radzen.Blazor;
 
-namespace ErpCan.Layouts
+namespace CanErp2.Layouts
 {
     public partial class LoginLayoutComponent
     {

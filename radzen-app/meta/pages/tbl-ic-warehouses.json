@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblIcWarehousesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-ic-warehouse",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblIcWarehouse",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,32 +75,33 @@
                   "columns": [
                     {
                       "property": "Warehouse_ID",
-                      "title": "Warehouse ID",
-                      "type": "string"
+                      "title": "Warehouse ID"
                     },
                     {
                       "property": "WarehouseName",
-                      "title": "Warehouse Name",
-                      "type": "string"
+                      "title": "Warehouse Name"
                     },
                     {
                       "property": "WarehouseAddress",
-                      "title": "Warehouse Address",
-                      "type": "string"
+                      "title": "Warehouse Address"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -118,7 +119,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblIcWarehouse",
+                                "name": "DB_At_VDC2.deleteTblIcWarehouse",
                                 "parameters": [
                                   {
                                     "name": "Warehouse_ID",
@@ -132,8 +133,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblIcWarehouse"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -142,7 +142,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcWarehouse"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcWarehouse"
                 }
               ]
             }
@@ -152,7 +152,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblIcWarehouses",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcWarehousesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Ic Warehouses",
   "layout": "Main"

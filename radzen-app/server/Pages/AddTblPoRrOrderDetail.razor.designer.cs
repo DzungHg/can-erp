@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblPoRrOrderDetailComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport> _getTblPoRecReportsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport> getTblPoRecReportsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRecReport> _getTblPoRecReportsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRecReport> getTblPoRecReportsResult
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoRecReportsResult != value)
+                if(!object.Equals(_getTblPoRecReportsResult, value))
                 {
                     _getTblPoRecReportsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -41,8 +49,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory> _getTblIcInventoriesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory> getTblIcInventoriesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory> _getTblIcInventoriesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory> getTblIcInventoriesResult
         {
             get
             {
@@ -50,7 +58,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcInventoriesResult != value)
+                if(!object.Equals(_getTblIcInventoriesResult, value))
                 {
                     _getTblIcInventoriesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -58,8 +66,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail _tblporrorderdetail;
-        protected ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail tblporrorderdetail
+        CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail _tblporrorderdetail;
+        protected CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail tblporrorderdetail
         {
             get
             {
@@ -67,7 +75,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblporrorderdetail != value)
+                if(!object.Equals(_tblporrorderdetail, value))
                 {
                     _tblporrorderdetail = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -77,34 +85,33 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoRecReportsResult = await CanErpDbAt132.GetTblPoRecReports();
-            getTblPoRecReportsResult = canErpDbAt132GetTblPoRecReportsResult;
+            var dbAtVdc2GetTblPoRecReportsResult = await DbAtVdc2.GetTblPoRecReports();
+            getTblPoRecReportsResult = dbAtVdc2GetTblPoRecReportsResult;
 
-            var canErpDbAt132GetTblIcInventoriesResult = await CanErpDbAt132.GetTblIcInventories();
-            getTblIcInventoriesResult = canErpDbAt132GetTblIcInventoriesResult;
+            var dbAtVdc2GetTblIcInventoriesResult = await DbAtVdc2.GetTblIcInventories();
+            getTblIcInventoriesResult = dbAtVdc2GetTblIcInventoriesResult;
 
-            tblporrorderdetail = new ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail();
+            tblporrorderdetail = new CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail args)
         {
             try
             {
-                var canErpDbAt132CreateTblPoRrOrderDetailResult = await CanErpDbAt132.CreateTblPoRrOrderDetail(tblporrorderdetail);
+                var dbAtVdc2CreateTblPoRrOrderDetailResult = await DbAtVdc2.CreateTblPoRrOrderDetail(tblporrorderdetail);
                 DialogService.Close(tblporrorderdetail);
             }
-            catch (Exception canErpDbAt132CreateTblPoRrOrderDetailException)
+            catch (Exception dbAtVdc2CreateTblPoRrOrderDetailException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblPoRrOrderDetail!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

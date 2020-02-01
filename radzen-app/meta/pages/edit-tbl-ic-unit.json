@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Unit Text",
                               "component": "UnitText",
+                              "name": "UnitTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 25,
                               "type": "textbox",
                               "name": "UnitText",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Unit Fk",
                               "component": "Unit_FK",
+                              "name": "Unit_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,6 +138,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 20,
                               "type": "textbox",
                               "name": "Unit_FK",
@@ -189,9 +193,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblIcUnit",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblIcUnit",
+                        "parameters": [
+                          {
+                            "name": "Unit_SEQ",
+                            "value": "${parameters.Unit_SEQ}"
+                          },
+                          {
+                            "name": "TblIcUnit",
+                            "value": "${tblicunit}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblicunit}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcUnit",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcUnit",
+                  "data": "${tblicunit}",
                   "visible": "${tblicunit != null && canEdit}"
                 }
               ]
@@ -208,6 +242,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblIcUnitByUnit_SEQ",
+        "parameters": [
+          {
+            "name": "Unit_SEQ",
+            "value": "${parameters.Unit_SEQ}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblicunit",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblIcUnit"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

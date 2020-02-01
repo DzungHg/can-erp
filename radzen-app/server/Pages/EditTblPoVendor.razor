@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-po-vendor/{Vendor_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblPoVendorComponent
+@inherits CanErp2.Pages.EditTblPoVendorComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblPoVendor" Data="@(tblpovendor)" Visible="@(tblpovendor != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblPoVendor" Data="@(tblpovendor)" Visible="@(tblpovendor != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@((tblpovendor.Vendor_ID))" Name="Vendor_ID">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(tblpovendor.Vendor_ID)" Name="Vendor_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Vendor_ID" Text="Vendor_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblpovendor.LastName))" Name="LastName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblpovendor.LastName)" Name="LastName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblpovendor.FirstName))" Name="FirstName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblpovendor.FirstName)" Name="FirstName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnAddressBooksResult)" TextProperty="AddressBook_ID" ValueProperty="AddressBook_SEQ" Placeholder="Choose TblGnAddressBook" style="width: 100%" @bind-Value="@((tblpovendor.VendorAddressBook_FK))" Name="VendorAddressBook_FK">
+                <RadzenDropDown Data="@(getTblGnAddressBooksResult)" TextProperty="AddressBook_ID" ValueProperty="AddressBook_SEQ" Placeholder="Choose TblGnAddressBook" style="width: 100%" @bind-Value="@(tblpovendor.VendorAddressBook_FK)" Name="VendorAddressBook_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblpovendor.Performing_Rating))" Name="Performing_Rating">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblpovendor.Performing_Rating)" Name="Performing_Rating">
                 </RadzenTextBox>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.AP_Balance))" Name="AP_Balance">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.AP_Balance)" Name="AP_Balance">
                 </RadzenNumeric>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.Outstand_Inv_Amt))" Name="Outstand_Inv_Amt">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.Outstand_Inv_Amt)" Name="Outstand_Inv_Amt">
                 </RadzenNumeric>
               </div>
             </div>
@@ -99,7 +99,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.Outstand_Credit))" Name="Outstand_Credit">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.Outstand_Credit)" Name="Outstand_Credit">
                 </RadzenNumeric>
               </div>
             </div>
@@ -109,7 +109,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@((tblpovendor.Last_Purchase_Date))" Name="Last_Purchase_Date">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(tblpovendor.Last_Purchase_Date)" Name="Last_Purchase_Date">
                 </RadzenDatePicker>
               </div>
             </div>
@@ -119,7 +119,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@((tblpovendor.Last_Payment_Date))" Name="Last_Payment_Date">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(tblpovendor.Last_Payment_Date)" Name="Last_Payment_Date">
                 </RadzenDatePicker>
               </div>
             </div>
@@ -129,7 +129,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.MTD_Purchase))" Name="MTD_Purchase">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.MTD_Purchase)" Name="MTD_Purchase">
                 </RadzenNumeric>
               </div>
             </div>
@@ -139,7 +139,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.YTD_Purchase))" Name="YTD_Purchase">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.YTD_Purchase)" Name="YTD_Purchase">
                 </RadzenNumeric>
               </div>
             </div>
@@ -149,7 +149,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblpovendor.LYR_Purchase))" Name="LYR_Purchase">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblpovendor.LYR_Purchase)" Name="LYR_Purchase">
                 </RadzenNumeric>
               </div>
             </div>
@@ -159,7 +159,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox style="width: 100%" @bind-Value="@((tblpovendor.Notes))" Name="Notes">
+                <RadzenTextBox style="width: 100%" @bind-Value="@(tblpovendor.Notes)" Name="Notes">
                 </RadzenTextBox>
               </div>
             </div>
@@ -169,7 +169,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenCheckBox TriState="true" @bind-Value="@((tblpovendor.Inactive))" Name="Inactive">
+                <RadzenCheckBox TriState="true" @bind-Value="@(tblpovendor.Inactive)" Name="Inactive">
                 </RadzenCheckBox>
               </div>
             </div>

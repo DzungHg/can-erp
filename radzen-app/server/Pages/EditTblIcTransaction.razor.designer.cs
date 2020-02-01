@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblIcTransactionComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic Trans_No { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblIcTransaction _tblictransaction;
-        protected ErpCan.Models.CanErpDbAt132.TblIcTransaction tblictransaction
+        CanErp2.Models.DbAtVdc2.TblIcTransaction _tblictransaction;
+        protected CanErp2.Models.DbAtVdc2.TblIcTransaction tblictransaction
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblictransaction != value)
+                if(!object.Equals(_tblictransaction, value))
                 {
                     _tblictransaction = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcTransactionType> _getTblIcTransactionTypesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcTransactionType> getTblIcTransactionTypesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcTransactionType> _getTblIcTransactionTypesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcTransactionType> getTblIcTransactionTypesResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcTransactionTypesResult != value)
+                if(!object.Equals(_getTblIcTransactionTypesResult, value))
                 {
                     _getTblIcTransactionTypesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcWarehouse> _getTblIcWarehousesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcWarehouse> getTblIcWarehousesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse> _getTblIcWarehousesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblIcWarehouse> getTblIcWarehousesResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblIcWarehousesResult != value)
+                if(!object.Equals(_getTblIcWarehousesResult, value))
                 {
                     _getTblIcWarehousesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -95,8 +103,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnProduct> _getTblGnProductsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnProduct> getTblGnProductsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct> _getTblGnProductsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnProduct> getTblGnProductsResult
         {
             get
             {
@@ -104,7 +112,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnProductsResult != value)
+                if(!object.Equals(_getTblGnProductsResult, value))
                 {
                     _getTblGnProductsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -114,45 +122,44 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblIcTransactionByTransNoResult = await CanErpDbAt132.GetTblIcTransactionByTransNo($"{Trans_No}");
-            tblictransaction = canErpDbAt132GetTblIcTransactionByTransNoResult;
+            var dbAtVdc2GetTblIcTransactionByTransNoResult = await DbAtVdc2.GetTblIcTransactionByTransNo($"{Trans_No}");
+            tblictransaction = dbAtVdc2GetTblIcTransactionByTransNoResult;
 
-            var canErpDbAt132GetTblIcTransactionTypesResult = await CanErpDbAt132.GetTblIcTransactionTypes();
-            getTblIcTransactionTypesResult = canErpDbAt132GetTblIcTransactionTypesResult;
+            var dbAtVdc2GetTblIcTransactionTypesResult = await DbAtVdc2.GetTblIcTransactionTypes();
+            getTblIcTransactionTypesResult = dbAtVdc2GetTblIcTransactionTypesResult;
 
-            var canErpDbAt132GetTblIcWarehousesResult = await CanErpDbAt132.GetTblIcWarehouses();
-            getTblIcWarehousesResult = canErpDbAt132GetTblIcWarehousesResult;
+            var dbAtVdc2GetTblIcWarehousesResult = await DbAtVdc2.GetTblIcWarehouses();
+            getTblIcWarehousesResult = dbAtVdc2GetTblIcWarehousesResult;
 
-            var canErpDbAt132GetTblGnProductsResult = await CanErpDbAt132.GetTblGnProducts();
-            getTblGnProductsResult = canErpDbAt132GetTblGnProductsResult;
+            var dbAtVdc2GetTblGnProductsResult = await DbAtVdc2.GetTblGnProducts();
+            getTblGnProductsResult = dbAtVdc2GetTblGnProductsResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcTransaction args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcTransaction args)
         {
             try
             {
-                var canErpDbAt132UpdateTblIcTransactionResult = await CanErpDbAt132.UpdateTblIcTransaction($"{Trans_No}", tblictransaction);
+                var dbAtVdc2UpdateTblIcTransactionResult = await DbAtVdc2.UpdateTblIcTransaction($"{Trans_No}", tblictransaction);
                 DialogService.Close(tblictransaction);
             }
-            catch (Exception canErpDbAt132UpdateTblIcTransactionException)
+            catch (Exception dbAtVdc2UpdateTblIcTransactionException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblIcTransaction");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblPoOrderStatusComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic POStatus_ID { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoOrderStatus _tblpoorderstatus;
-        protected ErpCan.Models.CanErpDbAt132.TblPoOrderStatus tblpoorderstatus
+        CanErp2.Models.DbAtVdc2.TblPoOrderStatus _tblpoorderstatus;
+        protected CanErp2.Models.DbAtVdc2.TblPoOrderStatus tblpoorderstatus
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpoorderstatus != value)
+                if(!object.Equals(_tblpoorderstatus, value))
                 {
                     _tblpoorderstatus = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblPoOrderStatusByPoStatusIdResult = await CanErpDbAt132.GetTblPoOrderStatusByPoStatusId($"{POStatus_ID}");
-            tblpoorderstatus = canErpDbAt132GetTblPoOrderStatusByPoStatusIdResult;
+            var dbAtVdc2GetTblPoOrderStatusByPoStatusIdResult = await DbAtVdc2.GetTblPoOrderStatusByPoStatusId($"{POStatus_ID}");
+            tblpoorderstatus = dbAtVdc2GetTblPoOrderStatusByPoStatusIdResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoOrderStatus args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoOrderStatus args)
         {
             try
             {
-                var canErpDbAt132UpdateTblPoOrderStatusResult = await CanErpDbAt132.UpdateTblPoOrderStatus($"{POStatus_ID}", tblpoorderstatus);
+                var dbAtVdc2UpdateTblPoOrderStatusResult = await DbAtVdc2.UpdateTblPoOrderStatus($"{POStatus_ID}", tblpoorderstatus);
                 DialogService.Close(tblpoorderstatus);
             }
-            catch (Exception canErpDbAt132UpdateTblPoOrderStatusException)
+            catch (Exception dbAtVdc2UpdateTblPoOrderStatusException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblPoOrderStatus");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

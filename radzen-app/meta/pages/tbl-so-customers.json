@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-so-customer",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,195 +75,152 @@
                   "columns": [
                     {
                       "property": "Customer_SEQ",
-                      "title": "Customer SEQ",
-                      "type": "integer"
+                      "title": "Customer SEQ"
                     },
                     {
                       "property": "Customer_ID",
-                      "title": "Customer ID",
-                      "type": "string"
+                      "title": "Customer ID"
                     },
                     {
                       "property": "LastName",
-                      "title": "Last Name",
-                      "type": "string"
+                      "title": "Last Name"
                     },
                     {
                       "property": "FirstName",
-                      "title": "First Name",
-                      "type": "string"
+                      "title": "First Name"
                     },
                     {
                       "property": "CustomerAdressBook_FK",
                       "sortProperty": "TblGnAddressBook.AddressBook_ID",
                       "filterProperty": "TblGnAddressBook.AddressBook_ID",
                       "template": "${data.TblGnAddressBook?.AddressBook_ID}",
-                      "title": "Tbl Gn Address Book",
-                      "type": "string"
+                      "title": "Tbl Gn Address Book"
                     },
                     {
-                      "format": "decimal",
                       "property": "CreditLimit",
-                      "title": "Credit Limit",
-                      "type": "number"
+                      "title": "Credit Limit"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastRevisedCreditLimitDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Revised Credit Limit Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Revised Credit Limit Date"
                     },
                     {
                       "property": "PaymentTerm_FK",
                       "sortProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "filterProperty": "TblGnPaymentTerm.PaymentTerm_ID",
                       "template": "${data.TblGnPaymentTerm?.PaymentTerm_ID}",
-                      "title": "Tbl Gn Payment Term",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Term"
                     },
                     {
                       "property": "PaymentType_FK",
                       "sortProperty": "TblGnPaymentType.PaymentType_ID",
                       "filterProperty": "TblGnPaymentType.PaymentType_ID",
                       "template": "${data.TblGnPaymentType?.PaymentType_ID}",
-                      "title": "Tbl Gn Payment Type",
-                      "type": "string"
+                      "title": "Tbl Gn Payment Type"
                     },
                     {
                       "property": "DiscountPercent",
-                      "title": "Discount Percent",
-                      "type": "integer"
+                      "title": "Discount Percent"
                     },
                     {
-                      "format": "decimal",
                       "property": "Current_MTD_Sales",
-                      "title": "Current MTD Sales",
-                      "type": "number"
+                      "title": "Current MTD Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "Current_MTD_Returns",
-                      "title": "Current MTD Returns",
-                      "type": "number"
+                      "title": "Current MTD Returns"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_GrossSales",
-                      "title": "YTD Gross Sales",
-                      "type": "number"
+                      "title": "YTD Gross Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_Returns",
-                      "title": "YTD Returns",
-                      "type": "number"
+                      "title": "YTD Returns"
                     },
                     {
-                      "format": "decimal",
                       "property": "YTD_COGS",
-                      "title": "YTD COGS",
-                      "type": "number"
+                      "title": "YTD COGS"
                     },
                     {
-                      "format": "decimal",
                       "property": "LYR_GrossSales",
-                      "title": "LYR Gross Sales",
-                      "type": "number"
+                      "title": "LYR Gross Sales"
                     },
                     {
-                      "format": "decimal",
                       "property": "LYR_COGS",
-                      "title": "LYR COGS",
-                      "type": "number"
+                      "title": "LYR COGS"
                     },
                     {
-                      "format": "decimal",
                       "property": "LastAmountSales",
-                      "title": "Last Amount Sales",
-                      "type": "number"
+                      "title": "Last Amount Sales"
                     },
                     {
                       "property": "SalesPersonAdressBook_FK",
-                      "title": "Sales Person Adress Book FK",
-                      "type": "integer"
+                      "title": "Sales Person Adress Book FK"
                     },
                     {
-                      "format": "decimal",
                       "property": "CommissionPercent",
-                      "title": "Commission Percent",
-                      "type": "number"
+                      "title": "Commission Percent"
                     },
                     {
-                      "format": "decimal",
                       "property": "SalesPerson_MTD_Goal",
-                      "title": "Sales Person MTD Goal",
-                      "type": "number"
+                      "title": "Sales Person MTD Goal"
                     },
                     {
-                      "format": "decimal",
                       "property": "SalesPerson_YTD_Goal",
-                      "title": "Sales Person YTD Goal",
-                      "type": "number"
+                      "title": "Sales Person YTD Goal"
                     },
                     {
                       "property": "ChargeInterest",
-                      "title": "Charge Interest",
-                      "type": "boolean"
+                      "title": "Charge Interest"
                     },
                     {
                       "property": "Statement",
-                      "title": "Statement",
-                      "type": "boolean"
+                      "title": "Statement"
                     },
                     {
-                      "format": "decimal",
                       "property": "Aging30DayAmout",
-                      "title": "Aging 30 Day Amout",
-                      "type": "number"
+                      "title": "Aging 30 Day Amout"
                     },
                     {
-                      "format": "decimal",
                       "property": "Aging60DayAmout",
-                      "title": "Aging 60 Day Amout",
-                      "type": "number"
+                      "title": "Aging 60 Day Amout"
                     },
                     {
-                      "format": "decimal",
                       "property": "Aging90DayAmout",
-                      "title": "Aging 90 Day Amout",
-                      "type": "number"
+                      "title": "Aging 90 Day Amout"
                     },
                     {
                       "property": "Notes",
-                      "title": "Notes",
-                      "type": "string"
+                      "title": "Notes"
                     },
                     {
-                      "format": "date-time",
                       "property": "LastUpdatedDate",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Last Updated Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Last Updated Date"
                     },
                     {
                       "property": "LastUdpatedBy",
-                      "title": "Last Udpated By",
-                      "type": "integer"
+                      "title": "Last Udpated By"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -282,7 +238,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblSoCustomer",
+                                "name": "DB_At_VDC2.deleteTblSoCustomer",
                                 "parameters": [
                                   {
                                     "name": "Customer_SEQ",
@@ -296,8 +252,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -306,7 +261,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoCustomer"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoCustomer"
                 }
               ]
             }
@@ -318,14 +273,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoCustomers",
+        "name": "DB_At_VDC2.getTblSoCustomers",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoCustomersResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoCustomer>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoCustomer>"
           }
         ],
         "type": "invoke"

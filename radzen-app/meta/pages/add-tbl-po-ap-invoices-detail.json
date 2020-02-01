@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Tbl Po Vendor",
                               "component": "Vendor_ID",
+                              "name": "Vendor_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,9 +41,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblPoVendorsResult}",
                               "textProperty": "LastName",
                               "valueProperty": "Vendor_ID",
                               "placeholder": "Choose TblPoVendor",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Vendor_ID",
                               "style": {
@@ -78,6 +81,7 @@
                               "type": "label",
                               "text": "Invoice No",
                               "component": "Invoice_No",
+                              "name": "Invoice_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -89,6 +93,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Invoice_No",
@@ -125,6 +130,7 @@
                               "type": "label",
                               "text": "Invoice Date",
                               "component": "Invoice_Date",
+                              "name": "Invoice_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -136,7 +142,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Invoice_Date",
                               "style": {
@@ -162,6 +169,7 @@
                               "type": "label",
                               "text": "Tbl Ic Inventory",
                               "component": "Inventory_FK",
+                              "name": "Inventory_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -173,9 +181,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblIcInventoriesResult}",
                               "textProperty": "Warehouse_FK",
                               "valueProperty": "Inventory_SEQ",
                               "placeholder": "Choose TblIcInventory",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Inventory_FK",
                               "style": {
@@ -201,6 +211,7 @@
                               "type": "label",
                               "text": "Tbl Ic Unit",
                               "component": "Unit_FK",
+                              "name": "Unit_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -212,9 +223,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblIcUnitsResult}",
                               "textProperty": "UnitText",
                               "valueProperty": "Unit_SEQ",
                               "placeholder": "Choose TblIcUnit",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Unit_FK",
                               "style": {
@@ -240,6 +253,7 @@
                               "type": "label",
                               "text": "Unit Price",
                               "component": "Unit_Price",
+                              "name": "Unit_PriceLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -251,6 +265,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Unit_Price",
                               "style": {
@@ -276,6 +291,7 @@
                               "type": "label",
                               "text": "Qty Ordered",
                               "component": "Qty_Ordered",
+                              "name": "Qty_OrderedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -287,6 +303,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "Qty_Ordered",
                               "style": {
@@ -330,11 +347,36 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new TblPoApInvoicesDetail!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.createTblPoApInvoicesDetail",
+                        "parameters": [
+                          {
+                            "name": "TblPoApInvoicesDetail",
+                            "value": "${tblpoapinvoicesdetail}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpoapinvoicesdetail}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
                   "data": "${tblpoapinvoicesdetail}",
                   "visible": "${tblpoapinvoicesdetail != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail"
                 }
               ]
             }
@@ -346,10 +388,49 @@
   "events": {
     "load": [
       {
+        "name": "DB_At_VDC2.getTblPoVendors",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoVendorsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblIcInventories",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcInventoriesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblIcUnits",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcUnitsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcUnit>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
         "name": "tblpoapinvoicesdetail",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblPoApInvoicesDetail"
+        "value": "new CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail"
       }
     ]
   },

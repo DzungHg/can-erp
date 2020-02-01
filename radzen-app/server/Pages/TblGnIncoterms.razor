@@ -1,11 +1,11 @@
 ﻿@page "/tbl-gn-incoterms"
 @layout MainLayout
-@inherits ErpCan.Pages.TblGnIncotermsComponent
+@inherits CanErp2.Pages.TblGnIncotermsComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Gn Incoterms">
     </RadzenHeading>
@@ -13,17 +13,17 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnIncotermsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnIncotermsResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Context="erpCanModelsCanErpDbAt132TblGnIncoterm" Property="Incoterm_ID" Title="Incoterm ID" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" Context="canErp2ModelsDbAtVdc2TblGnIncoterm" Property="Incoterm_ID" Title="Incoterm ID">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Context="erpCanModelsCanErpDbAt132TblGnIncoterm" Property="Incoterm_Name" Title="Incoterm Name" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" Context="canErp2ModelsDbAtVdc2TblGnIncoterm" Property="Incoterm_Name" Title="Incoterm Name">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Context="erpCanModelsCanErpDbAt132TblGnIncoterm" Property="Description" Title="Description" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" Context="canErp2ModelsDbAtVdc2TblGnIncoterm" Property="Description" Title="Description">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblGnIncoterm" Context="erpCanModelsCanErpDbAt132TblGnIncoterm" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblGnIncoterm">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblGnIncoterm))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnIncoterm" Context="canErp2ModelsDbAtVdc2TblGnIncoterm" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblGnIncoterm">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblGnIncoterm))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

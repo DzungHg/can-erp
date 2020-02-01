@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-gn-ship-vium/{ShipVia_SEQ}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblGnShipViumComponent
+@inherits CanErp2.Pages.EditTblGnShipViumComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblGnShipVium" Data="@(tblgnshipvium)" Visible="@(tblgnshipvium != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnShipVium" Data="@(tblgnshipvium)" Visible="@(tblgnshipvium != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="25" style="display: block; width: 100%" @bind-Value="@((tblgnshipvium.ShipVia_ID))" Name="ShipVia_ID">
+                <RadzenTextBox MaxLength="25" style="display: block; width: 100%" @bind-Value="@(tblgnshipvium.ShipVia_ID)" Name="ShipVia_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="ShipVia_ID" Text="ShipVia_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnshipvium.Description))" Name="Description">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnshipvium.Description)" Name="Description">
                 </RadzenTextBox>
               </div>
             </div>

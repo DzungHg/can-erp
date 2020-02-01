@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblIcCategoryComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        ErpCan.Models.CanErpDbAt132.TblIcCategory _tbliccategory;
-        protected ErpCan.Models.CanErpDbAt132.TblIcCategory tbliccategory
+        CanErp2.Models.DbAtVdc2.TblIcCategory _tbliccategory;
+        protected CanErp2.Models.DbAtVdc2.TblIcCategory tbliccategory
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tbliccategory != value)
+                if(!object.Equals(_tbliccategory, value))
                 {
                     _tbliccategory = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -43,28 +51,27 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            tbliccategory = new ErpCan.Models.CanErpDbAt132.TblIcCategory();
+            tbliccategory = new CanErp2.Models.DbAtVdc2.TblIcCategory();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblIcCategory args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblIcCategory args)
         {
             try
             {
-                var canErpDbAt132CreateTblIcCategoryResult = await CanErpDbAt132.CreateTblIcCategory(tbliccategory);
+                var dbAtVdc2CreateTblIcCategoryResult = await DbAtVdc2.CreateTblIcCategory(tbliccategory);
                 DialogService.Close(tbliccategory);
             }
-            catch (Exception canErpDbAt132CreateTblIcCategoryException)
+            catch (Exception dbAtVdc2CreateTblIcCategoryException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblIcCategory!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

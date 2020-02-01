@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Tbl So Order Detail Status",
                               "component": "SODetailStatus_FK",
+                              "name": "SODetailStatus_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -44,6 +45,7 @@
                               "textProperty": "SODetailStatusText",
                               "valueProperty": "SODetailStatus_SEQ",
                               "placeholder": "Choose TblSoOrderDetailStatus",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "SODetailStatus_FK",
                               "style": {
@@ -69,6 +71,7 @@
                               "type": "label",
                               "text": "Tbl So Sales Order",
                               "component": "SO_FK",
+                              "name": "SO_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -84,6 +87,7 @@
                               "textProperty": "SO_ID",
                               "valueProperty": "SO_SEQ",
                               "placeholder": "Choose TblSoSalesOrder",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "SO_FK",
                               "style": {
@@ -109,6 +113,7 @@
                               "type": "label",
                               "text": "Tbl Ic Inventory",
                               "component": "Inventory_FK",
+                              "name": "Inventory_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                               "textProperty": "Warehouse_FK",
                               "valueProperty": "Inventory_SEQ",
                               "placeholder": "Choose TblIcInventory",
+                              "valueType": "int?",
                               "type": "dropdown",
                               "name": "Inventory_FK",
                               "style": {
@@ -149,6 +155,7 @@
                               "type": "label",
                               "text": "Unit Price",
                               "component": "UnitPrice",
+                              "name": "UnitPriceLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -160,6 +167,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "UnitPrice",
                               "style": {
@@ -185,6 +193,7 @@
                               "type": "label",
                               "text": "Qty On Hand",
                               "component": "QtyOnHand",
+                              "name": "QtyOnHandLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -196,6 +205,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "QtyOnHand",
                               "style": {
@@ -221,6 +231,7 @@
                               "type": "label",
                               "text": "Qty Ordered",
                               "component": "QtyOrdered",
+                              "name": "QtyOrderedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -232,6 +243,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "QtyOrdered",
                               "style": {
@@ -257,6 +269,7 @@
                               "type": "label",
                               "text": "Qty Ordered Now",
                               "component": "QtyOrderedNow",
+                              "name": "QtyOrderedNowLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -268,6 +281,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "QtyOrderedNow",
                               "style": {
@@ -293,6 +307,7 @@
                               "type": "label",
                               "text": "Qty Back Ordered",
                               "component": "QtyBackOrdered",
+                              "name": "QtyBackOrderedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -304,6 +319,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "QtyBackOrdered",
                               "style": {
@@ -329,6 +345,7 @@
                               "type": "label",
                               "text": "Qty Picked",
                               "component": "QtyPicked",
+                              "name": "QtyPickedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -340,6 +357,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "int?",
                               "type": "numeric",
                               "name": "QtyPicked",
                               "style": {
@@ -365,6 +383,7 @@
                               "type": "label",
                               "text": "Discount Percent",
                               "component": "DiscountPercent",
+                              "name": "DiscountPercentLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -376,6 +395,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "DiscountPercent",
                               "style": {
@@ -401,6 +421,7 @@
                               "type": "label",
                               "text": "Tax Rate",
                               "component": "TaxRate",
+                              "name": "TaxRateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -412,6 +433,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "TaxRate",
                               "style": {
@@ -465,7 +487,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.createTblSoOrderDetail",
+                        "name": "DB_At_VDC2.createTblSoOrderDetail",
                         "parameters": [
                           {
                             "name": "TblSoOrderDetail",
@@ -478,14 +500,13 @@
                             "result": "${tblsoorderdetail}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                        "type": "invoke"
                       }
                     ]
                   },
                   "data": "${tblsoorderdetail}",
                   "visible": "${tblsoorderdetail != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetail"
                 }
               ]
             }
@@ -497,40 +518,40 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderDetailStatuses",
+        "name": "DB_At_VDC2.getTblSoOrderDetailStatuses",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoOrderDetailStatusesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblSoSalesOrders",
+        "name": "DB_At_VDC2.getTblSoSalesOrders",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoSalesOrdersResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoSalesOrder>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoSalesOrder>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblIcInventories",
+        "name": "DB_At_VDC2.getTblIcInventories",
         "parameters": [],
         "then": [
           {
             "name": "getTblIcInventoriesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory>"
           }
         ],
         "type": "invoke"
@@ -538,8 +559,8 @@
       {
         "name": "tblsoorderdetail",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblSoOrderDetail()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetail"
+        "value": "new CanErp2.Models.DbAtVdc2.TblSoOrderDetail()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetail"
       }
     ]
   },

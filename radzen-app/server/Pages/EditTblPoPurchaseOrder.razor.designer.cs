@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblPoPurchaseOrderComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic PO_ID { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder _tblpopurchaseorder;
-        protected ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder tblpopurchaseorder
+        CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder _tblpopurchaseorder;
+        protected CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder tblpopurchaseorder
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpopurchaseorder != value)
+                if(!object.Equals(_tblpopurchaseorder, value))
                 {
                     _tblpopurchaseorder = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> _getTblGnAddressBooksResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBook> getTblGnAddressBooksResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> _getTblGnAddressBooksResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBook> getTblGnAddressBooksResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBooksResult != value)
+                if(!object.Equals(_getTblGnAddressBooksResult, value))
                 {
                     _getTblGnAddressBooksResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoOrderStatus> _getTblPoOrderStatusesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoOrderStatus> getTblPoOrderStatusesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoOrderStatus> _getTblPoOrderStatusesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoOrderStatus> getTblPoOrderStatusesResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoOrderStatusesResult != value)
+                if(!object.Equals(_getTblPoOrderStatusesResult, value))
                 {
                     _getTblPoOrderStatusesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -95,8 +103,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<VwVendor> _getTblPoVendorsResult;
-        protected IEnumerable<VwVendor> getTblPoVendorsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> _getTblPoVendorsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor> getTblPoVendorsResult
         {
             get
             {
@@ -104,7 +112,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoVendorsResult != value)
+                if(!object.Equals(_getTblPoVendorsResult, value))
                 {
                     _getTblPoVendorsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -112,8 +120,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnIncoterm> _getTblGnIncotermsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnIncoterm> getTblGnIncotermsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnIncoterm> _getTblGnIncotermsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnIncoterm> getTblGnIncotermsResult
         {
             get
             {
@@ -121,7 +129,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnIncotermsResult != value)
+                if(!object.Equals(_getTblGnIncotermsResult, value))
                 {
                     _getTblGnIncotermsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -129,8 +137,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnShipVium> _getTblGnShipViaResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnShipVium> getTblGnShipViaResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium> _getTblGnShipViaResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnShipVium> getTblGnShipViaResult
         {
             get
             {
@@ -138,7 +146,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnShipViaResult != value)
+                if(!object.Equals(_getTblGnShipViaResult, value))
                 {
                     _getTblGnShipViaResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -146,8 +154,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm> getTblGnPaymentTermsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> _getTblGnPaymentTermsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentTerm> getTblGnPaymentTermsResult
         {
             get
             {
@@ -155,7 +163,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnPaymentTermsResult != value)
+                if(!object.Equals(_getTblGnPaymentTermsResult, value))
                 {
                     _getTblGnPaymentTermsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -163,8 +171,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType> _getTblGnPaymentTypesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnPaymentType> getTblGnPaymentTypesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType> _getTblGnPaymentTypesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnPaymentType> getTblGnPaymentTypesResult
         {
             get
             {
@@ -172,7 +180,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnPaymentTypesResult != value)
+                if(!object.Equals(_getTblGnPaymentTypesResult, value))
                 {
                     _getTblGnPaymentTypesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -180,62 +188,78 @@ namespace ErpCan.Pages
             }
         }
 
-        protected override async System.Threading.Tasks.Task OnInitializedAsync()
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnDepartment> _getTblGnDepartmentsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnDepartment> getTblGnDepartmentsResult
         {
-            Load();
+            get
+            {
+                return _getTblGnDepartmentsResult;
+            }
+            set
+            {
+                if(!object.Equals(_getTblGnDepartmentsResult, value))
+                {
+                    _getTblGnDepartmentsResult = value;
+                    InvokeAsync(() => { StateHasChanged(); });
+                }
+            }
         }
 
-        protected async void Load()
+        protected override async System.Threading.Tasks.Task OnInitializedAsync()
+        {
+            await Load();
+        }
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblPoPurchaseOrderByPoIdResult = await CanErpDbAt132.GetTblPoPurchaseOrderByPoId($"{PO_ID}");
-            tblpopurchaseorder = canErpDbAt132GetTblPoPurchaseOrderByPoIdResult;
+            var dbAtVdc2GetTblPoPurchaseOrderByPoIdResult = await DbAtVdc2.GetTblPoPurchaseOrderByPoId($"{PO_ID}");
+            tblpopurchaseorder = dbAtVdc2GetTblPoPurchaseOrderByPoIdResult;
 
-            var canErpDbAt132GetTblGnAddressBooksResult = await CanErpDbAt132.GetTblGnAddressBooks();
-            getTblGnAddressBooksResult = canErpDbAt132GetTblGnAddressBooksResult;
+            var dbAtVdc2GetTblGnAddressBooksResult = await DbAtVdc2.GetTblGnAddressBooks();
+            getTblGnAddressBooksResult = dbAtVdc2GetTblGnAddressBooksResult;
 
-            var canErpDbAt132GetTblPoOrderStatusesResult = await CanErpDbAt132.GetTblPoOrderStatuses();
-            getTblPoOrderStatusesResult = canErpDbAt132GetTblPoOrderStatusesResult;
+            var dbAtVdc2GetTblPoOrderStatusesResult = await DbAtVdc2.GetTblPoOrderStatuses();
+            getTblPoOrderStatusesResult = dbAtVdc2GetTblPoOrderStatusesResult;
 
-            var canErpDbAt132GetVwVendorsResult = await CanErpDbAt132.GetVwVendors();
-            getTblPoVendorsResult = canErpDbAt132GetVwVendorsResult;
+            var dbAtVdc2GetTblPoVendorsResult = await DbAtVdc2.GetTblPoVendors();
+            getTblPoVendorsResult = dbAtVdc2GetTblPoVendorsResult;
 
-            var canErpDbAt132GetTblGnIncotermsResult = await CanErpDbAt132.GetTblGnIncoterms();
-            getTblGnIncotermsResult = canErpDbAt132GetTblGnIncotermsResult;
+            var dbAtVdc2GetTblGnIncotermsResult = await DbAtVdc2.GetTblGnIncoterms();
+            getTblGnIncotermsResult = dbAtVdc2GetTblGnIncotermsResult;
 
-            var canErpDbAt132GetTblGnIncotermsResult = await CanErpDbAt132.GetTblGnIncoterms();
-            getTblGnIncotermsResult = canErpDbAt132GetTblGnIncotermsResult;
+            var dbAtVdc2GetTblGnShipViaResult = await DbAtVdc2.GetTblGnShipVia();
+            getTblGnShipViaResult = dbAtVdc2GetTblGnShipViaResult;
 
-            var canErpDbAt132GetTblGnShipViaResult = await CanErpDbAt132.GetTblGnShipVia();
-            getTblGnShipViaResult = canErpDbAt132GetTblGnShipViaResult;
+            var dbAtVdc2GetTblGnPaymentTermsResult = await DbAtVdc2.GetTblGnPaymentTerms();
+            getTblGnPaymentTermsResult = dbAtVdc2GetTblGnPaymentTermsResult;
 
-            var canErpDbAt132GetTblGnPaymentTermsResult = await CanErpDbAt132.GetTblGnPaymentTerms();
-            getTblGnPaymentTermsResult = canErpDbAt132GetTblGnPaymentTermsResult;
+            var dbAtVdc2GetTblGnPaymentTypesResult = await DbAtVdc2.GetTblGnPaymentTypes();
+            getTblGnPaymentTypesResult = dbAtVdc2GetTblGnPaymentTypesResult;
 
-            var canErpDbAt132GetTblGnPaymentTypesResult = await CanErpDbAt132.GetTblGnPaymentTypes();
-            getTblGnPaymentTypesResult = canErpDbAt132GetTblGnPaymentTypesResult;
+            var dbAtVdc2GetTblGnDepartmentsResult = await DbAtVdc2.GetTblGnDepartments();
+            getTblGnDepartmentsResult = dbAtVdc2GetTblGnDepartmentsResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrder args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoPurchaseOrder args)
         {
             try
             {
-                var canErpDbAt132UpdateTblPoPurchaseOrderResult = await CanErpDbAt132.UpdateTblPoPurchaseOrder($"{PO_ID}", tblpopurchaseorder);
+                var dbAtVdc2UpdateTblPoPurchaseOrderResult = await DbAtVdc2.UpdateTblPoPurchaseOrder($"{PO_ID}", tblpopurchaseorder);
                 DialogService.Close(tblpopurchaseorder);
             }
-            catch (Exception canErpDbAt132UpdateTblPoPurchaseOrderException)
+            catch (Exception dbAtVdc2UpdateTblPoPurchaseOrderException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblPoPurchaseOrder");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

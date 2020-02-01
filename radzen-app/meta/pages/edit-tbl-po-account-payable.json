@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Ap No",
                               "component": "AP_No",
+                              "name": "AP_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 10,
                               "type": "textbox",
                               "name": "AP_No",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Tbl Po Vendor",
                               "component": "Vendor_FK",
+                              "name": "Vendor_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,9 +138,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblPoVendorsResult}",
                               "textProperty": "LastName",
                               "valueProperty": "Vendor_ID",
                               "placeholder": "Choose TblPoVendor",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Vendor_FK",
                               "style": {
@@ -163,6 +168,7 @@
                               "type": "label",
                               "text": "Transact No",
                               "component": "Transact_No",
+                              "name": "Transact_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -174,6 +180,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "Transact_No",
@@ -200,6 +207,7 @@
                               "type": "label",
                               "text": "Record Code",
                               "component": "Record_Code",
+                              "name": "Record_CodeLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -211,6 +219,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 2,
                               "type": "textbox",
                               "name": "Record_Code",
@@ -237,6 +246,7 @@
                               "type": "label",
                               "text": "Po No",
                               "component": "PO_No",
+                              "name": "PO_NoLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -248,6 +258,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 15,
                               "type": "textbox",
                               "name": "PO_No",
@@ -274,6 +285,7 @@
                               "type": "label",
                               "text": "Transact Date",
                               "component": "Transact_Date",
+                              "name": "Transact_DateLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -285,7 +297,8 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "dateFormat": "MM/dd/yyyy",
+                              "valueType": "DateTime?",
+                              "dateFormat": "dd/MM/yyyy",
                               "type": "datepicker",
                               "name": "Transact_Date",
                               "style": {
@@ -311,6 +324,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -322,6 +336,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 150,
                               "type": "textbox",
                               "name": "Description",
@@ -348,6 +363,7 @@
                               "type": "label",
                               "text": "Amount",
                               "component": "Amount",
+                              "name": "AmountLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -359,6 +375,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Amount",
                               "style": {
@@ -384,6 +401,7 @@
                               "type": "label",
                               "text": "Tbl Gn Department",
                               "component": "Department_FK",
+                              "name": "Department_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -395,9 +413,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "data": "${getTblGnDepartmentsResult}",
                               "textProperty": "Deparment_Name",
                               "valueProperty": "Department_ID",
                               "placeholder": "Choose TblGnDepartment",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "Department_FK",
                               "style": {
@@ -441,9 +461,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblPoAccountPayable",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblPoAccountPayable",
+                        "parameters": [
+                          {
+                            "name": "AP_No",
+                            "value": "${parameters.AP_No}"
+                          },
+                          {
+                            "name": "TblPoAccountPayable",
+                            "value": "${tblpoaccountpayable}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblpoaccountpayable}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoAccountPayable",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoAccountPayable",
+                  "data": "${tblpoaccountpayable}",
                   "visible": "${tblpoaccountpayable != null && canEdit}"
                 }
               ]
@@ -460,6 +510,51 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoAccountPayableByAP_No",
+        "parameters": [
+          {
+            "name": "AP_No",
+            "value": "${parameters.AP_No}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblpoaccountpayable",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblPoAccountPayable"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblPoVendors",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblPoVendorsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoVendor>"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnDepartments",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnDepartmentsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnDepartment>"
+          }
+        ],
+        "type": "invoke"
       }
     ]
   },

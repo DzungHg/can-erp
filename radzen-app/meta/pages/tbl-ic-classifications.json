@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblIcClassificationsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-ic-classification",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblIcClassification",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,27 +75,29 @@
                   "columns": [
                     {
                       "property": "Classifi_ID",
-                      "title": "Classifi ID",
-                      "type": "string"
+                      "title": "Classifi ID"
                     },
                     {
                       "property": "Classifi_Name",
-                      "title": "Classifi Name",
-                      "type": "string"
+                      "title": "Classifi Name"
                     },
                     {
                       "property": "Inactive",
-                      "title": "Inactive",
-                      "type": "boolean"
+                      "title": "Inactive"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -113,7 +115,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblIcClassification",
+                                "name": "DB_At_VDC2.deleteTblIcClassification",
                                 "parameters": [
                                   {
                                     "name": "Classifi_ID",
@@ -127,8 +129,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblIcClassification"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -137,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcClassification"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcClassification"
                 }
               ]
             }
@@ -147,7 +148,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblIcClassifications",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcClassificationsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcClassification>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Ic Classifications",
   "layout": "Main"

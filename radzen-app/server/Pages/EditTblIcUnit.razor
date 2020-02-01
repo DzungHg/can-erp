@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-ic-unit/{Unit_SEQ}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblIcUnitComponent
+@inherits CanErp2.Pages.EditTblIcUnitComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblIcUnit" Data="@(tblicunit)" Visible="@(tblicunit != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblIcUnit" Data="@(tblicunit)" Visible="@(tblicunit != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="25" style="display: block; width: 100%" @bind-Value="@((tblicunit.UnitText))" Name="UnitText">
+                <RadzenTextBox MaxLength="25" style="display: block; width: 100%" @bind-Value="@(tblicunit.UnitText)" Name="UnitText">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="UnitText" Text="UnitText is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="20" style="display: block; width: 100%" @bind-Value="@((tblicunit.Unit_FK))" Name="Unit_FK">
+                <RadzenTextBox MaxLength="20" style="display: block; width: 100%" @bind-Value="@(tblicunit.Unit_FK)" Name="Unit_FK">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Unit_FK" Text="Unit_FK is required" style="position: absolute">
                 </RadzenRequiredValidator>

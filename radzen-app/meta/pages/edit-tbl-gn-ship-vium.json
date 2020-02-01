@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "components": [
@@ -77,6 +77,7 @@
                               "type": "label",
                               "text": "Ship Via Id",
                               "component": "ShipVia_ID",
+                              "name": "ShipVia_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -88,6 +89,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 25,
                               "type": "textbox",
                               "name": "ShipVia_ID",
@@ -124,6 +126,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -135,6 +138,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "Description",
@@ -179,9 +183,39 @@
                     }
                   ],
                   "events": {
-                    "submit": []
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update TblGnShipVium",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "DB_At_VDC2.updateTblGnShipVium",
+                        "parameters": [
+                          {
+                            "name": "ShipVia_SEQ",
+                            "value": "${parameters.ShipVia_SEQ}"
+                          },
+                          {
+                            "name": "TblGnShipVium",
+                            "value": "${tblgnshipvium}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "close-popup",
+                            "result": "${tblgnshipvium}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
                   },
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnShipVium",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnShipVium",
+                  "data": "${tblgnshipvium}",
                   "visible": "${tblgnshipvium != null && canEdit}"
                 }
               ]
@@ -198,6 +232,25 @@
         "type": "set",
         "value": "true",
         "valueType": "bool"
+      },
+      {
+        "name": "DB_At_VDC2.getTblGnShipViumByShipVia_SEQ",
+        "parameters": [
+          {
+            "name": "ShipVia_SEQ",
+            "value": "${parameters.ShipVia_SEQ}"
+          }
+        ],
+        "then": [
+          {
+            "name": "tblgnshipvium",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "CanErp2.Models.DbAtVdc2.TblGnShipVium"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
       }
     ]
   },

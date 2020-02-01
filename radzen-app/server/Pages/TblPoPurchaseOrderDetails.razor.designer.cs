@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblPoPurchaseOrderDetailsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail> _getTblPoPurchaseOrderDetailsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail> getTblPoPurchaseOrderDetailsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail> _getTblPoPurchaseOrderDetailsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail> getTblPoPurchaseOrderDetailsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoPurchaseOrderDetailsResult != value)
+                if(!object.Equals(_getTblPoPurchaseOrderDetailsResult, value))
                 {
                     _getTblPoPurchaseOrderDetailsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoPurchaseOrderDetailsResult = await CanErpDbAt132.GetTblPoPurchaseOrderDetails();
-            getTblPoPurchaseOrderDetailsResult = canErpDbAt132GetTblPoPurchaseOrderDetailsResult;
+            var dbAtVdc2GetTblPoPurchaseOrderDetailsResult = await DbAtVdc2.GetTblPoPurchaseOrderDetails();
+            getTblPoPurchaseOrderDetailsResult = dbAtVdc2GetTblPoPurchaseOrderDetailsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblPoPurchaseOrderDetail>("Add Tbl Po Purchase Order Detail", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail args)
         {
             var result = await DialogService.OpenAsync<EditTblPoPurchaseOrderDetail>("Edit Tbl Po Purchase Order Detail", new Dictionary<string, object>() { {"PO_FK", args.PO_FK}, {"Inventory_FK", args.Inventory_FK} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblPoPurchaseOrderDetailResult = await CanErpDbAt132.DeleteTblPoPurchaseOrderDetail($"{data.PO_FK}", data.Inventory_FK);
-                if (canErpDbAt132DeleteTblPoPurchaseOrderDetailResult != null) {
+                var dbAtVdc2DeleteTblPoPurchaseOrderDetailResult = await DbAtVdc2.DeleteTblPoPurchaseOrderDetail($"{data.PO_FK}", data.Inventory_FK);
+                if (dbAtVdc2DeleteTblPoPurchaseOrderDetailResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblPoPurchaseOrderDetailException)
+            catch (Exception dbAtVdc2DeleteTblPoPurchaseOrderDetailException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblPoPurchaseOrderDetail");
             }

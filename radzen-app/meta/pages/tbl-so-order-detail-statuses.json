@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -62,7 +62,6 @@
                         ],
                         "path": "edit-tbl-so-order-detail-status",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -76,32 +75,33 @@
                   "columns": [
                     {
                       "property": "SODetailStatus_SEQ",
-                      "title": "SO Detail Status SEQ",
-                      "type": "integer"
+                      "title": "SO Detail Status SEQ"
                     },
                     {
                       "property": "SODetailStatus_ID",
-                      "title": "SO Detail Status ID",
-                      "type": "integer"
+                      "title": "SO Detail Status ID"
                     },
                     {
                       "property": "SODetailStatusText",
-                      "title": "SO Detail Status Text",
-                      "type": "string"
+                      "title": "SO Detail Status Text"
                     },
                     {
                       "property": "Description",
-                      "title": "Description",
-                      "type": "string"
+                      "title": "Description"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -119,7 +119,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblSoOrderDetailStatus",
+                                "name": "DB_At_VDC2.deleteTblSoOrderDetailStatus",
                                 "parameters": [
                                   {
                                     "name": "SODetailStatus_SEQ",
@@ -133,8 +133,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -143,7 +142,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus"
                 }
               ]
             }
@@ -155,14 +154,14 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblSoOrderDetailStatuses",
+        "name": "DB_At_VDC2.getTblSoOrderDetailStatuses",
         "parameters": [],
         "then": [
           {
             "name": "getTblSoOrderDetailStatusesResult",
             "type": "set",
-            "value": "${result.value}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblSoOrderDetailStatus>"
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblSoOrderDetailStatus>"
           }
         ],
         "type": "invoke"

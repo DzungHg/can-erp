@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Radzen;
 using Radzen.Blazor;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblPoCashDisbursementComponent
     {

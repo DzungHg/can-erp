@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-gn-address-book/{AddressBook_SEQ}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblGnAddressBookComponent
+@inherits CanErp2.Pages.EditTblGnAddressBookComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblGnAddressBook" Data="@(tblgnaddressbook)" Visible="@(tblgnaddressbook != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Data="@(tblgnaddressbook)" Visible="@(tblgnaddressbook != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@((tblgnaddressbook.AddressBook_ID))" Name="AddressBook_ID">
+                <RadzenTextBox MaxLength="10" style="display: block; width: 100%" @bind-Value="@(tblgnaddressbook.AddressBook_ID)" Name="AddressBook_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="AddressBook_ID" Text="AddressBook_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnAddressBookTypesResult)" TextProperty="AddressBookType_ID" ValueProperty="AddressBookType_SEQ" Placeholder="Choose TblGnAddressBookType" style="width: 100%" @bind-Value="@((tblgnaddressbook.AddressBookType_FK))" Name="AddressBookType_FK">
+                <RadzenDropDown Data="@(getTblGnAddressBookTypesResult)" TextProperty="AddressBookType_ID" ValueProperty="AddressBookType_SEQ" Placeholder="Choose TblGnAddressBookType" style="width: 100%" @bind-Value="@(tblgnaddressbook.AddressBookType_FK)" Name="AddressBookType_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.LastName))" Name="LastName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.LastName)" Name="LastName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.FirstName))" Name="FirstName">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.FirstName)" Name="FirstName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnGendersResult)" TextProperty="Gender_ID" ValueProperty="Gender_SEQ" Placeholder="Choose TblGnGender" style="width: 100%" @bind-Value="@((tblgnaddressbook.Gender_FK))" Name="Gender_FK">
+                <RadzenDropDown Data="@(getTblGnGendersResult)" TextProperty="Gender_ID" ValueProperty="Gender_SEQ" Placeholder="Choose TblGnGender" style="width: 100%" @bind-Value="@(tblgnaddressbook.Gender_FK)" Name="Gender_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@((tblgnaddressbook.DOB))" Name="DOB">
+                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(tblgnaddressbook.DOB)" Name="DOB">
                 </RadzenDatePicker>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.Origin))" Name="Origin">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.Origin)" Name="Origin">
                 </RadzenTextBox>
               </div>
             </div>
@@ -99,7 +99,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="20" style="width: 100%" @bind-Value="@((tblgnaddressbook.IDNumber))" Name="IDNumber">
+                <RadzenTextBox MaxLength="20" style="width: 100%" @bind-Value="@(tblgnaddressbook.IDNumber)" Name="IDNumber">
                 </RadzenTextBox>
               </div>
             </div>
@@ -109,7 +109,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@((tblgnaddressbook.TaxIDNumber))" Name="TaxIDNumber">
+                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgnaddressbook.TaxIDNumber)" Name="TaxIDNumber">
                 </RadzenTextBox>
               </div>
             </div>
@@ -119,7 +119,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblgnaddressbook.OrganizationName))" Name="OrganizationName">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblgnaddressbook.OrganizationName)" Name="OrganizationName">
                 </RadzenTextBox>
               </div>
             </div>
@@ -129,7 +129,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@((tblgnaddressbook.JobPosition))" Name="JobPosition">
+                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgnaddressbook.JobPosition)" Name="JobPosition">
                 </RadzenTextBox>
               </div>
             </div>
@@ -139,7 +139,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@((tblgnaddressbook.Address))" Name="Address">
+                <RadzenTextBox MaxLength="100" style="width: 100%" @bind-Value="@(tblgnaddressbook.Address)" Name="Address">
                 </RadzenTextBox>
               </div>
             </div>
@@ -149,7 +149,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnCitiesResult)" TextProperty="City_ID" ValueProperty="City_SEQ" Placeholder="Choose TblGnCity" style="width: 100%" @bind-Value="@((tblgnaddressbook.City_FK))" Name="City_FK">
+                <RadzenDropDown Data="@(getTblGnCitiesResult)" TextProperty="City_ID" ValueProperty="City_SEQ" Placeholder="Choose TblGnCity" style="width: 100%" @bind-Value="@(tblgnaddressbook.City_FK)" Name="City_FK">
                 </RadzenDropDown>
               </div>
             </div>

@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblGnAddressBookComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic AddressBook_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblGnAddressBook _tblgnaddressbook;
-        protected ErpCan.Models.CanErpDbAt132.TblGnAddressBook tblgnaddressbook
+        CanErp2.Models.DbAtVdc2.TblGnAddressBook _tblgnaddressbook;
+        protected CanErp2.Models.DbAtVdc2.TblGnAddressBook tblgnaddressbook
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnaddressbook != value)
+                if(!object.Equals(_tblgnaddressbook, value))
                 {
                     _tblgnaddressbook = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -61,8 +69,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBookType> _getTblGnAddressBookTypesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnAddressBookType> getTblGnAddressBookTypesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBookType> _getTblGnAddressBookTypesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnAddressBookType> getTblGnAddressBookTypesResult
         {
             get
             {
@@ -70,7 +78,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnAddressBookTypesResult != value)
+                if(!object.Equals(_getTblGnAddressBookTypesResult, value))
                 {
                     _getTblGnAddressBookTypesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -78,8 +86,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnGender> _getTblGnGendersResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnGender> getTblGnGendersResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnGender> _getTblGnGendersResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnGender> getTblGnGendersResult
         {
             get
             {
@@ -87,7 +95,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnGendersResult != value)
+                if(!object.Equals(_getTblGnGendersResult, value))
                 {
                     _getTblGnGendersResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -95,8 +103,8 @@ namespace ErpCan.Pages
             }
         }
 
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnCity> _getTblGnCitiesResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnCity> getTblGnCitiesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> _getTblGnCitiesResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> getTblGnCitiesResult
         {
             get
             {
@@ -104,7 +112,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnCitiesResult != value)
+                if(!object.Equals(_getTblGnCitiesResult, value))
                 {
                     _getTblGnCitiesResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -114,45 +122,44 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblGnAddressBookByAddressBookSeqResult = await CanErpDbAt132.GetTblGnAddressBookByAddressBookSeq(int.Parse($"{AddressBook_SEQ}"));
-            tblgnaddressbook = canErpDbAt132GetTblGnAddressBookByAddressBookSeqResult;
+            var dbAtVdc2GetTblGnAddressBookByAddressBookSeqResult = await DbAtVdc2.GetTblGnAddressBookByAddressBookSeq(int.Parse($"{AddressBook_SEQ}"));
+            tblgnaddressbook = dbAtVdc2GetTblGnAddressBookByAddressBookSeqResult;
 
-            var canErpDbAt132GetTblGnAddressBookTypesResult = await CanErpDbAt132.GetTblGnAddressBookTypes();
-            getTblGnAddressBookTypesResult = canErpDbAt132GetTblGnAddressBookTypesResult;
+            var dbAtVdc2GetTblGnAddressBookTypesResult = await DbAtVdc2.GetTblGnAddressBookTypes();
+            getTblGnAddressBookTypesResult = dbAtVdc2GetTblGnAddressBookTypesResult;
 
-            var canErpDbAt132GetTblGnGendersResult = await CanErpDbAt132.GetTblGnGenders();
-            getTblGnGendersResult = canErpDbAt132GetTblGnGendersResult;
+            var dbAtVdc2GetTblGnGendersResult = await DbAtVdc2.GetTblGnGenders();
+            getTblGnGendersResult = dbAtVdc2GetTblGnGendersResult;
 
-            var canErpDbAt132GetTblGnCitiesResult = await CanErpDbAt132.GetTblGnCities();
-            getTblGnCitiesResult = canErpDbAt132GetTblGnCitiesResult;
+            var dbAtVdc2GetTblGnCitiesResult = await DbAtVdc2.GetTblGnCities();
+            getTblGnCitiesResult = dbAtVdc2GetTblGnCitiesResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnAddressBook args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnAddressBook args)
         {
             try
             {
-                var canErpDbAt132UpdateTblGnAddressBookResult = await CanErpDbAt132.UpdateTblGnAddressBook(int.Parse($"{AddressBook_SEQ}"), tblgnaddressbook);
+                var dbAtVdc2UpdateTblGnAddressBookResult = await DbAtVdc2.UpdateTblGnAddressBook(int.Parse($"{AddressBook_SEQ}"), tblgnaddressbook);
                 DialogService.Close(tblgnaddressbook);
             }
-            catch (Exception canErpDbAt132UpdateTblGnAddressBookException)
+            catch (Exception dbAtVdc2UpdateTblGnAddressBookException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnAddressBook");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

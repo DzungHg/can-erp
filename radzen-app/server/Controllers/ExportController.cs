@@ -13,7 +13,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 using System.Reflection;
 using Microsoft.AspNetCore.Http;
 
-namespace ErpCan
+namespace CanErp2
 {
     public partial class ExportController : Controller
     {
@@ -66,9 +66,7 @@ namespace ErpCan
 
                 foreach (var column in columns)
                 {
-                    var value = GetValue(item, column.Key);
-
-                    row.Add(value != null ? value.ToString() : "");
+                    row.Add($"{GetValue(item, column.Key)}".Trim());
                 }
 
                 sb.AppendLine(string.Join(",", row.ToArray()));
@@ -76,7 +74,7 @@ namespace ErpCan
 
 
             var result = new FileStreamResult(new MemoryStream(UTF8Encoding.Default.GetBytes($"{string.Join(",", columns.Select(c => c.Key))}{System.Environment.NewLine}{sb.ToString()}")), "text/csv");
-            result.FileDownloadName = $"{query.ElementType}.csv";
+            result.FileDownloadName = "Export.csv";
 
             return result;
         }
@@ -125,7 +123,7 @@ namespace ErpCan
                     foreach (var column in columns)
                     {
                         var value = GetValue(item, column.Key);
-                        var stringValue = $"{value}";
+                        var stringValue = $"{value}".Trim();
 
                         var cell = new Cell();
 
@@ -175,7 +173,7 @@ namespace ErpCan
             }
 
             var result = new FileStreamResult(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-            result.FileDownloadName = $"{query.ElementType}.xls";
+            result.FileDownloadName = "Export.xlsx";
 
             return result;
         }

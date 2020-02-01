@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class EditTblGnPaymentTermComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,9 +28,9 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
-        [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
 
+        [Inject]
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
         public dynamic PaymentTerm_SEQ { get; set; }
@@ -36,7 +44,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_canEdit != value)
+                if(!object.Equals(_canEdit, value))
                 {
                     _canEdit = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -44,8 +52,8 @@ namespace ErpCan.Pages
             }
         }
 
-        ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm _tblgnpaymentterm;
-        protected ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm tblgnpaymentterm
+        CanErp2.Models.DbAtVdc2.TblGnPaymentTerm _tblgnpaymentterm;
+        protected CanErp2.Models.DbAtVdc2.TblGnPaymentTerm tblgnpaymentterm
         {
             get
             {
@@ -53,7 +61,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblgnpaymentterm != value)
+                if(!object.Equals(_tblgnpaymentterm, value))
                 {
                     _tblgnpaymentterm = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -63,36 +71,35 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
             canEdit = true;
 
-            var canErpDbAt132GetTblGnPaymentTermByPaymentTermSeqResult = await CanErpDbAt132.GetTblGnPaymentTermByPaymentTermSeq(int.Parse($"{PaymentTerm_SEQ}"));
-            tblgnpaymentterm = canErpDbAt132GetTblGnPaymentTermByPaymentTermSeqResult;
+            var dbAtVdc2GetTblGnPaymentTermByPaymentTermSeqResult = await DbAtVdc2.GetTblGnPaymentTermByPaymentTermSeq(int.Parse($"{PaymentTerm_SEQ}"));
+            tblgnpaymentterm = dbAtVdc2GetTblGnPaymentTermByPaymentTermSeqResult;
         }
 
-        protected async void CloseButtonClick(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
         {
             DialogService.Close(null);
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblGnPaymentTerm args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnPaymentTerm args)
         {
             try
             {
-                var canErpDbAt132UpdateTblGnPaymentTermResult = await CanErpDbAt132.UpdateTblGnPaymentTerm(int.Parse($"{PaymentTerm_SEQ}"), tblgnpaymentterm);
+                var dbAtVdc2UpdateTblGnPaymentTermResult = await DbAtVdc2.UpdateTblGnPaymentTerm(int.Parse($"{PaymentTerm_SEQ}"), tblgnpaymentterm);
                 DialogService.Close(tblgnpaymentterm);
             }
-            catch (Exception canErpDbAt132UpdateTblGnPaymentTermException)
+            catch (Exception dbAtVdc2UpdateTblGnPaymentTermException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnPaymentTerm");
             }
         }
 
-        protected async void Button3Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button3Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

@@ -1,7 +1,0 @@
-﻿<StaticWebAssets Version="1.0">
-<<<<<<< HEAD
-  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\HP\.nuget\packages\radzen.blazor\1.1.29\build\..\staticwebassets\" />
-=======
-  <ContentRoot BasePath="_content/Radzen.Blazor" Path="C:\Users\BK\.nuget\packages\radzen.blazor\1.1.18\build\..\staticwebassets\" />
->>>>>>> e0ebc8a4fafe3ad90dbbfb88183002422aa310c9
-</StaticWebAssets>

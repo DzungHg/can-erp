@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-ic-transaction-type/{Transaction_ID}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblIcTransactionTypeComponent
+@inherits CanErp2.Pages.EditTblIcTransactionTypeComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblIcTransactionType" Data="@(tblictransactiontype)" Visible="@(tblictransactiontype != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblIcTransactionType" Data="@(tblictransactiontype)" Visible="@(tblictransactiontype != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="2" style="display: block; width: 100%" @bind-Value="@((tblictransactiontype.Transaction_ID))" Name="Transaction_ID">
+                <RadzenTextBox MaxLength="2" style="display: block; width: 100%" @bind-Value="@(tblictransactiontype.Transaction_ID)" Name="Transaction_ID">
                 </RadzenTextBox>
                 <RadzenRequiredValidator Component="Transaction_ID" Text="Transaction_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="70" style="width: 100%" @bind-Value="@((tblictransactiontype.Transaction_Name))" Name="Transaction_Name">
+                <RadzenTextBox MaxLength="70" style="width: 100%" @bind-Value="@(tblictransactiontype.Transaction_Name)" Name="Transaction_Name">
                 </RadzenTextBox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="250" style="width: 100%" @bind-Value="@((tblictransactiontype.Description))" Name="Description">
+                <RadzenTextBox MaxLength="250" style="width: 100%" @bind-Value="@(tblictransactiontype.Description)" Name="Description">
                 </RadzenTextBox>
               </div>
             </div>

@@ -1,11 +1,11 @@
 ﻿@page "/tbl-po-purchase-order-details"
 @layout MainLayout
-@inherits ErpCan.Pages.TblPoPurchaseOrderDetailsComponent
+@inherits CanErp2.Pages.TblPoPurchaseOrderDetailsComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <RadzenHeading Size="H1" Text="Tbl Po Purchase Order Details">
     </RadzenHeading>
@@ -13,37 +13,37 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoPurchaseOrderDetailsResult)" TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoPurchaseOrderDetailsResult)" TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" RowSelect="@Grid0RowSelect">
           <Columns>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Property="PO_FK" SortProperty="TblPoPurchaseOrder.POStatus_FK" FilterProperty="TblPoPurchaseOrder.POStatus_FK" Title="Tbl Po Purchase Order" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="PO_FK" SortProperty="TblPoPurchaseOrder.POStatus_FK" FilterProperty="TblPoPurchaseOrder.POStatus_FK" Title="Tbl Po Purchase Order">
               <Template Context="data">
-              @data.TblPoPurchaseOrder?.POStatus_FK
+              @(data.TblPoPurchaseOrder?.POStatus_FK)
               </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Property="Inventory_FK" SortProperty="TblIcInventory.Warehouse_FK" FilterProperty="TblIcInventory.Warehouse_FK" Title="Tbl Ic Inventory" Type="string">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="Inventory_FK" SortProperty="TblIcInventory.Warehouse_FK" FilterProperty="TblIcInventory.Warehouse_FK" Title="Tbl Ic Inventory">
               <Template Context="data">
-              @data.TblIcInventory?.Warehouse_FK
+              @(data.TblIcInventory?.Warehouse_FK)
               </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="decimal" Property="Unit_Price" Title="Unit Price" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="Unit_Price" Title="Unit Price">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="QtyOrdered" Title="Qty Ordered" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="QtyOrdered" Title="Qty Ordered">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="QtyReceived" Title="Qty Received" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="QtyReceived" Title="Qty Received">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="SubTotal" Title="Sub Total" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="SubTotal" Title="Sub Total">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="TaxRate" Title="Tax Rate" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="TaxRate" Title="Tax Rate">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="DiscountPercent" Title="Discount Percent" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="DiscountPercent" Title="Discount Percent">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="Discount" Title="Discount" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="Discount" Title="Discount">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Format="double" Property="Tax" Title="Tax" Type="number">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="Tax" Title="Tax">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="ErpCan.Models.CanErpDbAt132.TblPoPurchaseOrderDetail" Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail" Filterable="false" Sortable="false" Bubble="false" Width="70px" TextAlign="TextAlign.Center">
-              <Template Context="erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail">
-                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, erpCanModelsCanErpDbAt132TblPoPurchaseOrderDetail))">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail))" @onclick:stopPropagation="true">
                 </RadzenButton>
               </Template>
             </RadzenGridColumn>

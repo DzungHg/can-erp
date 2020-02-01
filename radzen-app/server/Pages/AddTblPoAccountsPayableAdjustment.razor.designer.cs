@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class AddTblPoAccountsPayableAdjustmentComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,12 +28,12 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-
-        ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment _tblpoaccountspayableadjustment;
-        protected ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment tblpoaccountspayableadjustment
+        CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment _tblpoaccountspayableadjustment;
+        protected CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment tblpoaccountspayableadjustment
         {
             get
             {
@@ -33,7 +41,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_tblpoaccountspayableadjustment != value)
+                if(!object.Equals(_tblpoaccountspayableadjustment, value))
                 {
                     _tblpoaccountspayableadjustment = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -43,28 +51,27 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            tblpoaccountspayableadjustment = new ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment();
+            tblpoaccountspayableadjustment = new CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment();
         }
 
-        protected async void Form0Submit(ErpCan.Models.CanErpDbAt132.TblPoAccountsPayableAdjustment args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblPoAccountsPayableAdjustment args)
         {
             try
             {
-                var canErpDbAt132CreateTblPoAccountsPayableAdjustmentResult = await CanErpDbAt132.CreateTblPoAccountsPayableAdjustment(tblpoaccountspayableadjustment);
+                var dbAtVdc2CreateTblPoAccountsPayableAdjustmentResult = await DbAtVdc2.CreateTblPoAccountsPayableAdjustment(tblpoaccountspayableadjustment);
                 DialogService.Close(tblpoaccountspayableadjustment);
             }
-            catch (Exception canErpDbAt132CreateTblPoAccountsPayableAdjustmentException)
+            catch (Exception dbAtVdc2CreateTblPoAccountsPayableAdjustmentException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblPoAccountsPayableAdjustment!");
             }
         }
 
-        protected async void Button2Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button2Click(MouseEventArgs args)
         {
             DialogService.Close(null);
         }

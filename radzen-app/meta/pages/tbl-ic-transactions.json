@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblIcTransactionsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-ic-transaction",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblIcTransaction",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,120 +75,100 @@
                   "columns": [
                     {
                       "property": "Trans_No",
-                      "title": "Trans No",
-                      "type": "string"
+                      "title": "Trans No"
                     },
                     {
                       "property": "Trans_Code",
                       "sortProperty": "TblIcTransactionType.Transaction_Name",
                       "filterProperty": "TblIcTransactionType.Transaction_Name",
                       "template": "${data.TblIcTransactionType?.Transaction_Name}",
-                      "title": "Tbl Ic Transaction Type",
-                      "type": "string"
+                      "title": "Tbl Ic Transaction Type"
                     },
                     {
-                      "format": "date-time",
                       "property": "Trans_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Trans Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Trans Date"
                     },
                     {
                       "property": "Warehouse_ID",
                       "sortProperty": "TblIcWarehouse.WarehouseName",
                       "filterProperty": "TblIcWarehouse.WarehouseName",
                       "template": "${data.TblIcWarehouse?.WarehouseName}",
-                      "title": "Tbl Ic Warehouse",
-                      "type": "string"
+                      "title": "Tbl Ic Warehouse"
                     },
                     {
                       "property": "Item_FK",
                       "sortProperty": "TblGnProduct.Product_ID",
                       "filterProperty": "TblGnProduct.Product_ID",
                       "template": "${data.TblGnProduct?.Product_ID}",
-                      "title": "Tbl Gn Product",
-                      "type": "string"
+                      "title": "Tbl Gn Product"
                     },
                     {
                       "property": "Reference_No",
-                      "title": "Reference No",
-                      "type": "string"
+                      "title": "Reference No"
                     },
                     {
-                      "format": "date-time",
                       "property": "Reference_Date",
-                      "formatString": "{0:MM/dd/yyyy}",
-                      "title": "Reference Date",
-                      "type": "string"
+                      "formatString": "{0:dd/MM/yyyy}",
+                      "title": "Reference Date"
                     },
                     {
                       "property": "Taxable",
-                      "title": "Taxable",
-                      "type": "boolean"
+                      "title": "Taxable"
                     },
                     {
                       "property": "Cust_Vend_WarID",
-                      "title": "Cust Vend War ID",
-                      "type": "string"
+                      "title": "Cust Vend War ID"
                     },
                     {
-                      "format": "double",
                       "property": "Trans_Qty",
-                      "title": "Trans Qty",
-                      "type": "number"
+                      "title": "Trans Qty"
                     },
                     {
                       "property": "UOM",
-                      "title": "UOM",
-                      "type": "string"
+                      "title": "UOM"
                     },
                     {
-                      "format": "decimal",
                       "property": "Trans_Amount",
-                      "title": "Trans Amount",
-                      "type": "number"
+                      "title": "Trans Amount"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_On_Hand_EOB",
-                      "title": "Qty On Hand EOB",
-                      "type": "number"
+                      "title": "Qty On Hand EOB"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_On_Order_EOB",
-                      "title": "Qty On Order EOB",
-                      "type": "number"
+                      "title": "Qty On Order EOB"
                     },
                     {
-                      "format": "double",
                       "property": "Qty_On_Allowed_EOB",
-                      "title": "Qty On Allowed EOB",
-                      "type": "number"
+                      "title": "Qty On Allowed EOB"
                     },
                     {
                       "property": "GL_Asset",
-                      "title": "GL Asset",
-                      "type": "string"
+                      "title": "GL Asset"
                     },
                     {
                       "property": "GL_COGS",
-                      "title": "GL COGS",
-                      "type": "string"
+                      "title": "GL COGS"
                     },
                     {
                       "property": "GL_Sales",
-                      "title": "GL Sales",
-                      "type": "string"
+                      "title": "GL Sales"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -206,7 +186,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblIcTransaction",
+                                "name": "DB_At_VDC2.deleteTblIcTransaction",
                                 "parameters": [
                                   {
                                     "name": "Trans_No",
@@ -220,8 +200,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblIcTransaction"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -230,7 +209,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblIcTransaction"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblIcTransaction"
                 }
               ]
             }
@@ -240,7 +219,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblIcTransactions",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblIcTransactionsResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcTransaction>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Ic Transactions",
   "layout": "Main"

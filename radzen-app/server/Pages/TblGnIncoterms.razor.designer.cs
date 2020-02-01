@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblGnIncotermsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblGnIncoterm> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblGnIncoterm> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnIncoterm> _getTblGnIncotermsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblGnIncoterm> getTblGnIncotermsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnIncoterm> _getTblGnIncotermsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnIncoterm> getTblGnIncotermsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblGnIncotermsResult != value)
+                if(!object.Equals(_getTblGnIncotermsResult, value))
                 {
                     _getTblGnIncotermsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblGnIncotermsResult = await CanErpDbAt132.GetTblGnIncoterms();
-            getTblGnIncotermsResult = canErpDbAt132GetTblGnIncotermsResult;
+            var dbAtVdc2GetTblGnIncotermsResult = await DbAtVdc2.GetTblGnIncoterms();
+            getTblGnIncotermsResult = dbAtVdc2GetTblGnIncotermsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblGnIncoterm>("Add Tbl Gn Incoterm", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblGnIncoterm args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblGnIncoterm args)
         {
             var result = await DialogService.OpenAsync<EditTblGnIncoterm>("Edit Tbl Gn Incoterm", new Dictionary<string, object>() { {"Incoterm_ID", args.Incoterm_ID} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblGnIncoterm data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblGnIncotermResult = await CanErpDbAt132.DeleteTblGnIncoterm($"{data.Incoterm_ID}");
-                if (canErpDbAt132DeleteTblGnIncotermResult != null) {
+                var dbAtVdc2DeleteTblGnIncotermResult = await DbAtVdc2.DeleteTblGnIncoterm($"{data.Incoterm_ID}");
+                if (dbAtVdc2DeleteTblGnIncotermResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblGnIncotermException)
+            catch (Exception dbAtVdc2DeleteTblGnIncotermException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblGnIncoterm");
             }

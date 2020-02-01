@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "So Status Id",
                               "component": "SOStatus_ID",
+                              "name": "SOStatus_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -40,6 +41,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 20,
                               "type": "textbox",
                               "name": "SOStatus_ID",
@@ -76,6 +78,7 @@
                               "type": "label",
                               "text": "So Status Text",
                               "component": "SOStatusText",
+                              "name": "SOStatusTextLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -87,6 +90,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 50,
                               "type": "textbox",
                               "name": "SOStatusText",
@@ -113,6 +117,7 @@
                               "type": "label",
                               "text": "Description",
                               "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -124,6 +129,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "string",
                               "maxLength": 255,
                               "type": "textbox",
                               "name": "Description",
@@ -178,7 +184,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.createTblSoOrderStatus",
+                        "name": "DB_At_VDC2.createTblSoOrderStatus",
                         "parameters": [
                           {
                             "name": "TblSoOrderStatus",
@@ -191,14 +197,13 @@
                             "result": "${tblsoorderstatus}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus"
+                        "type": "invoke"
                       }
                     ]
                   },
                   "data": "${tblsoorderstatus}",
                   "visible": "${tblsoorderstatus != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblSoOrderStatus"
                 }
               ]
             }
@@ -212,8 +217,8 @@
       {
         "name": "tblsoorderstatus",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblSoOrderStatus()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblSoOrderStatus"
+        "value": "new CanErp2.Models.DbAtVdc2.TblSoOrderStatus()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblSoOrderStatus"
       }
     ]
   },

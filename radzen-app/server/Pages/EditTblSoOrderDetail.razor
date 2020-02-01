@@ -1,11 +1,11 @@
 ﻿@page "/edit-tbl-so-order-detail/{SODetail_SEQ}"
 @layout MainLayout
-@inherits ErpCan.Pages.EditTblSoOrderDetailComponent
+@inherits CanErp2.Pages.EditTblSoOrderDetailComponent
 
 @using Radzen
 @using Radzen.Blazor
-@using ErpCan.Models.CanErpDbAt132
-<RadzenContent Container="contentContainer0">
+@using CanErp2.Models.DbAtVdc2
+<RadzenContent Container="main">
   <ChildContent>
     <div style="" class="row">
       <div class="col-md-9">
@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="ErpCan.Models.CanErpDbAt132.TblSoOrderDetail" Data="@(tblsoorderdetail)" Visible="@(tblsoorderdetail != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblSoOrderDetail" Data="@(tblsoorderdetail)" Visible="@(tblsoorderdetail != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoOrderDetailStatusesResult)" TextProperty="SODetailStatusText" ValueProperty="SODetailStatus_SEQ" Placeholder="Choose TblSoOrderDetailStatus" style="width: 100%" @bind-Value="@((tblsoorderdetail.SODetailStatus_FK))" Name="SODetailStatus_FK">
+                <RadzenDropDown Data="@(getTblSoOrderDetailStatusesResult)" TextProperty="SODetailStatusText" ValueProperty="SODetailStatus_SEQ" Placeholder="Choose TblSoOrderDetailStatus" style="width: 100%" @bind-Value="@(tblsoorderdetail.SODetailStatus_FK)" Name="SODetailStatus_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -37,7 +37,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoSalesOrdersResult)" TextProperty="SO_ID" ValueProperty="SO_SEQ" Placeholder="Choose TblSoSalesOrder" style="width: 100%" @bind-Value="@((tblsoorderdetail.SO_FK))" Name="SO_FK">
+                <RadzenDropDown Data="@(getTblSoSalesOrdersResult)" TextProperty="SO_ID" ValueProperty="SO_SEQ" Placeholder="Choose TblSoSalesOrder" style="width: 100%" @bind-Value="@(tblsoorderdetail.SO_FK)" Name="SO_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -47,7 +47,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcInventoriesResult)" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@((tblsoorderdetail.Inventory_FK))" Name="Inventory_FK">
+                <RadzenDropDown Data="@(getTblIcInventoriesResult)" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@(tblsoorderdetail.Inventory_FK)" Name="Inventory_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -57,7 +57,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.UnitPrice))" Name="UnitPrice">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.UnitPrice)" Name="UnitPrice">
                 </RadzenNumeric>
               </div>
             </div>
@@ -67,7 +67,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.QtyOnHand))" Name="QtyOnHand">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.QtyOnHand)" Name="QtyOnHand">
                 </RadzenNumeric>
               </div>
             </div>
@@ -77,7 +77,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.QtyOrdered))" Name="QtyOrdered">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.QtyOrdered)" Name="QtyOrdered">
                 </RadzenNumeric>
               </div>
             </div>
@@ -87,7 +87,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.QtyOrderedNow))" Name="QtyOrderedNow">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.QtyOrderedNow)" Name="QtyOrderedNow">
                 </RadzenNumeric>
               </div>
             </div>
@@ -97,7 +97,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.QtyBackOrdered))" Name="QtyBackOrdered">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.QtyBackOrdered)" Name="QtyBackOrdered">
                 </RadzenNumeric>
               </div>
             </div>
@@ -107,7 +107,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.QtyPicked))" Name="QtyPicked">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.QtyPicked)" Name="QtyPicked">
                 </RadzenNumeric>
               </div>
             </div>
@@ -117,7 +117,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.DiscountPercent))" Name="DiscountPercent">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.DiscountPercent)" Name="DiscountPercent">
                 </RadzenNumeric>
               </div>
             </div>
@@ -127,7 +127,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenNumeric style="width: 100%" @bind-Value="@((tblsoorderdetail.TaxRate))" Name="TaxRate">
+                <RadzenNumeric style="width: 100%" @bind-Value="@(tblsoorderdetail.TaxRate)" Name="TaxRate">
                 </RadzenNumeric>
               </div>
             </div>

@@ -26,7 +26,7 @@
                 },
                 {
                   "name": "label0",
-                  "text": "ErpCan",
+                  "text": "CanErp2",
                   "type": "label"
                 }
               ],
@@ -35,7 +35,6 @@
             },
             {
               "class": "col-md-6 text-lg-right",
-              "components": [],
               "name": "rightCol",
               "type": "col"
             }
@@ -50,10 +49,7 @@
     {
       "components": [
         {
-          "name": "contentContainer0",
-          "style": {
-            "height": "21px"
-          },
+          "name": "main",
           "type": "content-container"
         }
       ],
@@ -65,116 +61,25 @@
         {
           "items": [
             {
-              "icon": "",
               "items": [
                 {
-                  "icon": "",
                   "path": "tbl-po-purchase-orders",
-                  "text": "PO"
-                },
-                {
-                  "path": "tbl-po-vendors",
-                  "text": "Vendor"
-                },
-                {
-                  "icon": "",
-                  "path": "tbl-po-list",
-                  "text": "PO List"
+                  "text": "DS Đơn"
                 }
               ],
-              "text": "Thu Mua"
-            }
-          ],
-          "name": "panelmenu1",
-          "type": "panelmenu"
-        },
-        {
-          "items": [
+              "text": "Đơn Hàng"
+            },
             {
-              "icon": "",
-              "items": [
-                {
-                  "path": "tbl-ic-inventories",
-                  "text": "Bảng Tồn Kho",
-                  "visible": true
-                }
-              ],
-              "text": "Tồn kho"
+              "text": "Mua Hàng"
+            },
+            {
+              "text": "Cài Đặt"
             }
           ],
           "name": "panelmenu0",
-          "type": "panelmenu"
-        },
-        {
-          "items": [
-            {
-              "icon": "",
-              "items": [
-                {
-                  "path": "tbl-gn-address-books",
-                  "text": "DS Liên Hệ"
-                },
-                {
-                  "path": "tbl-gn-cities",
-                  "text": "Tỉnh Thành"
-                }
-              ],
-              "text": "Liên hệ"
-            }
-          ],
-          "name": "panelmenu3",
-          "type": "panelmenu"
-        },
-        {
-          "items": [
-            {
-              "icon": "",
-              "items": [
-                {
-                  "path": "tbl-ic-categories",
-                  "text": "DM Tồn Kho"
-                },
-                {
-                  "path": "tbl-ic-classifications",
-                  "text": "P. Loại Tồn Kho"
-                },
-                {
-                  "icon": "",
-                  "path": "tbl-ic-warehouses",
-                  "text": "DS Kho"
-                },
-                {
-                  "path": "tbl-gn-incoterms",
-                  "text": "Incoterm"
-                },
-                {
-                  "icon": "",
-                  "path": "tbl-gn-payment-terms",
-                  "text": "ĐK Thanh Toán"
-                },
-                {
-                  "path": "tbl-gn-payment-types",
-                  "text": "Kiểu Thanh Toán"
-                },
-                {
-                  "icon": "",
-                  "path": "tbl-gn-ship-via",
-                  "text": "Ship Via"
-                },
-                {
-                  "icon": "",
-                  "path": "tbl-po-order-statuses",
-                  "text": "PO Status"
-                },
-                {
-                  "path": "tbl-gn-departments",
-                  "text": "Phòng Ban"
-                }
-              ],
-              "text": "Cài đặt"
-            }
-          ],
-          "name": "panelmenu2",
+          "style": {
+            "height": "100%"
+          },
           "type": "panelmenu"
         }
       ],
@@ -185,7 +90,7 @@
       "components": [
         {
           "name": "footerText",
-          "text": "ErpCan, Copyright &copy; 2019",
+          "text": "CanErp2, Copyright Ⓒ 2020",
           "type": "label"
         }
       ],
@@ -193,8 +98,5 @@
       "type": "footer"
     }
   ],
-  "events": {
-    "load": []
-  },
   "name": "Main"
 }

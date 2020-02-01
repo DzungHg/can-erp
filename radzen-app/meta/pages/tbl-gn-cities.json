@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "heading",
@@ -49,6 +49,7 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
+                  "data": "${getTblGnCitiesResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
@@ -61,7 +62,6 @@
                         ],
                         "path": "edit-tbl-gn-city",
                         "type": "popup",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblGnCity",
                         "then": [
                           {
                             "code": "await InvokeAsync(() => { StateHasChanged(); });",
@@ -75,32 +75,33 @@
                   "columns": [
                     {
                       "property": "City_SEQ",
-                      "title": "City SEQ",
-                      "type": "integer"
+                      "title": "City SEQ"
                     },
                     {
                       "property": "City_ID",
-                      "title": "City ID",
-                      "type": "string"
+                      "title": "City ID"
                     },
                     {
                       "property": "CityName",
-                      "title": "City Name",
-                      "type": "string"
+                      "title": "City Name"
                     },
                     {
                       "property": "CityAbbreviation",
-                      "title": "City Abbreviation",
-                      "type": "string"
+                      "title": "City Abbreviation"
                     },
                     {
                       "filterable": false,
                       "sortable": false,
-                      "bubble": false,
                       "width": "70px",
                       "textAlign": "center",
                       "template": [
                         {
+                          "attributes": [
+                            {
+                              "name": "@onclick:stopPropagation",
+                              "value": true
+                            }
+                          ],
                           "buttonStyle": "danger",
                           "icon": "close",
                           "name": "gridDeleteButton",
@@ -118,7 +119,7 @@
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "CanERP_DB_AT132.deleteTblGnCity",
+                                "name": "DB_At_VDC2.deleteTblGnCity",
                                 "parameters": [
                                   {
                                     "name": "City_SEQ",
@@ -132,8 +133,7 @@
                                     "type": "execute"
                                   }
                                 ],
-                                "type": "invoke",
-                                "argType": "ErpCan.Models.CanErpDbAt132.TblGnCity"
+                                "type": "invoke"
                               }
                             ]
                           }
@@ -142,7 +142,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblGnCity"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnCity"
                 }
               ]
             }
@@ -152,7 +152,21 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "DB_At_VDC2.getTblGnCities",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getTblGnCitiesResult",
+            "type": "set",
+            "value": "${result}",
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity>"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "name": "Tbl Gn Cities",
   "layout": "Main"

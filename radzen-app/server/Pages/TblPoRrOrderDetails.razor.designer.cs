@@ -2,16 +2,24 @@
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.JSInterop;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Radzen;
 using Radzen.Blazor;
-using ErpCan.Models.CanErpDbAt132;
+using CanErp2.Models.DbAtVdc2;
+using Microsoft.EntityFrameworkCore;
 
-namespace ErpCan.Pages
+namespace CanErp2.Pages
 {
     public partial class TblPoRrOrderDetailsComponent : ComponentBase
     {
+        [Parameter(CaptureUnmatchedValues = true)]
+        public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
+
+        [Inject]
+        protected IJSRuntime JSRuntime { get; set; }
+
         [Inject]
         protected NavigationManager UriHelper { get; set; }
 
@@ -20,14 +28,14 @@ namespace ErpCan.Pages
 
         [Inject]
         protected NotificationService NotificationService { get; set; }
+
         [Inject]
-        protected CanErpDbAt132Service CanErpDbAt132 { get; set; }
+        protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail> grid0;
 
-        protected RadzenGrid<ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail> grid0;
-
-        IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail> _getTblPoRrOrderDetailsResult;
-        protected IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail> getTblPoRrOrderDetailsResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail> _getTblPoRrOrderDetailsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail> getTblPoRrOrderDetailsResult
         {
             get
             {
@@ -35,7 +43,7 @@ namespace ErpCan.Pages
             }
             set
             {
-                if(_getTblPoRrOrderDetailsResult != value)
+                if(!object.Equals(_getTblPoRrOrderDetailsResult, value))
                 {
                     _getTblPoRrOrderDetailsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
@@ -45,16 +53,15 @@ namespace ErpCan.Pages
 
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
-            Load();
+            await Load();
         }
-
-        protected async void Load()
+        protected async System.Threading.Tasks.Task Load()
         {
-            var canErpDbAt132GetTblPoRrOrderDetailsResult = await CanErpDbAt132.GetTblPoRrOrderDetails();
-            getTblPoRrOrderDetailsResult = canErpDbAt132GetTblPoRrOrderDetailsResult;
+            var dbAtVdc2GetTblPoRrOrderDetailsResult = await DbAtVdc2.GetTblPoRrOrderDetails();
+            getTblPoRrOrderDetailsResult = dbAtVdc2GetTblPoRrOrderDetailsResult;
         }
 
-        protected async void Button0Click(MouseEventArgs args)
+        protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
             var result = await DialogService.OpenAsync<AddTblPoRrOrderDetail>("Add Tbl Po Rr Order Detail", null);
               grid0.Reload();
@@ -62,22 +69,22 @@ namespace ErpCan.Pages
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void Grid0RowSelect(ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail args)
         {
             var result = await DialogService.OpenAsync<EditTblPoRrOrderDetail>("Edit Tbl Po Rr Order Detail", new Dictionary<string, object>() { {"RR_FK", args.RR_FK}, {"Inventory_FK", args.Inventory_FK} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async void GridDeleteButtonClick(MouseEventArgs args, ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail data)
+        protected async System.Threading.Tasks.Task GridDeleteButtonClick(MouseEventArgs args, dynamic data)
         {
             try
             {
-                var canErpDbAt132DeleteTblPoRrOrderDetailResult = await CanErpDbAt132.DeleteTblPoRrOrderDetail($"{data.RR_FK}", data.Inventory_FK);
-                if (canErpDbAt132DeleteTblPoRrOrderDetailResult != null) {
+                var dbAtVdc2DeleteTblPoRrOrderDetailResult = await DbAtVdc2.DeleteTblPoRrOrderDetail($"{data.RR_FK}", data.Inventory_FK);
+                if (dbAtVdc2DeleteTblPoRrOrderDetailResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception canErpDbAt132DeleteTblPoRrOrderDetailException)
+            catch (Exception dbAtVdc2DeleteTblPoRrOrderDetailException)
             {
                     NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblPoRrOrderDetail");
             }

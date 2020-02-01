@@ -2,7 +2,7 @@
   "components": [
     {
       "type": "content",
-      "container": "contentContainer0",
+      "container": "main",
       "components": [
         {
           "type": "row",
@@ -29,6 +29,7 @@
                               "type": "label",
                               "text": "Tbl Po Rec Report",
                               "component": "RR_FK",
+                              "name": "RR_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -44,6 +45,7 @@
                               "textProperty": "PO_ID",
                               "valueProperty": "RR_No",
                               "placeholder": "Choose TblPoRecReport",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "RR_FK",
                               "style": {
@@ -79,6 +81,7 @@
                               "type": "label",
                               "text": "Tbl Ic Inventory",
                               "component": "Inventory_FK",
+                              "name": "Inventory_FKLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -94,6 +97,7 @@
                               "textProperty": "Warehouse_FK",
                               "valueProperty": "Inventory_SEQ",
                               "placeholder": "Choose TblIcInventory",
+                              "valueType": "int",
                               "type": "dropdown",
                               "name": "Inventory_FK",
                               "style": {
@@ -129,6 +133,7 @@
                               "type": "label",
                               "text": "Unit Price",
                               "component": "Unit_Price",
+                              "name": "Unit_PriceLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -140,6 +145,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "decimal?",
                               "type": "numeric",
                               "name": "Unit_Price",
                               "style": {
@@ -165,6 +171,7 @@
                               "type": "label",
                               "text": "Qty Ordered",
                               "component": "QtyOrdered",
+                              "name": "QtyOrderedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -176,6 +183,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "QtyOrdered",
                               "style": {
@@ -201,6 +209,7 @@
                               "type": "label",
                               "text": "Qty Received",
                               "component": "QtyReceived",
+                              "name": "QtyReceivedLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -212,6 +221,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "valueType": "double?",
                               "type": "numeric",
                               "name": "QtyReceived",
                               "style": {
@@ -265,7 +275,7 @@
                             "type": "notify"
                           }
                         ],
-                        "name": "CanERP_DB_AT132.createTblPoRrOrderDetail",
+                        "name": "DB_At_VDC2.createTblPoRrOrderDetail",
                         "parameters": [
                           {
                             "name": "TblPoRrOrderDetail",
@@ -278,14 +288,13 @@
                             "result": "${tblporrorderdetail}"
                           }
                         ],
-                        "type": "invoke",
-                        "argType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+                        "type": "invoke"
                       }
                     ]
                   },
                   "data": "${tblporrorderdetail}",
                   "visible": "${tblporrorderdetail != null}",
-                  "itemType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail"
                 }
               ]
             }
@@ -297,27 +306,27 @@
   "events": {
     "load": [
       {
-        "name": "CanERP_DB_AT132.getTblPoRecReports",
+        "name": "DB_At_VDC2.getTblPoRecReports",
         "parameters": [],
         "then": [
           {
             "name": "getTblPoRecReportsResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblPoRecReport>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblPoRecReport>"
           }
         ],
         "type": "invoke"
       },
       {
-        "name": "CanERP_DB_AT132.getTblIcInventories",
+        "name": "DB_At_VDC2.getTblIcInventories",
         "parameters": [],
         "then": [
           {
             "name": "getTblIcInventoriesResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<ErpCan.Models.CanErpDbAt132.TblIcInventory>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblIcInventory>"
           }
         ],
         "type": "invoke"
@@ -325,8 +334,8 @@
       {
         "name": "tblporrorderdetail",
         "type": "set",
-        "value": "new ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail()",
-        "valueType": "ErpCan.Models.CanErpDbAt132.TblPoRrOrderDetail"
+        "value": "new CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblPoRrOrderDetail"
       }
     ]
   },
