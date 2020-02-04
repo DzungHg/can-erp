@@ -1,0 +1,29 @@
+USE [OT_ERP_CAN_TRADE]
+GO
+
+/****** Object:  Table [dbo].[tblGN_Incoterms]    Script Date: 10/14/2019 3:37:44 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[tblGN_Incoterms](
+	[Incoterm_ID] [char](3) NOT NULL,
+	[Incoterm_Name] [nvarchar](15)  NULL,
+	[Description] [ntext]  NULL,
+ CONSTRAINT [pk_GN_Incoterms] PRIMARY KEY CLUSTERED 
+(
+	[Incoterm_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
