@@ -13,7 +13,7 @@ GO
 
 CREATE TABLE [dbo].[tblHP_HeDaoTao](
 	[HeDaoTao_ID] [char](2) NOT NULL,
-	[HeDaoTao_Name] [nvarchar](20) NULL,
+	[HeDaoTao_Name] [nvarchar](25) NULL,
 	[Description] [nvarchar](250) NULL,
  CONSTRAINT [pk_HP_HeDaoTao] PRIMARY KEY CLUSTERED 
 (
