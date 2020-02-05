@@ -45,7 +45,7 @@ namespace CanErp2
 
             items = items.Include(i => i.TblGnGender);
 
-            items = items.Include(i => i.TblGnCity);
+            items = items.Include(i => i.TblHpTinhTp);
 
             if (query != null)
             {
@@ -158,70 +158,6 @@ namespace CanErp2
             context.SaveChanges();
 
             return tblGnAddressBookType;
-        }
-        public async Task ExportTblGnCitiesToExcel(Query query = null)
-        {
-            navigationManager.NavigateTo(query != null ? query.ToUrl("export/dbatvdc2/tblgncities/excel") : "export/dbatvdc2/tblgncities/excel", true);
-        }
-
-        public async Task ExportTblGnCitiesToCSV(Query query = null)
-        {
-            navigationManager.NavigateTo(query != null ? query.ToUrl("export/dbatvdc2/tblgncities/csv") : "export/dbatvdc2/tblgncities/csv", true);
-        }
-
-        partial void OnTblGnCitiesRead(ref IQueryable<Models.DbAtVdc2.TblGnCity> items);
-
-        public async Task<IQueryable<Models.DbAtVdc2.TblGnCity>> GetTblGnCities(Query query = null)
-        {
-            var items = context.TblGnCities.AsQueryable();
-
-            if (query != null)
-            {
-                if (!string.IsNullOrEmpty(query.Filter))
-                {
-                    items = items.Where(query.Filter);
-                }
-
-                if (!string.IsNullOrEmpty(query.OrderBy))
-                {
-                    items = items.OrderBy(query.OrderBy);
-                }
-
-                if (!string.IsNullOrEmpty(query.Expand))
-                {
-                    var propertiesToExpand = query.Expand.Split(',');
-                    foreach(var p in propertiesToExpand)
-                    {
-                        items = items.Include(p);
-                    }
-                }
-
-                if (query.Skip.HasValue)
-                {
-                    items = items.Skip(query.Skip.Value);
-                }
-
-                if (query.Top.HasValue)
-                {
-                    items = items.Take(query.Top.Value);
-                }
-            }
-
-            OnTblGnCitiesRead(ref items);
-
-            return await Task.FromResult(items);
-        }
-
-        partial void OnTblGnCityCreated(Models.DbAtVdc2.TblGnCity item);
-
-        public async Task<Models.DbAtVdc2.TblGnCity> CreateTblGnCity(Models.DbAtVdc2.TblGnCity tblGnCity)
-        {
-            OnTblGnCityCreated(tblGnCity);
-
-            context.TblGnCities.Add(tblGnCity);
-            context.SaveChanges();
-
-            return tblGnCity;
         }
         public async Task ExportTblGnDepartmentsToExcel(Query query = null)
         {
@@ -670,6 +606,70 @@ namespace CanErp2
             context.SaveChanges();
 
             return tblGnShipVium;
+        }
+        public async Task ExportTblHpTinhTpsToExcel(Query query = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl("export/dbatvdc2/tblhptinhtps/excel") : "export/dbatvdc2/tblhptinhtps/excel", true);
+        }
+
+        public async Task ExportTblHpTinhTpsToCSV(Query query = null)
+        {
+            navigationManager.NavigateTo(query != null ? query.ToUrl("export/dbatvdc2/tblhptinhtps/csv") : "export/dbatvdc2/tblhptinhtps/csv", true);
+        }
+
+        partial void OnTblHpTinhTpsRead(ref IQueryable<Models.DbAtVdc2.TblHpTinhTp> items);
+
+        public async Task<IQueryable<Models.DbAtVdc2.TblHpTinhTp>> GetTblHpTinhTps(Query query = null)
+        {
+            var items = context.TblHpTinhTps.AsQueryable();
+
+            if (query != null)
+            {
+                if (!string.IsNullOrEmpty(query.Filter))
+                {
+                    items = items.Where(query.Filter);
+                }
+
+                if (!string.IsNullOrEmpty(query.OrderBy))
+                {
+                    items = items.OrderBy(query.OrderBy);
+                }
+
+                if (!string.IsNullOrEmpty(query.Expand))
+                {
+                    var propertiesToExpand = query.Expand.Split(',');
+                    foreach(var p in propertiesToExpand)
+                    {
+                        items = items.Include(p);
+                    }
+                }
+
+                if (query.Skip.HasValue)
+                {
+                    items = items.Skip(query.Skip.Value);
+                }
+
+                if (query.Top.HasValue)
+                {
+                    items = items.Take(query.Top.Value);
+                }
+            }
+
+            OnTblHpTinhTpsRead(ref items);
+
+            return await Task.FromResult(items);
+        }
+
+        partial void OnTblHpTinhTpCreated(Models.DbAtVdc2.TblHpTinhTp item);
+
+        public async Task<Models.DbAtVdc2.TblHpTinhTp> CreateTblHpTinhTp(Models.DbAtVdc2.TblHpTinhTp tblHpTinhTp)
+        {
+            OnTblHpTinhTpCreated(tblHpTinhTp);
+
+            context.TblHpTinhTps.Add(tblHpTinhTp);
+            context.SaveChanges();
+
+            return tblHpTinhTp;
         }
         public async Task ExportTblIcCategoriesToExcel(Query query = null)
         {
@@ -2235,11 +2235,11 @@ namespace CanErp2
             var item = context.TblGnAddressBooks
                               .Where(i => i.AddressBook_SEQ == addressBookSeq)
                               .Include(i => i.TblPoPurchaseOrders)
+                              .Include(i => i.TblPoPurchaseOrders1)
                               .Include(i => i.TblPoRecReports)
                               .Include(i => i.TblPoCashDisbursements)
                               .Include(i => i.TblSoCustomers)
                               .Include(i => i.TblPoVendors)
-                              .Include(i => i.TblPoPurchaseOrders1)
                               .FirstOrDefault();
 
             OnTblGnAddressBookDeleted(item);
@@ -2262,7 +2262,7 @@ namespace CanErp2
 
             items = items.Include(i => i.TblGnGender);
 
-            items = items.Include(i => i.TblGnCity);
+            items = items.Include(i => i.TblHpTinhTp);
 
             var item = items.FirstOrDefault();
 
@@ -2353,64 +2353,6 @@ namespace CanErp2
             context.SaveChanges();
 
             return tblGnAddressBookType;
-        }
-
-        partial void OnTblGnCityDeleted(Models.DbAtVdc2.TblGnCity item);
-
-        public async Task<Models.DbAtVdc2.TblGnCity> DeleteTblGnCity(int? citySeq)
-        {
-            var item = context.TblGnCities
-                              .Where(i => i.City_SEQ == citySeq)
-                              .Include(i => i.TblGnAddressBooks)
-                              .FirstOrDefault();
-
-            OnTblGnCityDeleted(item);
-
-            context.TblGnCities.Remove(item);
-            context.SaveChanges();
-
-            return item;
-        }
-
-        partial void OnTblGnCityGet(Models.DbAtVdc2.TblGnCity item);
-
-        public async Task<Models.DbAtVdc2.TblGnCity> GetTblGnCityByCitySeq(int? citySeq)
-        {
-            var items = context.TblGnCities
-                              .AsNoTracking()
-                              .Where(i => i.City_SEQ == citySeq);
-
-            var item = items.FirstOrDefault();
-
-            OnTblGnCityGet(item);
-
-            return await Task.FromResult(item);
-        }
-
-        public async Task<Models.DbAtVdc2.TblGnCity> CancelTblGnCityChanges(Models.DbAtVdc2.TblGnCity item)
-        {
-            var entity = context.Entry(item);
-            entity.CurrentValues.SetValues(entity.OriginalValues);
-            entity.State = EntityState.Unchanged;
-
-            return item;
-        }
-
-        partial void OnTblGnCityUpdated(Models.DbAtVdc2.TblGnCity item);
-
-        public async Task<Models.DbAtVdc2.TblGnCity> UpdateTblGnCity(int? citySeq, Models.DbAtVdc2.TblGnCity tblGnCity)
-        {
-            OnTblGnCityUpdated(tblGnCity);
-
-            var item = context.TblGnCities
-                              .Where(i => i.City_SEQ == citySeq)
-                              .First();
-            var entry = context.Entry(item);
-            entry.CurrentValues.SetValues(tblGnCity);
-            entry.State = EntityState.Modified;
-            context.SaveChanges();
-
-            return tblGnCity;
         }
 
         partial void OnTblGnDepartmentDeleted(Models.DbAtVdc2.TblGnDepartment item);
@@ -2824,6 +2766,64 @@ namespace CanErp2
             context.SaveChanges();
 
             return tblGnShipVium;
+        }
+
+        partial void OnTblHpTinhTpDeleted(Models.DbAtVdc2.TblHpTinhTp item);
+
+        public async Task<Models.DbAtVdc2.TblHpTinhTp> DeleteTblHpTinhTp(string tinhTpId)
+        {
+            var item = context.TblHpTinhTps
+                              .Where(i => i.TinhTP_ID == tinhTpId)
+                              .Include(i => i.TblGnAddressBooks)
+                              .FirstOrDefault();
+
+            OnTblHpTinhTpDeleted(item);
+
+            context.TblHpTinhTps.Remove(item);
+            context.SaveChanges();
+
+            return item;
+        }
+
+        partial void OnTblHpTinhTpGet(Models.DbAtVdc2.TblHpTinhTp item);
+
+        public async Task<Models.DbAtVdc2.TblHpTinhTp> GetTblHpTinhTpByTinhTpId(string tinhTpId)
+        {
+            var items = context.TblHpTinhTps
+                              .AsNoTracking()
+                              .Where(i => i.TinhTP_ID == tinhTpId);
+
+            var item = items.FirstOrDefault();
+
+            OnTblHpTinhTpGet(item);
+
+            return await Task.FromResult(item);
+        }
+
+        public async Task<Models.DbAtVdc2.TblHpTinhTp> CancelTblHpTinhTpChanges(Models.DbAtVdc2.TblHpTinhTp item)
+        {
+            var entity = context.Entry(item);
+            entity.CurrentValues.SetValues(entity.OriginalValues);
+            entity.State = EntityState.Unchanged;
+
+            return item;
+        }
+
+        partial void OnTblHpTinhTpUpdated(Models.DbAtVdc2.TblHpTinhTp item);
+
+        public async Task<Models.DbAtVdc2.TblHpTinhTp> UpdateTblHpTinhTp(string tinhTpId, Models.DbAtVdc2.TblHpTinhTp tblHpTinhTp)
+        {
+            OnTblHpTinhTpUpdated(tblHpTinhTp);
+
+            var item = context.TblHpTinhTps
+                              .Where(i => i.TinhTP_ID == tinhTpId)
+                              .First();
+            var entry = context.Entry(item);
+            entry.CurrentValues.SetValues(tblHpTinhTp);
+            entry.State = EntityState.Modified;
+            context.SaveChanges();
+
+            return tblHpTinhTp;
         }
 
         partial void OnTblIcCategoryDeleted(Models.DbAtVdc2.TblIcCategory item);

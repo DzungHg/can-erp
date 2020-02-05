@@ -14,7 +14,7 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblGnAddressBooksResult)" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblGnAddressBooksResult" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" RowSelect="@Grid0RowSelect">
           <Columns>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="AddressBook_SEQ" Title="Address Book SEQ">
             </RadzenGridColumn>
@@ -34,7 +34,7 @@
               @(data.TblGnGender?.Gender_ID)
               </Template>
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="DOB" FormatString="{0:dd/MM/yyyy}" Title="DOB">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="DOB" FormatString="{0:MM/dd/yyyy}" Title="DOB">
             </RadzenGridColumn>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="Origin" Title="Origin">
             </RadzenGridColumn>
@@ -48,9 +48,9 @@
             </RadzenGridColumn>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="Address" Title="Address">
             </RadzenGridColumn>
-            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="City_FK" SortProperty="TblGnCity.City_ID" FilterProperty="TblGnCity.City_ID" Title="Tbl Gn City">
+            <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Property="City_FK" SortProperty="TblHpTinhTp.TinhTP_Name" FilterProperty="TblHpTinhTp.TinhTP_Name" Title="Tbl Hp Tinh Tp">
               <Template Context="data">
-              @(data.TblGnCity?.City_ID)
+              @(data.TblHpTinhTp?.TinhTP_Name)
               </Template>
             </RadzenGridColumn>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Context="canErp2ModelsDbAtVdc2TblGnAddressBook" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">

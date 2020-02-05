@@ -25,6 +25,11 @@
               "type": "TblPoPurchaseOrder"
             },
             {
+              "inversePropertyName": "TblGnAddressBook1",
+              "name": "TblPoPurchaseOrders1",
+              "type": "TblPoPurchaseOrder"
+            },
+            {
               "inversePropertyName": "TblGnAddressBook",
               "name": "TblPoRecReports",
               "type": "TblPoRecReport"
@@ -43,11 +48,6 @@
               "inversePropertyName": "TblGnAddressBook",
               "name": "TblPoVendors",
               "type": "TblPoVendor"
-            },
-            {
-              "inversePropertyName": "TblGnAddressBook1",
-              "name": "TblPoPurchaseOrders1",
-              "type": "TblPoPurchaseOrder"
             }
           ]
         },
@@ -125,19 +125,20 @@
           "type": "string",
           "length": 100
         },
-        "TblGnCity": {
+        "TblHpTinhTp": {
           "type": "object",
-          "$ref": "#/definitions/TblGnCity"
+          "$ref": "#/definitions/TblHpTinhTp"
         },
         "City_FK": {
-          "type": "integer",
+          "type": "string",
+          "length": 5,
           "x-foreignKey": {
-            "parentTable": "tblGN_City",
-            "parentEntityType": "TblGnCity",
-            "type": "TblGnCity",
-            "principalKey": "City_SEQ",
-            "name": "TblGnCity",
-            "textProperty": "City_ID",
+            "parentTable": "tblHP_TinhTP",
+            "parentEntityType": "TblHpTinhTp",
+            "type": "TblHpTinhTp",
+            "principalKey": "TinhTP_ID",
+            "name": "TblHpTinhTp",
+            "textProperty": "TinhTP_Name",
             "navigationProperty": "TblGnAddressBooks"
           }
         },
@@ -198,44 +199,6 @@
         "AddressBookTypeText": {
           "type": "string",
           "length": 150
-        },
-        "TblGnAddressBooks": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TblGnAddressBook"
-          }
-        }
-      }
-    },
-    "TblGnCity": {
-      "x-table": "dbo.tblGN_City",
-      "resource": "TblGnCities",
-      "required": [],
-      "properties": {
-        "City_SEQ": {
-          "x-key": true,
-          "x-identity": true,
-          "x-nullable": false,
-          "type": "integer",
-          "x-navigation": [
-            {
-              "inversePropertyName": "TblGnCity",
-              "name": "TblGnAddressBooks",
-              "type": "TblGnAddressBook"
-            }
-          ]
-        },
-        "City_ID": {
-          "type": "string",
-          "length": 10
-        },
-        "CityName": {
-          "type": "string",
-          "length": 50
-        },
-        "CityAbbreviation": {
-          "type": "string",
-          "length": 10
         },
         "TblGnAddressBooks": {
           "type": "array",
@@ -578,6 +541,42 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/TblSoSalesOrder"
+          }
+        }
+      }
+    },
+    "TblHpTinhTp": {
+      "x-table": "dbo.tblHP_TinhTP",
+      "resource": "TblHpTinhTps",
+      "required": [
+        "TinhTP_ID"
+      ],
+      "properties": {
+        "TinhTP_ID": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 5,
+          "x-navigation": [
+            {
+              "inversePropertyName": "TblHpTinhTp",
+              "name": "TblGnAddressBooks",
+              "type": "TblGnAddressBook"
+            }
+          ]
+        },
+        "TinhTP_Name": {
+          "type": "string",
+          "length": 30
+        },
+        "Description": {
+          "type": "string",
+          "length": 250
+        },
+        "TblGnAddressBooks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TblGnAddressBook"
           }
         }
       }
@@ -2966,87 +2965,6 @@
         }
       }
     },
-    "/TblGnCities": {
-      "get": {
-        "operationId": "getTblGnCities",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "$filter",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$orderby",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$expand",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "$top",
-            "type": "integer"
-          },
-          {
-            "in": "query",
-            "name": "$skip",
-            "type": "integer"
-          },
-          {
-            "in": "query",
-            "name": "$format",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "properties": {
-                "value": {
-                  "items": {
-                    "$ref": "#/definitions/TblGnCity"
-                  },
-                  "type": "array"
-                }
-              },
-              "type": "object"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createTblGnCity",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "TblGnCity",
-            "schema": {
-              "$ref": "#/definitions/TblGnCity"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "schema": {
-              "$ref": "#/definitions/TblGnCity"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/TblGnDepartments": {
       "get": {
         "operationId": "getTblGnDepartments",
@@ -3604,6 +3522,87 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/TblGnShipVium"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblHpTinhTps": {
+      "get": {
+        "operationId": "getTblHpTinhTps",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/TblHpTinhTp"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createTblHpTinhTp",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblHpTinhTp",
+            "schema": {
+              "$ref": "#/definitions/TblHpTinhTp"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/TblHpTinhTp"
             }
           },
           "default": {
@@ -5651,93 +5650,6 @@
         }
       }
     },
-    "/TblGnCities({City_SEQ})": {
-      "delete": {
-        "operationId": "deleteTblGnCity",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "City_SEQ",
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "204": {},
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "getTblGnCityByCity_SEQ",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "City_SEQ",
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "200": {
-            "schema": {
-              "$ref": "#/definitions/TblGnCity"
-            }
-          },
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "updateTblGnCity",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "City_SEQ",
-            "type": "integer"
-          },
-          {
-            "in": "body",
-            "name": "TblGnCity",
-            "schema": {
-              "$ref": "#/definitions/TblGnCity"
-            }
-          }
-        ],
-        "responses": {
-          "204": {},
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      },
-      "cancel": {
-        "operationId": "cancelTblGnCityChanges",
-        "parameters": [
-          {
-            "in": "body",
-            "name": "TblGnCity",
-            "schema": {
-              "$ref": "#/definitions/TblGnCity"
-            }
-          }
-        ],
-        "responses": {
-          "204": {},
-          "default": {
-            "schema": {
-              "$ref": "#/definitions/Error"
-            }
-          }
-        }
-      }
-    },
     "/TblGnDepartments('{Department_ID}')": {
       "delete": {
         "operationId": "deleteTblGnDepartment",
@@ -6334,6 +6246,93 @@
             "name": "TblGnShipVium",
             "schema": {
               "$ref": "#/definitions/TblGnShipVium"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/TblHpTinhTps('{TinhTP_ID}')": {
+      "delete": {
+        "operationId": "deleteTblHpTinhTp",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TinhTP_ID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getTblHpTinhTpByTinhTP_ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TinhTP_ID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/TblHpTinhTp"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateTblHpTinhTp",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TinhTP_ID",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "TblHpTinhTp",
+            "schema": {
+              "$ref": "#/definitions/TblHpTinhTp"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "cancel": {
+        "operationId": "cancelTblHpTinhTpChanges",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "TblHpTinhTp",
+            "schema": {
+              "$ref": "#/definitions/TblHpTinhTp"
             }
           }
         ],

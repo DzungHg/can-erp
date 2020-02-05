@@ -48,7 +48,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.Ra
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\App.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnAddressBook.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnAddressBookType.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnCity.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnDepartment.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnGender.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblGnIncoterm.razor.g.cs
@@ -81,7 +80,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDecla
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblSoSalesOrder.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnAddressBook.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnAddressBookType.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnCity.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnDepartment.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnGender.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblGnIncoterm.razor.g.cs
@@ -114,7 +112,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDecla
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblSoSalesOrder.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnAddressBooks.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnAddressBookTypes.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnCities.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnDepartments.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnGenders.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblGnIncoterms.razor.g.cs
@@ -156,7 +153,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.Ra
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\App.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnAddressBook.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnAddressBookType.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnCity.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnDepartment.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnGender.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblGnIncoterm.razor.g.cs
@@ -189,7 +185,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Page
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblSoSalesOrder.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnAddressBook.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnAddressBookType.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnCity.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnDepartment.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnGender.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblGnIncoterm.razor.g.cs
@@ -222,7 +217,6 @@ C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Page
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblSoSalesOrder.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnAddressBooks.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnAddressBookTypes.razor.g.cs
-C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnCities.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnDepartments.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnGenders.razor.g.cs
 C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblGnIncoterms.razor.g.cs
@@ -538,3 +532,9 @@ F:\GitHub02\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.Views.pdb
 F:\GitHub02\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.csproj.CopyComplete
 F:\GitHub02\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.dll
 F:\GitHub02\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\CanErp2.pdb
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\AddTblHpTinhTp.razor.g.cs
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\EditTblHpTinhTp.razor.g.cs
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\RazorDeclaration\Pages\TblHpTinhTps.razor.g.cs
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\AddTblHpTinhTp.razor.g.cs
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\EditTblHpTinhTp.razor.g.cs
+C:\ZDung HDD\GitHub\can-erp\radzen-app\server\obj\Debug\netcoreapp3.1\Razor\Pages\TblHpTinhTps.razor.g.cs

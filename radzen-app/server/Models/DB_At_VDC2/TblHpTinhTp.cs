@@ -5,12 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CanErp2.Models.DbAtVdc2
 {
-  [Table("tblGN_City", Schema = "dbo")]
-  public partial class TblGnCity
+  [Table("tblHP_TinhTP", Schema = "dbo")]
+  public partial class TblHpTinhTp
   {
     [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int City_SEQ
+    public string TinhTP_ID
     {
       get;
       set;
@@ -18,17 +17,12 @@ namespace CanErp2.Models.DbAtVdc2
 
 
     public ICollection<TblGnAddressBook> TblGnAddressBooks { get; set; }
-    public string City_ID
+    public string TinhTP_Name
     {
       get;
       set;
     }
-    public string CityName
-    {
-      get;
-      set;
-    }
-    public string CityAbbreviation
+    public string Description
     {
       get;
       set;

@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblpoapinvoice)" Visible="@(tblpoapinvoice != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoApInvoice" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblpoapinvoice" Visible="@(tblpoapinvoice != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoApInvoice" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -17,7 +17,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblPoVendorsResult)" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="display: block; width: 100%" @bind-Value="@(tblpoapinvoice.Vendor_ID)" Name="Vendor_ID">
+                <RadzenDropDown Data="@getTblPoVendorsResult" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="display: block; width: 100%" @bind-Value="@(tblpoapinvoice.Vendor_ID)" Name="Vendor_ID">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Vendor_ID" Text="Vendor_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>

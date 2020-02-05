@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblictransaction)" Visible="@(tblictransaction != null)" TItem="CanErp2.Models.DbAtVdc2.TblIcTransaction" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblictransaction" Visible="@(tblictransaction != null)" TItem="CanErp2.Models.DbAtVdc2.TblIcTransaction" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -29,7 +29,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcTransactionTypesResult)" TextProperty="Transaction_Name" ValueProperty="Transaction_ID" Placeholder="Choose TblIcTransactionType" style="display: block; width: 100%" @bind-Value="@(tblictransaction.Trans_Code)" Name="Trans_Code">
+                <RadzenDropDown Data="@getTblIcTransactionTypesResult" TextProperty="Transaction_Name" ValueProperty="Transaction_ID" Placeholder="Choose TblIcTransactionType" style="display: block; width: 100%" @bind-Value="@(tblictransaction.Trans_Code)" Name="Trans_Code">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Trans_Code" Text="Trans_Code is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -51,7 +51,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcWarehousesResult)" TextProperty="WarehouseName" ValueProperty="Warehouse_ID" Placeholder="Choose TblIcWarehouse" style="display: block; width: 100%" @bind-Value="@(tblictransaction.Warehouse_ID)" Name="Warehouse_ID">
+                <RadzenDropDown Data="@getTblIcWarehousesResult" TextProperty="WarehouseName" ValueProperty="Warehouse_ID" Placeholder="Choose TblIcWarehouse" style="display: block; width: 100%" @bind-Value="@(tblictransaction.Warehouse_ID)" Name="Warehouse_ID">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Warehouse_ID" Text="Warehouse_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -63,7 +63,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnProductsResult)" TextProperty="Product_ID" ValueProperty="Product_SEQ" Placeholder="Choose TblGnProduct" style="width: 100%" @bind-Value="@(tblictransaction.Item_FK)" Name="Item_FK">
+                <RadzenDropDown Data="@getTblGnProductsResult" TextProperty="Product_ID" ValueProperty="Product_SEQ" Placeholder="Choose TblGnProduct" style="width: 100%" @bind-Value="@(tblictransaction.Item_FK)" Name="Item_FK">
                 </RadzenDropDown>
               </div>
             </div>

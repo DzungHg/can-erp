@@ -49,10 +49,10 @@ namespace CanErp2.Data
               .HasForeignKey(i => i.Gender_FK)
               .HasPrincipalKey(i => i.Gender_SEQ);
         builder.Entity<CanErp2.Models.DbAtVdc2.TblGnAddressBook>()
-              .HasOne(i => i.TblGnCity)
+              .HasOne(i => i.TblHpTinhTp)
               .WithMany(i => i.TblGnAddressBooks)
               .HasForeignKey(i => i.City_FK)
-              .HasPrincipalKey(i => i.City_SEQ);
+              .HasPrincipalKey(i => i.TinhTP_ID);
         builder.Entity<CanErp2.Models.DbAtVdc2.TblIcInventory>()
               .HasOne(i => i.TblIcWarehouse)
               .WithMany(i => i.TblIcInventories)
@@ -409,12 +409,6 @@ namespace CanErp2.Data
       set;
     }
 
-    public DbSet<CanErp2.Models.DbAtVdc2.TblGnCity> TblGnCities
-    {
-      get;
-      set;
-    }
-
     public DbSet<CanErp2.Models.DbAtVdc2.TblGnDepartment> TblGnDepartments
     {
       get;
@@ -452,6 +446,12 @@ namespace CanErp2.Data
     }
 
     public DbSet<CanErp2.Models.DbAtVdc2.TblGnShipVium> TblGnShipVia
+    {
+      get;
+      set;
+    }
+
+    public DbSet<CanErp2.Models.DbAtVdc2.TblHpTinhTp> TblHpTinhTps
     {
       get;
       set;

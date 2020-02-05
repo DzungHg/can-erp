@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblsosalesorder)" Visible="@(tblsosalesorder != null)" TItem="CanErp2.Models.DbAtVdc2.TblSoSalesOrder" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblsosalesorder" Visible="@(tblsosalesorder != null)" TItem="CanErp2.Models.DbAtVdc2.TblSoSalesOrder" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -49,7 +49,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoOrderStatusesResult)" TextProperty="SOStatus_ID" ValueProperty="SOStatus_SEQ" Placeholder="Choose TblSoOrderStatus" style="width: 100%" @bind-Value="@(tblsosalesorder.SOStatus_FK)" Name="SOStatus_FK">
+                <RadzenDropDown Data="@getTblSoOrderStatusesResult" TextProperty="SOStatus_ID" ValueProperty="SOStatus_SEQ" Placeholder="Choose TblSoOrderStatus" style="width: 100%" @bind-Value="@(tblsosalesorder.SOStatus_FK)" Name="SOStatus_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoCustomersResult)" TextProperty="Customer_ID" ValueProperty="Customer_SEQ" Placeholder="Choose TblSoCustomer" style="width: 100%" @bind-Value="@(tblsosalesorder.Customer_FK)" Name="Customer_FK">
+                <RadzenDropDown Data="@getTblSoCustomersResult" TextProperty="Customer_ID" ValueProperty="Customer_SEQ" Placeholder="Choose TblSoCustomer" style="width: 100%" @bind-Value="@(tblsosalesorder.Customer_FK)" Name="Customer_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -99,7 +99,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnShipViaResult)" TextProperty="ShipVia_ID" ValueProperty="ShipVia_SEQ" Placeholder="Choose TblGnShipVium" style="width: 100%" @bind-Value="@(tblsosalesorder.ShipTo_FK)" Name="ShipTo_FK">
+                <RadzenDropDown Data="@getTblGnShipViaResult" TextProperty="ShipVia_ID" ValueProperty="ShipVia_SEQ" Placeholder="Choose TblGnShipVium" style="width: 100%" @bind-Value="@(tblsosalesorder.ShipTo_FK)" Name="ShipTo_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -159,7 +159,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnPaymentTermsResult)" TextProperty="PaymentTerm_ID" ValueProperty="PaymentTerm_SEQ" Placeholder="Choose TblGnPaymentTerm" style="width: 100%" @bind-Value="@(tblsosalesorder.PaymentTerm_FK)" Name="PaymentTerm_FK">
+                <RadzenDropDown Data="@getTblGnPaymentTermsResult" TextProperty="PaymentTerm_ID" ValueProperty="PaymentTerm_SEQ" Placeholder="Choose TblGnPaymentTerm" style="width: 100%" @bind-Value="@(tblsosalesorder.PaymentTerm_FK)" Name="PaymentTerm_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -169,7 +169,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnPaymentTypesResult)" TextProperty="PaymentType_ID" ValueProperty="PaymentType_SEQ" Placeholder="Choose TblGnPaymentType" style="width: 100%" @bind-Value="@(tblsosalesorder.PaymentType_FK)" Name="PaymentType_FK">
+                <RadzenDropDown Data="@getTblGnPaymentTypesResult" TextProperty="PaymentType_ID" ValueProperty="PaymentType_SEQ" Placeholder="Choose TblGnPaymentType" style="width: 100%" @bind-Value="@(tblsosalesorder.PaymentType_FK)" Name="PaymentType_FK">
                 </RadzenDropDown>
               </div>
             </div>

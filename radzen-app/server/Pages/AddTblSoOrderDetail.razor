@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblsoorderdetail)" Visible="@(tblsoorderdetail != null)" TItem="CanErp2.Models.DbAtVdc2.TblSoOrderDetail" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblsoorderdetail" Visible="@(tblsoorderdetail != null)" TItem="CanErp2.Models.DbAtVdc2.TblSoOrderDetail" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -17,7 +17,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoOrderDetailStatusesResult)" TextProperty="SODetailStatusText" ValueProperty="SODetailStatus_SEQ" Placeholder="Choose TblSoOrderDetailStatus" style="width: 100%" @bind-Value="@(tblsoorderdetail.SODetailStatus_FK)" Name="SODetailStatus_FK">
+                <RadzenDropDown Data="@getTblSoOrderDetailStatusesResult" TextProperty="SODetailStatusText" ValueProperty="SODetailStatus_SEQ" Placeholder="Choose TblSoOrderDetailStatus" style="width: 100%" @bind-Value="@(tblsoorderdetail.SODetailStatus_FK)" Name="SODetailStatus_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblSoSalesOrdersResult)" TextProperty="SO_ID" ValueProperty="SO_SEQ" Placeholder="Choose TblSoSalesOrder" style="width: 100%" @bind-Value="@(tblsoorderdetail.SO_FK)" Name="SO_FK">
+                <RadzenDropDown Data="@getTblSoSalesOrdersResult" TextProperty="SO_ID" ValueProperty="SO_SEQ" Placeholder="Choose TblSoSalesOrder" style="width: 100%" @bind-Value="@(tblsoorderdetail.SO_FK)" Name="SO_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -37,7 +37,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcInventoriesResult)" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@(tblsoorderdetail.Inventory_FK)" Name="Inventory_FK">
+                <RadzenDropDown Data="@getTblIcInventoriesResult" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@(tblsoorderdetail.Inventory_FK)" Name="Inventory_FK">
                 </RadzenDropDown>
               </div>
             </div>

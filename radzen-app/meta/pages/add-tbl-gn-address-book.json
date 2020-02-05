@@ -253,7 +253,7 @@
                           "components": [
                             {
                               "valueType": "DateTime?",
-                              "dateFormat": "dd/MM/yyyy",
+                              "dateFormat": "MM/dd/yyyy",
                               "type": "datepicker",
                               "name": "DOB",
                               "style": {
@@ -511,7 +511,7 @@
                           "components": [
                             {
                               "type": "label",
-                              "text": "Tbl Gn City",
+                              "text": "Tbl Hp Tinh Tp",
                               "component": "City_FK",
                               "name": "City_FKLabel",
                               "style": {
@@ -525,11 +525,11 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "data": "${getTblGnCitiesResult}",
-                              "textProperty": "City_ID",
-                              "valueProperty": "City_SEQ",
-                              "placeholder": "Choose TblGnCity",
-                              "valueType": "int?",
+                              "data": "${getTblHpTinhTpsResult}",
+                              "textProperty": "TinhTP_Name",
+                              "valueProperty": "TinhTP_ID",
+                              "placeholder": "Choose TblHpTinhTp",
+                              "valueType": "string",
                               "type": "dropdown",
                               "name": "City_FK",
                               "style": {
@@ -640,14 +640,14 @@
         "type": "invoke"
       },
       {
-        "name": "DB_At_VDC2.getTblGnCities",
+        "name": "DB_At_VDC2.getTblHpTinhTps",
         "parameters": [],
         "then": [
           {
-            "name": "getTblGnCitiesResult",
+            "name": "getTblHpTinhTpsResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp>"
           }
         ],
         "type": "invoke"

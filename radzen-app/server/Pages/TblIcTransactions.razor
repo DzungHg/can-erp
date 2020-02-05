@@ -13,7 +13,7 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblIcTransactionsResult)" TItem="CanErp2.Models.DbAtVdc2.TblIcTransaction" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblIcTransactionsResult" TItem="CanErp2.Models.DbAtVdc2.TblIcTransaction" RowSelect="@Grid0RowSelect">
           <Columns>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblIcTransaction" Context="canErp2ModelsDbAtVdc2TblIcTransaction" Property="Trans_No" Title="Trans No">
             </RadzenGridColumn>

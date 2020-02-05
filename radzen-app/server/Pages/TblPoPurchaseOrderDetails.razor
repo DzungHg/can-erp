@@ -13,7 +13,7 @@
       <div class="col-md-12">
         <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
         </RadzenButton>
-        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@(getTblPoPurchaseOrderDetailsResult)" TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" RowSelect="@Grid0RowSelect">
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblPoPurchaseOrderDetailsResult" TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" RowSelect="@Grid0RowSelect">
           <Columns>
             <RadzenGridColumn TItem="CanErp2.Models.DbAtVdc2.TblPoPurchaseOrderDetail" Context="canErp2ModelsDbAtVdc2TblPoPurchaseOrderDetail" Property="PO_FK" SortProperty="TblPoPurchaseOrder.POStatus_FK" FilterProperty="TblPoPurchaseOrder.POStatus_FK" Title="Tbl Po Purchase Order">
               <Template Context="data">

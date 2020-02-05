@@ -1,6 +1,6 @@
-﻿@page "/edit-tbl-gn-city/{City_SEQ}"
+﻿@page "/edit-tbl-hp-tinh-tp/{TinhTP_ID}"
 @layout MainLayout
-@inherits CanErp2.Pages.EditTblGnCityComponent
+@inherits CanErp2.Pages.EditTblHpTinhTpComponent
 
 @using Radzen
 @using Radzen.Blazor
@@ -19,35 +19,37 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblGnCity" Data="@(tblgncity)" Visible="@(tblgncity != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblHpTinhTp" Data="@tblhptinhtp" Visible="@(tblhptinhtp != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="City Id" Component="City_ID" style="width: 100%">
+                <RadzenLabel Text="Tinh Tp Id" Component="TinhTP_ID" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgncity.City_ID)" Name="City_ID">
+                <RadzenTextBox MaxLength="5" style="display: block; width: 100%" @bind-Value="@(tblhptinhtp.TinhTP_ID)" Name="TinhTP_ID">
+                </RadzenTextBox>
+                <RadzenRequiredValidator Component="TinhTP_ID" Text="TinhTP_ID is required" style="position: absolute">
+                </RadzenRequiredValidator>
+              </div>
+            </div>
+            <div style="margin-bottom: 1rem" class="row">
+              <div class="col-md-3">
+                <RadzenLabel Text="Tinh Tp Name" Component="TinhTP_Name" style="width: 100%">
+                </RadzenLabel>
+              </div>
+              <div class="col-md-9">
+                <RadzenTextBox MaxLength="30" style="width: 100%" @bind-Value="@(tblhptinhtp.TinhTP_Name)" Name="TinhTP_Name">
                 </RadzenTextBox>
               </div>
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="City Name" Component="CityName" style="width: 100%">
+                <RadzenLabel Text="Description" Component="Description" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenTextBox MaxLength="50" style="width: 100%" @bind-Value="@(tblgncity.CityName)" Name="CityName">
-                </RadzenTextBox>
-              </div>
-            </div>
-            <div style="margin-bottom: 1rem" class="row">
-              <div class="col-md-3">
-                <RadzenLabel Text="City Abbreviation" Component="CityAbbreviation" style="width: 100%">
-                </RadzenLabel>
-              </div>
-              <div class="col-md-9">
-                <RadzenTextBox MaxLength="10" style="width: 100%" @bind-Value="@(tblgncity.CityAbbreviation)" Name="CityAbbreviation">
+                <RadzenTextBox MaxLength="250" style="width: 100%" @bind-Value="@(tblhptinhtp.Description)" Name="Description">
                 </RadzenTextBox>
               </div>
             </div>

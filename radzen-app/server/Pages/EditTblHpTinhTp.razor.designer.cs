@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CanErp2.Pages
 {
-    public partial class EditTblGnCityComponent : ComponentBase
+    public partial class EditTblHpTinhTpComponent : ComponentBase
     {
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
@@ -33,7 +33,7 @@ namespace CanErp2.Pages
         protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
         [Parameter]
-        public dynamic City_SEQ { get; set; }
+        public dynamic TinhTP_ID { get; set; }
 
         bool _canEdit;
         protected bool canEdit
@@ -52,18 +52,18 @@ namespace CanErp2.Pages
             }
         }
 
-        CanErp2.Models.DbAtVdc2.TblGnCity _tblgncity;
-        protected CanErp2.Models.DbAtVdc2.TblGnCity tblgncity
+        CanErp2.Models.DbAtVdc2.TblHpTinhTp _tblhptinhtp;
+        protected CanErp2.Models.DbAtVdc2.TblHpTinhTp tblhptinhtp
         {
             get
             {
-                return _tblgncity;
+                return _tblhptinhtp;
             }
             set
             {
-                if(!object.Equals(_tblgncity, value))
+                if(!object.Equals(_tblhptinhtp, value))
                 {
-                    _tblgncity = value;
+                    _tblhptinhtp = value;
                     InvokeAsync(() => { StateHasChanged(); });
                 }
             }
@@ -77,8 +77,8 @@ namespace CanErp2.Pages
         {
             canEdit = true;
 
-            var dbAtVdc2GetTblGnCityByCitySeqResult = await DbAtVdc2.GetTblGnCityByCitySeq(int.Parse($"{City_SEQ}"));
-            tblgncity = dbAtVdc2GetTblGnCityByCitySeqResult;
+            var dbAtVdc2GetTblHpTinhTpByTinhTpIdResult = await DbAtVdc2.GetTblHpTinhTpByTinhTpId($"{TinhTP_ID}");
+            tblhptinhtp = dbAtVdc2GetTblHpTinhTpByTinhTpIdResult;
         }
 
         protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)
@@ -86,16 +86,16 @@ namespace CanErp2.Pages
             DialogService.Close(null);
         }
 
-        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnCity args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblHpTinhTp args)
         {
             try
             {
-                var dbAtVdc2UpdateTblGnCityResult = await DbAtVdc2.UpdateTblGnCity(int.Parse($"{City_SEQ}"), tblgncity);
-                DialogService.Close(tblgncity);
+                var dbAtVdc2UpdateTblHpTinhTpResult = await DbAtVdc2.UpdateTblHpTinhTp($"{TinhTP_ID}", tblhptinhtp);
+                DialogService.Close(tblhptinhtp);
             }
-            catch (Exception dbAtVdc2UpdateTblGnCityException)
+            catch (Exception dbAtVdc2UpdateTblHpTinhTpException)
             {
-                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblGnCity");
+                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to update TblHpTinhTp");
             }
         }
 

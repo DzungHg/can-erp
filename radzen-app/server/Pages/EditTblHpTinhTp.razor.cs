@@ -7,7 +7,7 @@ using Radzen.Blazor;
 
 namespace CanErp2.Pages
 {
-    public partial class EditTblGnCityComponent
+    public partial class EditTblHpTinhTpComponent
     {
 
     }

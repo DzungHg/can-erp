@@ -19,6 +19,8 @@ namespace CanErp2.Models.DbAtVdc2
 
     public ICollection<TblPoPurchaseOrder> TblPoPurchaseOrders { get; set; }
 
+    public ICollection<TblPoPurchaseOrder> TblPoPurchaseOrders1 { get; set; }
+
     public ICollection<TblPoRecReport> TblPoRecReports { get; set; }
 
     public ICollection<TblPoCashDisbursement> TblPoCashDisbursements { get; set; }
@@ -26,8 +28,6 @@ namespace CanErp2.Models.DbAtVdc2
     public ICollection<TblSoCustomer> TblSoCustomers { get; set; }
 
     public ICollection<TblPoVendor> TblPoVendors { get; set; }
-
-    public ICollection<TblPoPurchaseOrder> TblPoPurchaseOrders1 { get; set; }
     public string AddressBook_ID
     {
       get;
@@ -90,11 +90,11 @@ namespace CanErp2.Models.DbAtVdc2
       get;
       set;
     }
-    public int? City_FK
+    public string City_FK
     {
       get;
       set;
     }
-    public TblGnCity TblGnCity { get; set; }
+    public TblHpTinhTp TblHpTinhTp { get; set; }
   }
 }

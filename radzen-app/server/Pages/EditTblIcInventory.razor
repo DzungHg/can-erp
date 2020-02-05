@@ -19,7 +19,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblIcInventory" Data="@(tblicinventory)" Visible="@(tblicinventory != null && canEdit)" Submit="@Form0Submit">
+        <RadzenTemplateForm TItem="CanErp2.Models.DbAtVdc2.TblIcInventory" Data="@tblicinventory" Visible="@(tblicinventory != null && canEdit)" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -27,7 +27,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcWarehousesResult)" TextProperty="WarehouseName" ValueProperty="Warehouse_ID" Placeholder="Choose TblIcWarehouse" style="display: block; width: 100%" @bind-Value="@(tblicinventory.Warehouse_FK)" Name="Warehouse_FK">
+                <RadzenDropDown Data="@getTblIcWarehousesResult" TextProperty="WarehouseName" ValueProperty="Warehouse_ID" Placeholder="Choose TblIcWarehouse" style="display: block; width: 100%" @bind-Value="@(tblicinventory.Warehouse_FK)" Name="Warehouse_FK">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Warehouse_FK" Text="Warehouse_FK is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcCategoriesResult)" TextProperty="CategoryText" ValueProperty="Category_ID" Placeholder="Choose TblIcCategory" style="display: block; width: 100%" @bind-Value="@(tblicinventory.Category_FK)" Name="Category_FK">
+                <RadzenDropDown Data="@getTblIcCategoriesResult" TextProperty="CategoryText" ValueProperty="Category_ID" Placeholder="Choose TblIcCategory" style="display: block; width: 100%" @bind-Value="@(tblicinventory.Category_FK)" Name="Category_FK">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Category_FK" Text="Category_FK is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -51,7 +51,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcClassificationsResult)" TextProperty="Classifi_Name" ValueProperty="Classifi_ID" Placeholder="Choose TblIcClassification" style="width: 100%" @bind-Value="@(tblicinventory.Classifi_FK)" Name="Classifi_FK">
+                <RadzenDropDown Data="@getTblIcClassificationsResult" TextProperty="Classifi_Name" ValueProperty="Classifi_ID" Placeholder="Choose TblIcClassification" style="width: 100%" @bind-Value="@(tblicinventory.Classifi_FK)" Name="Classifi_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -61,7 +61,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnProductsResult)" TextProperty="Product_ID" ValueProperty="Product_SEQ" Placeholder="Choose TblGnProduct" style="width: 100%" @bind-Value="@(tblicinventory.Item_FK)" Name="Item_FK">
+                <RadzenDropDown Data="@getTblGnProductsResult" TextProperty="Product_ID" ValueProperty="Product_SEQ" Placeholder="Choose TblGnProduct" style="width: 100%" @bind-Value="@(tblicinventory.Item_FK)" Name="Item_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -101,7 +101,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcUnitsResult)" TextProperty="UnitText" ValueProperty="Unit_SEQ" Placeholder="Choose TblIcUnit" style="width: 100%" @bind-Value="@(tblicinventory.Unit_FK)" Name="Unit_FK">
+                <RadzenDropDown Data="@getTblIcUnitsResult" TextProperty="UnitText" ValueProperty="Unit_SEQ" Placeholder="Choose TblIcUnit" style="width: 100%" @bind-Value="@(tblicinventory.Unit_FK)" Name="Unit_FK">
                 </RadzenDropDown>
               </div>
             </div>

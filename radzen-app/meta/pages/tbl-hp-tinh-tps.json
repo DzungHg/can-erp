@@ -8,7 +8,7 @@
           "type": "heading",
           "name": "pageTitle",
           "size": "H1",
-          "text": "Tbl Gn Cities"
+          "text": "Tbl Hp Tinh Tps"
         },
         {
           "type": "row",
@@ -28,7 +28,7 @@
                   "events": {
                     "click": [
                       {
-                        "path": "add-tbl-gn-city",
+                        "path": "add-tbl-hp-tinh-tp",
                         "type": "popup",
                         "then": [
                           {
@@ -49,18 +49,18 @@
                   "allowFiltering": true,
                   "allowPaging": true,
                   "allowSorting": true,
-                  "data": "${getTblGnCitiesResult}",
+                  "data": "${getTblHpTinhTpsResult}",
                   "events": {
                     "loadData": [],
                     "rowSelect": [
                       {
                         "parameters": [
                           {
-                            "name": "City_SEQ",
-                            "value": "${event.City_SEQ}"
+                            "name": "TinhTP_ID",
+                            "value": "${event.TinhTP_ID}"
                           }
                         ],
-                        "path": "edit-tbl-gn-city",
+                        "path": "edit-tbl-hp-tinh-tp",
                         "type": "popup",
                         "then": [
                           {
@@ -74,20 +74,16 @@
                   "title": "",
                   "columns": [
                     {
-                      "property": "City_SEQ",
-                      "title": "City SEQ"
+                      "property": "TinhTP_ID",
+                      "title": "Tinh TP ID"
                     },
                     {
-                      "property": "City_ID",
-                      "title": "City ID"
+                      "property": "TinhTP_Name",
+                      "title": "Tinh TP Name"
                     },
                     {
-                      "property": "CityName",
-                      "title": "City Name"
-                    },
-                    {
-                      "property": "CityAbbreviation",
-                      "title": "City Abbreviation"
+                      "property": "Description",
+                      "title": "Description"
                     },
                     {
                       "filterable": false,
@@ -113,17 +109,17 @@
                               {
                                 "error": [
                                   {
-                                    "detail": "Unable to delete TblGnCity",
+                                    "detail": "Unable to delete TblHpTinhTp",
                                     "severity": "error",
                                     "summary": "Error",
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "DB_At_VDC2.deleteTblGnCity",
+                                "name": "DB_At_VDC2.deleteTblHpTinhTp",
                                 "parameters": [
                                   {
-                                    "name": "City_SEQ",
-                                    "value": "${data.City_SEQ}"
+                                    "name": "TinhTP_ID",
+                                    "value": "${data.TinhTP_ID}"
                                   }
                                 ],
                                 "then": [
@@ -142,7 +138,7 @@
                     }
                   ],
                   "type": "grid",
-                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnCity"
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblHpTinhTp"
                 }
               ]
             }
@@ -154,20 +150,20 @@
   "events": {
     "load": [
       {
-        "name": "DB_At_VDC2.getTblGnCities",
+        "name": "DB_At_VDC2.getTblHpTinhTps",
         "parameters": [],
         "then": [
           {
-            "name": "getTblGnCitiesResult",
+            "name": "getTblHpTinhTpsResult",
             "type": "set",
             "value": "${result}",
-            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity>"
+            "valueType": "IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp>"
           }
         ],
         "type": "invoke"
       }
     ]
   },
-  "name": "Tbl Gn Cities",
+  "name": "Tbl Hp Tinh Tps",
   "layout": "Main"
 }

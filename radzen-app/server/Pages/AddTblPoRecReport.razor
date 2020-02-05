@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblporecreport)" Visible="@(tblporecreport != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoRecReport" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblporecreport" Visible="@(tblporecreport != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoRecReport" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -39,7 +39,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnAddressBooksResult)" TextProperty="AddressBook_ID" ValueProperty="AddressBook_SEQ" Placeholder="Choose TblGnAddressBook" style="width: 100%" @bind-Value="@(tblporecreport.CreatedBy_FK)" Name="CreatedBy_FK">
+                <RadzenDropDown Data="@getTblGnAddressBooksResult" TextProperty="AddressBook_ID" ValueProperty="AddressBook_SEQ" Placeholder="Choose TblGnAddressBook" style="width: 100%" @bind-Value="@(tblporecreport.CreatedBy_FK)" Name="CreatedBy_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblPoVendorsResult)" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="width: 100%" @bind-Value="@(tblporecreport.Vendor_FK)" Name="Vendor_FK">
+                <RadzenDropDown Data="@getTblPoVendorsResult" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="width: 100%" @bind-Value="@(tblporecreport.Vendor_FK)" Name="Vendor_FK">
                 </RadzenDropDown>
               </div>
             </div>

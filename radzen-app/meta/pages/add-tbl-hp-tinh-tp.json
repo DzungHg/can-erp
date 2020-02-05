@@ -5,54 +5,6 @@
       "container": "main",
       "components": [
         {
-          "components": [
-            {
-              "class": "col-md-9",
-              "components": [
-                {
-                  "name": "closeLabel",
-                  "style": {
-                    "fontWeight": "bold"
-                  },
-                  "text": "Item no longer available.",
-                  "type": "label",
-                  "visible": "${!canEdit}"
-                }
-              ],
-              "name": "col0",
-              "type": "col"
-            },
-            {
-              "class": "col-md-3",
-              "components": [
-                {
-                  "buttonStyle": "secondary",
-                  "events": {
-                    "click": [
-                      {
-                        "type": "close-popup"
-                      }
-                    ]
-                  },
-                  "icon": "",
-                  "name": "closeButton",
-                  "style": {
-                    "marginBottom": "20px"
-                  },
-                  "text": "Close",
-                  "type": "button",
-                  "visible": "${!canEdit}"
-                }
-              ],
-              "name": "col1",
-              "type": "col"
-            }
-          ],
-          "name": "row0",
-          "style": {},
-          "type": "row"
-        },
-        {
           "type": "row",
           "components": [
             {
@@ -75,9 +27,9 @@
                           "components": [
                             {
                               "type": "label",
-                              "text": "City Id",
-                              "component": "City_ID",
-                              "name": "City_IDLabel",
+                              "text": "Tinh Tp Id",
+                              "component": "TinhTP_ID",
+                              "name": "TinhTP_IDLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -90,13 +42,23 @@
                           "components": [
                             {
                               "valueType": "string",
-                              "maxLength": 10,
+                              "maxLength": 5,
                               "type": "textbox",
-                              "name": "City_ID",
+                              "name": "TinhTP_ID",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${tblgncity.City_ID}"
+                              "value": "${tblhptinhtp.TinhTP_ID}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "TinhTP_IDRequiredValidator",
+                              "component": "TinhTP_ID",
+                              "text": "TinhTP_ID is required",
+                              "style": {
+                                "position": "absolute"
+                              }
                             }
                           ]
                         }
@@ -114,9 +76,9 @@
                           "components": [
                             {
                               "type": "label",
-                              "text": "City Name",
-                              "component": "CityName",
-                              "name": "CityNameLabel",
+                              "text": "Tinh Tp Name",
+                              "component": "TinhTP_Name",
+                              "name": "TinhTP_NameLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -129,13 +91,13 @@
                           "components": [
                             {
                               "valueType": "string",
-                              "maxLength": 50,
+                              "maxLength": 30,
                               "type": "textbox",
-                              "name": "CityName",
+                              "name": "TinhTP_Name",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${tblgncity.CityName}"
+                              "value": "${tblhptinhtp.TinhTP_Name}"
                             }
                           ]
                         }
@@ -153,9 +115,9 @@
                           "components": [
                             {
                               "type": "label",
-                              "text": "City Abbreviation",
-                              "component": "CityAbbreviation",
-                              "name": "CityAbbreviationLabel",
+                              "text": "Description",
+                              "component": "Description",
+                              "name": "DescriptionLabel",
                               "style": {
                                 "width": "100%"
                               }
@@ -168,13 +130,13 @@
                           "components": [
                             {
                               "valueType": "string",
-                              "maxLength": 10,
+                              "maxLength": 250,
                               "type": "textbox",
-                              "name": "CityAbbreviation",
+                              "name": "Description",
                               "style": {
                                 "width": "100%"
                               },
-                              "value": "${tblgncity.CityAbbreviation}"
+                              "value": "${tblhptinhtp.Description}"
                             }
                           ]
                         }
@@ -216,36 +178,32 @@
                       {
                         "error": [
                           {
-                            "detail": "Unable to update TblGnCity",
+                            "detail": "Unable to create new TblHpTinhTp!",
                             "severity": "error",
                             "summary": "Error",
                             "type": "notify"
                           }
                         ],
-                        "name": "DB_At_VDC2.updateTblGnCity",
+                        "name": "DB_At_VDC2.createTblHpTinhTp",
                         "parameters": [
                           {
-                            "name": "City_SEQ",
-                            "value": "${parameters.City_SEQ}"
-                          },
-                          {
-                            "name": "TblGnCity",
-                            "value": "${tblgncity}"
+                            "name": "TblHpTinhTp",
+                            "value": "${tblhptinhtp}"
                           }
                         ],
                         "then": [
                           {
                             "type": "close-popup",
-                            "result": "${tblgncity}"
+                            "result": "${tblhptinhtp}"
                           }
                         ],
                         "type": "invoke"
                       }
                     ]
                   },
-                  "itemType": "CanErp2.Models.DbAtVdc2.TblGnCity",
-                  "data": "${tblgncity}",
-                  "visible": "${tblgncity != null && canEdit}"
+                  "data": "${tblhptinhtp}",
+                  "visible": "${tblhptinhtp != null}",
+                  "itemType": "CanErp2.Models.DbAtVdc2.TblHpTinhTp"
                 }
               ]
             }
@@ -257,32 +215,13 @@
   "events": {
     "load": [
       {
-        "name": "canEdit",
+        "name": "tblhptinhtp",
         "type": "set",
-        "value": "true",
-        "valueType": "bool"
-      },
-      {
-        "name": "DB_At_VDC2.getTblGnCityByCity_SEQ",
-        "parameters": [
-          {
-            "name": "City_SEQ",
-            "value": "${parameters.City_SEQ}"
-          }
-        ],
-        "then": [
-          {
-            "name": "tblgncity",
-            "type": "set",
-            "value": "${result}",
-            "valueType": "CanErp2.Models.DbAtVdc2.TblGnCity"
-          }
-        ],
-        "error": [],
-        "type": "invoke"
+        "value": "new CanErp2.Models.DbAtVdc2.TblHpTinhTp()",
+        "valueType": "CanErp2.Models.DbAtVdc2.TblHpTinhTp"
       }
     ]
   },
-  "name": "Edit Tbl Gn City",
+  "name": "Add Tbl Hp Tinh Tp",
   "layout": "Main"
 }

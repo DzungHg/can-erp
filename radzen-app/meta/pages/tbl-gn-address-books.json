@@ -105,7 +105,7 @@
                     },
                     {
                       "property": "DOB",
-                      "formatString": "{0:dd/MM/yyyy}",
+                      "formatString": "{0:MM/dd/yyyy}",
                       "title": "DOB"
                     },
                     {
@@ -134,10 +134,10 @@
                     },
                     {
                       "property": "City_FK",
-                      "sortProperty": "TblGnCity.City_ID",
-                      "filterProperty": "TblGnCity.City_ID",
-                      "template": "${data.TblGnCity?.City_ID}",
-                      "title": "Tbl Gn City"
+                      "sortProperty": "TblHpTinhTp.TinhTP_Name",
+                      "filterProperty": "TblHpTinhTp.TinhTP_Name",
+                      "template": "${data.TblHpTinhTp?.TinhTP_Name}",
+                      "title": "Tbl Hp Tinh Tp"
                     },
                     {
                       "filterable": false,

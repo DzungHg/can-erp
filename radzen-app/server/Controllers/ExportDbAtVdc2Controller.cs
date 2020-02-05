@@ -36,18 +36,6 @@ namespace CanErp2
             return ToExcel(ApplyQuery(context.TblGnAddressBookTypes, Request.Query));
         }
 
-        [HttpGet("/export/DbAtVdc2/tblgncities/csv")]
-        public FileStreamResult ExportTblGnCitiesToCSV()
-        {
-            return ToCSV(ApplyQuery(context.TblGnCities, Request.Query));
-        }
-
-        [HttpGet("/export/DbAtVdc2/tblgncities/excel")]
-        public FileStreamResult ExportTblGnCitiesToExcel()
-        {
-            return ToExcel(ApplyQuery(context.TblGnCities, Request.Query));
-        }
-
         [HttpGet("/export/DbAtVdc2/tblgndepartments/csv")]
         public FileStreamResult ExportTblGnDepartmentsToCSV()
         {
@@ -130,6 +118,18 @@ namespace CanErp2
         public FileStreamResult ExportTblGnShipViaToExcel()
         {
             return ToExcel(ApplyQuery(context.TblGnShipVia, Request.Query));
+        }
+
+        [HttpGet("/export/DbAtVdc2/tblhptinhtps/csv")]
+        public FileStreamResult ExportTblHpTinhTpsToCSV()
+        {
+            return ToCSV(ApplyQuery(context.TblHpTinhTps, Request.Query));
+        }
+
+        [HttpGet("/export/DbAtVdc2/tblhptinhtps/excel")]
+        public FileStreamResult ExportTblHpTinhTpsToExcel()
+        {
+            return ToExcel(ApplyQuery(context.TblHpTinhTps, Request.Query));
         }
 
         [HttpGet("/export/DbAtVdc2/tbliccategories/csv")]

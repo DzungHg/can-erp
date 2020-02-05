@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CanErp2.Pages
 {
-    public partial class AddTblGnCityComponent : ComponentBase
+    public partial class AddTblHpTinhTpComponent : ComponentBase
     {
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
@@ -32,18 +32,18 @@ namespace CanErp2.Pages
         [Inject]
         protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-        CanErp2.Models.DbAtVdc2.TblGnCity _tblgncity;
-        protected CanErp2.Models.DbAtVdc2.TblGnCity tblgncity
+        CanErp2.Models.DbAtVdc2.TblHpTinhTp _tblhptinhtp;
+        protected CanErp2.Models.DbAtVdc2.TblHpTinhTp tblhptinhtp
         {
             get
             {
-                return _tblgncity;
+                return _tblhptinhtp;
             }
             set
             {
-                if(!object.Equals(_tblgncity, value))
+                if(!object.Equals(_tblhptinhtp, value))
                 {
-                    _tblgncity = value;
+                    _tblhptinhtp = value;
                     InvokeAsync(() => { StateHasChanged(); });
                 }
             }
@@ -55,19 +55,19 @@ namespace CanErp2.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
-            tblgncity = new CanErp2.Models.DbAtVdc2.TblGnCity();
+            tblhptinhtp = new CanErp2.Models.DbAtVdc2.TblHpTinhTp();
         }
 
-        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblGnCity args)
+        protected async System.Threading.Tasks.Task Form0Submit(CanErp2.Models.DbAtVdc2.TblHpTinhTp args)
         {
             try
             {
-                var dbAtVdc2CreateTblGnCityResult = await DbAtVdc2.CreateTblGnCity(tblgncity);
-                DialogService.Close(tblgncity);
+                var dbAtVdc2CreateTblHpTinhTpResult = await DbAtVdc2.CreateTblHpTinhTp(tblhptinhtp);
+                DialogService.Close(tblhptinhtp);
             }
-            catch (Exception dbAtVdc2CreateTblGnCityException)
+            catch (Exception dbAtVdc2CreateTblHpTinhTpException)
             {
-                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblGnCity!");
+                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to create new TblHpTinhTp!");
             }
         }
 

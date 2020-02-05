@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblgnaddressbook)" Visible="@(tblgnaddressbook != null)" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblgnaddressbook" Visible="@(tblgnaddressbook != null)" TItem="CanErp2.Models.DbAtVdc2.TblGnAddressBook" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -29,7 +29,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnAddressBookTypesResult)" TextProperty="AddressBookType_ID" ValueProperty="AddressBookType_SEQ" Placeholder="Choose TblGnAddressBookType" style="width: 100%" @bind-Value="@(tblgnaddressbook.AddressBookType_FK)" Name="AddressBookType_FK">
+                <RadzenDropDown Data="@getTblGnAddressBookTypesResult" TextProperty="AddressBookType_ID" ValueProperty="AddressBookType_SEQ" Placeholder="Choose TblGnAddressBookType" style="width: 100%" @bind-Value="@(tblgnaddressbook.AddressBookType_FK)" Name="AddressBookType_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnGendersResult)" TextProperty="Gender_ID" ValueProperty="Gender_SEQ" Placeholder="Choose TblGnGender" style="width: 100%" @bind-Value="@(tblgnaddressbook.Gender_FK)" Name="Gender_FK">
+                <RadzenDropDown Data="@getTblGnGendersResult" TextProperty="Gender_ID" ValueProperty="Gender_SEQ" Placeholder="Choose TblGnGender" style="width: 100%" @bind-Value="@(tblgnaddressbook.Gender_FK)" Name="Gender_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDatePicker DateFormat="dd/MM/yyyy" style="width: 100%" @bind-Value="@(tblgnaddressbook.DOB)" Name="DOB">
+                <RadzenDatePicker DateFormat="MM/dd/yyyy" style="width: 100%" @bind-Value="@(tblgnaddressbook.DOB)" Name="DOB">
                 </RadzenDatePicker>
               </div>
             </div>
@@ -135,11 +135,11 @@
             </div>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
-                <RadzenLabel Text="Tbl Gn City" Component="City_FK" style="width: 100%">
+                <RadzenLabel Text="Tbl Hp Tinh Tp" Component="City_FK" style="width: 100%">
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblGnCitiesResult)" TextProperty="City_ID" ValueProperty="City_SEQ" Placeholder="Choose TblGnCity" style="width: 100%" @bind-Value="@(tblgnaddressbook.City_FK)" Name="City_FK">
+                <RadzenDropDown Data="@getTblHpTinhTpsResult" TextProperty="TinhTP_Name" ValueProperty="TinhTP_ID" Placeholder="Choose TblHpTinhTp" style="width: 100%" @bind-Value="@(tblgnaddressbook.City_FK)" Name="City_FK">
                 </RadzenDropDown>
               </div>
             </div>

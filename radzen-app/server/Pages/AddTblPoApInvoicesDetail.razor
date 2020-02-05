@@ -9,7 +9,7 @@
   <ChildContent>
     <div class="row">
       <div class="col-md-12">
-        <RadzenTemplateForm Data="@(tblpoapinvoicesdetail)" Visible="@(tblpoapinvoicesdetail != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail" Submit="@Form0Submit">
+        <RadzenTemplateForm Data="@tblpoapinvoicesdetail" Visible="@(tblpoapinvoicesdetail != null)" TItem="CanErp2.Models.DbAtVdc2.TblPoApInvoicesDetail" Submit="@Form0Submit">
           <ChildContent>
             <div style="margin-bottom: 1rem" class="row">
               <div class="col-md-3">
@@ -17,7 +17,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblPoVendorsResult)" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="display: block; width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Vendor_ID)" Name="Vendor_ID">
+                <RadzenDropDown Data="@getTblPoVendorsResult" TextProperty="LastName" ValueProperty="Vendor_ID" Placeholder="Choose TblPoVendor" style="display: block; width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Vendor_ID)" Name="Vendor_ID">
                 </RadzenDropDown>
                 <RadzenRequiredValidator Component="Vendor_ID" Text="Vendor_ID is required" style="position: absolute">
                 </RadzenRequiredValidator>
@@ -51,7 +51,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcInventoriesResult)" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Inventory_FK)" Name="Inventory_FK">
+                <RadzenDropDown Data="@getTblIcInventoriesResult" TextProperty="Warehouse_FK" ValueProperty="Inventory_SEQ" Placeholder="Choose TblIcInventory" style="width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Inventory_FK)" Name="Inventory_FK">
                 </RadzenDropDown>
               </div>
             </div>
@@ -61,7 +61,7 @@
                 </RadzenLabel>
               </div>
               <div class="col-md-9">
-                <RadzenDropDown Data="@(getTblIcUnitsResult)" TextProperty="UnitText" ValueProperty="Unit_SEQ" Placeholder="Choose TblIcUnit" style="width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Unit_FK)" Name="Unit_FK">
+                <RadzenDropDown Data="@getTblIcUnitsResult" TextProperty="UnitText" ValueProperty="Unit_SEQ" Placeholder="Choose TblIcUnit" style="width: 100%" @bind-Value="@(tblpoapinvoicesdetail.Unit_FK)" Name="Unit_FK">
                 </RadzenDropDown>
               </div>
             </div>

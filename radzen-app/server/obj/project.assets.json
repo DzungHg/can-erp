@@ -582,7 +582,7 @@
           "lib/netstandard1.3/Newtonsoft.Json.dll": {}
         }
       },
-      "Radzen.Blazor/2.1.14": {
+      "Radzen.Blazor/2.1.16": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Components": "3.1.0",
@@ -3092,10 +3092,10 @@
         "tools/install.ps1"
       ]
     },
-    "Radzen.Blazor/2.1.14": {
-      "sha512": "V0q6HGWHXAbUijssbU1WAE+iGZEPFi4yDYwI7Hg/g959ZrnVi7Ivul0o0z7AZK+4EInIaNrEKkMhOQyIyE/HNw==",
+    "Radzen.Blazor/2.1.16": {
+      "sha512": "Zcdw5pYzFl5VqfrhIds3s4hLY4SCGfZFKh3IXOpyDuCsikg3KZXmQ5r+/n+pqJ0T/tp81QYYFLxrrPcQ4pAAQQ==",
       "type": "package",
-      "path": "radzen.blazor/2.1.14",
+      "path": "radzen.blazor/2.1.16",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3108,7 +3108,7 @@
         "contentFiles/any/netstandard2.1/Properties/launchSettings.json",
         "icon.png",
         "lib/netstandard2.1/Radzen.Blazor.dll",
-        "radzen.blazor.2.1.14.nupkg.sha512",
+        "radzen.blazor.2.1.16.nupkg.sha512",
         "radzen.blazor.nuspec",
         "staticwebassets/Radzen.Blazor.js",
         "staticwebassets/css/dark.css",
@@ -7643,30 +7643,28 @@
       "Microsoft.EntityFrameworkCore >= 3.1.0",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.0",
-      "Radzen.Blazor >= 2.1.14",
+      "Radzen.Blazor >= 2.1.16",
       "System.ComponentModel.Annotations >= 4.7.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BK\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\GitHub02\\can-erp\\radzen-app\\server\\CanErp2.csproj",
+      "projectUniqueName": "C:\\ZDung HDD\\GitHub\\can-erp\\radzen-app\\server\\CanErp2.csproj",
       "projectName": "CanErp2",
-      "projectPath": "F:\\GitHub02\\can-erp\\radzen-app\\server\\CanErp2.csproj",
-      "packagesPath": "C:\\Users\\BK\\.nuget\\packages\\",
-      "outputPath": "F:\\GitHub02\\can-erp\\radzen-app\\server\\obj\\",
+      "projectPath": "C:\\ZDung HDD\\GitHub\\can-erp\\radzen-app\\server\\CanErp2.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\ZDung HDD\\GitHub\\can-erp\\radzen-app\\server\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\BK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -7713,7 +7711,7 @@
           },
           "Radzen.Blazor": {
             "target": "Package",
-            "version": "[2.1.14, )"
+            "version": "[2.1.16, )"
           },
           "System.ComponentModel.Annotations": {
             "target": "Package",

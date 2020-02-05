@@ -66,18 +66,18 @@ namespace CanErp2.Pages
             }
         }
 
-        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> _getTblGnCitiesResult;
-        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> getTblGnCitiesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> _getTblHpTinhTpsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> getTblHpTinhTpsResult
         {
             get
             {
-                return _getTblGnCitiesResult;
+                return _getTblHpTinhTpsResult;
             }
             set
             {
-                if(!object.Equals(_getTblGnCitiesResult, value))
+                if(!object.Equals(_getTblHpTinhTpsResult, value))
                 {
-                    _getTblGnCitiesResult = value;
+                    _getTblHpTinhTpsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
                 }
             }
@@ -112,8 +112,8 @@ namespace CanErp2.Pages
             var dbAtVdc2GetTblGnGendersResult = await DbAtVdc2.GetTblGnGenders();
             getTblGnGendersResult = dbAtVdc2GetTblGnGendersResult;
 
-            var dbAtVdc2GetTblGnCitiesResult = await DbAtVdc2.GetTblGnCities();
-            getTblGnCitiesResult = dbAtVdc2GetTblGnCitiesResult;
+            var dbAtVdc2GetTblHpTinhTpsResult = await DbAtVdc2.GetTblHpTinhTps();
+            getTblHpTinhTpsResult = dbAtVdc2GetTblHpTinhTpsResult;
 
             tblgnaddressbook = new CanErp2.Models.DbAtVdc2.TblGnAddressBook();
         }

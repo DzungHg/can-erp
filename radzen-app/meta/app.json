@@ -13,7 +13,6 @@
   "navigation": [
     "Tbl Gn Address Books",
     "Tbl Gn Address Book Types",
-    "Tbl Gn Cities",
     "Tbl Gn Departments",
     "Tbl Gn Genders",
     "Tbl Gn Incoterms",
@@ -43,7 +42,8 @@
     "Tbl So Order Details",
     "Tbl So Order Detail Statuses",
     "Tbl So Order Statuses",
-    "Tbl So Sales Orders"
+    "Tbl So Sales Orders",
+    "Tbl Hp Tinh Tps"
   ],
   "pages": [
     "Tbl Gn Address Books",
@@ -52,9 +52,6 @@
     "Tbl Gn Address Book Types",
     "Add Tbl Gn Address Book Type",
     "Edit Tbl Gn Address Book Type",
-    "Tbl Gn Cities",
-    "Add Tbl Gn City",
-    "Edit Tbl Gn City",
     "Tbl Gn Departments",
     "Add Tbl Gn Department",
     "Edit Tbl Gn Department",
@@ -144,7 +141,10 @@
     "Edit Tbl So Order Status",
     "Tbl So Sales Orders",
     "Add Tbl So Sales Order",
-    "Edit Tbl So Sales Order"
+    "Edit Tbl So Sales Order",
+    "Tbl Hp Tinh Tps",
+    "Add Tbl Hp Tinh Tp",
+    "Edit Tbl Hp Tinh Tp"
   ],
   "serverLang": "cs",
   "serverProject": true,

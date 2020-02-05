@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CanErp2.Pages
 {
-    public partial class TblGnCitiesComponent : ComponentBase
+    public partial class TblHpTinhTpsComponent : ComponentBase
     {
         [Parameter(CaptureUnmatchedValues = true)]
         public IReadOnlyDictionary<string, dynamic> Attributes { get; set; }
@@ -32,20 +32,20 @@ namespace CanErp2.Pages
         [Inject]
         protected DbAtVdc2Service DbAtVdc2 { get; set; }
 
-        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblGnCity> grid0;
+        protected RadzenGrid<CanErp2.Models.DbAtVdc2.TblHpTinhTp> grid0;
 
-        IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> _getTblGnCitiesResult;
-        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblGnCity> getTblGnCitiesResult
+        IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> _getTblHpTinhTpsResult;
+        protected IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> getTblHpTinhTpsResult
         {
             get
             {
-                return _getTblGnCitiesResult;
+                return _getTblHpTinhTpsResult;
             }
             set
             {
-                if(!object.Equals(_getTblGnCitiesResult, value))
+                if(!object.Equals(_getTblHpTinhTpsResult, value))
                 {
-                    _getTblGnCitiesResult = value;
+                    _getTblHpTinhTpsResult = value;
                     InvokeAsync(() => { StateHasChanged(); });
                 }
             }
@@ -57,21 +57,21 @@ namespace CanErp2.Pages
         }
         protected async System.Threading.Tasks.Task Load()
         {
-            var dbAtVdc2GetTblGnCitiesResult = await DbAtVdc2.GetTblGnCities();
-            getTblGnCitiesResult = dbAtVdc2GetTblGnCitiesResult;
+            var dbAtVdc2GetTblHpTinhTpsResult = await DbAtVdc2.GetTblHpTinhTps();
+            getTblHpTinhTpsResult = dbAtVdc2GetTblHpTinhTpsResult;
         }
 
         protected async System.Threading.Tasks.Task Button0Click(MouseEventArgs args)
         {
-            var result = await DialogService.OpenAsync<AddTblGnCity>("Add Tbl Gn City", null);
+            var result = await DialogService.OpenAsync<AddTblHpTinhTp>("Add Tbl Hp Tinh Tp", null);
               grid0.Reload();
 
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
-        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblGnCity args)
+        protected async System.Threading.Tasks.Task Grid0RowSelect(CanErp2.Models.DbAtVdc2.TblHpTinhTp args)
         {
-            var result = await DialogService.OpenAsync<EditTblGnCity>("Edit Tbl Gn City", new Dictionary<string, object>() { {"City_SEQ", args.City_SEQ} });
+            var result = await DialogService.OpenAsync<EditTblHpTinhTp>("Edit Tbl Hp Tinh Tp", new Dictionary<string, object>() { {"TinhTP_ID", args.TinhTP_ID} });
               await InvokeAsync(() => { StateHasChanged(); });
         }
 
@@ -79,14 +79,14 @@ namespace CanErp2.Pages
         {
             try
             {
-                var dbAtVdc2DeleteTblGnCityResult = await DbAtVdc2.DeleteTblGnCity(data.City_SEQ);
-                if (dbAtVdc2DeleteTblGnCityResult != null) {
+                var dbAtVdc2DeleteTblHpTinhTpResult = await DbAtVdc2.DeleteTblHpTinhTp($"{data.TinhTP_ID}");
+                if (dbAtVdc2DeleteTblHpTinhTpResult != null) {
                     grid0.Reload();
 }
             }
-            catch (Exception dbAtVdc2DeleteTblGnCityException)
+            catch (Exception dbAtVdc2DeleteTblHpTinhTpException)
             {
-                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblGnCity");
+                    NotificationService.Notify(NotificationSeverity.Error, $"Error", $"Unable to delete TblHpTinhTp");
             }
         }
     }
