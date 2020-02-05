@@ -1,0 +1,35 @@
+﻿@page "/tbl-hp-phan-loai-nvs"
+@layout MainLayout
+@inherits CanErpHp.Pages.TblHpPhanLoaiNvsComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CanErpHp.Models.DbAtVdc2
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Tbl Hp Phan Loai Nvs">
+    </RadzenHeading>
+    <div class="row">
+      <div class="col-md-12">
+        <RadzenButton Icon="add_circle_outline" style="margin-bottom: 10px" Text="Add" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getTblHpPhanLoaiNvsResult" TItem="CanErpHp.Models.DbAtVdc2.TblHpPhanLoaiNv" RowSelect="@Grid0RowSelect">
+          <Columns>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.TblHpPhanLoaiNv" Context="canErpHpModelsDbAtVdc2TblHpPhanLoaiNv" Property="PhanLoaiNV_ID" Title="Phan Loai NV ID">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.TblHpPhanLoaiNv" Context="canErpHpModelsDbAtVdc2TblHpPhanLoaiNv" Property="PhanLoaiNV_Name" Title="Phan Loai NV Name">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.TblHpPhanLoaiNv" Context="canErpHpModelsDbAtVdc2TblHpPhanLoaiNv" Property="Description" Title="Description">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.TblHpPhanLoaiNv" Context="canErpHpModelsDbAtVdc2TblHpPhanLoaiNv" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+              <Template Context="canErpHpModelsDbAtVdc2TblHpPhanLoaiNv">
+                <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="close" Size="ButtonSize.Small" Click="@((args) =>GridDeleteButtonClick(args, canErpHpModelsDbAtVdc2TblHpPhanLoaiNv))" @onclick:stopPropagation="true">
+                </RadzenButton>
+              </Template>
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

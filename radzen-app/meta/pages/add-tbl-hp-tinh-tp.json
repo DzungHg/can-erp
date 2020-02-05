@@ -27,9 +27,15 @@
                           "components": [
                             {
                               "type": "label",
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "text": "Tinh Tp Id",
                               "component": "TinhTP_ID",
                               "name": "TinhTP_IDLabel",
+=======
+                              "text": "Ngach Id",
+                              "component": "Ngach_ID",
+                              "name": "Ngach_IDLabel",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                               "style": {
                                 "width": "100%"
                               }
@@ -44,11 +50,16 @@
                               "valueType": "string",
                               "maxLength": 5,
                               "type": "textbox",
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "name": "TinhTP_ID",
+=======
+                              "name": "Ngach_ID",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "value": "${tblhptinhtp.TinhTP_ID}"
                             },
                             {
@@ -56,6 +67,15 @@
                               "name": "TinhTP_IDRequiredValidator",
                               "component": "TinhTP_ID",
                               "text": "TinhTP_ID is required",
+=======
+                              "value": "${tblhpngach.Ngach_ID}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "Ngach_IDRequiredValidator",
+                              "component": "Ngach_ID",
+                              "text": "Ngach_ID is required",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                               "style": {
                                 "position": "absolute"
                               }
@@ -76,9 +96,15 @@
                           "components": [
                             {
                               "type": "label",
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "text": "Tinh Tp Name",
                               "component": "TinhTP_Name",
                               "name": "TinhTP_NameLabel",
+=======
+                              "text": "Ngach Name",
+                              "component": "Ngach_Name",
+                              "name": "Ngach_NameLabel",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                               "style": {
                                 "width": "100%"
                               }
@@ -91,6 +117,7 @@
                           "components": [
                             {
                               "valueType": "string",
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "maxLength": 30,
                               "type": "textbox",
                               "name": "TinhTP_Name",
@@ -98,6 +125,15 @@
                                 "width": "100%"
                               },
                               "value": "${tblhptinhtp.TinhTP_Name}"
+=======
+                              "maxLength": 45,
+                              "type": "textbox",
+                              "name": "Ngach_Name",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${tblhpngach.Ngach_Name}"
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                             }
                           ]
                         }
@@ -136,7 +172,11 @@
                               "style": {
                                 "width": "100%"
                               },
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                               "value": "${tblhptinhtp.Description}"
+=======
+                              "value": "${tblhpngach.Description}"
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                             }
                           ]
                         }
@@ -178,32 +218,54 @@
                       {
                         "error": [
                           {
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                             "detail": "Unable to create new TblHpTinhTp!",
+=======
+                            "detail": "Unable to create new TblHpNgach!",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                             "severity": "error",
                             "summary": "Error",
                             "type": "notify"
                           }
                         ],
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                         "name": "DB_At_VDC2.createTblHpTinhTp",
                         "parameters": [
                           {
                             "name": "TblHpTinhTp",
                             "value": "${tblhptinhtp}"
+=======
+                        "name": "DB_At_VDC2.createTblHpNgach",
+                        "parameters": [
+                          {
+                            "name": "TblHpNgach",
+                            "value": "${tblhpngach}"
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                           }
                         ],
                         "then": [
                           {
                             "type": "close-popup",
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                             "result": "${tblhptinhtp}"
+=======
+                            "result": "${tblhpngach}"
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                           }
                         ],
                         "type": "invoke"
                       }
                     ]
                   },
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
                   "data": "${tblhptinhtp}",
                   "visible": "${tblhptinhtp != null}",
                   "itemType": "CanErp2.Models.DbAtVdc2.TblHpTinhTp"
+=======
+                  "data": "${tblhpngach}",
+                  "visible": "${tblhpngach != null}",
+                  "itemType": "CanErpHp.Models.DbAtVdc2.TblHpNgach"
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
                 }
               ]
             }
@@ -215,6 +277,7 @@
   "events": {
     "load": [
       {
+<<<<<<< Updated upstream:radzen-app/meta/pages/add-tbl-hp-tinh-tp.json
         "name": "tblhptinhtp",
         "type": "set",
         "value": "new CanErp2.Models.DbAtVdc2.TblHpTinhTp()",
@@ -223,5 +286,15 @@
     ]
   },
   "name": "Add Tbl Hp Tinh Tp",
+=======
+        "name": "tblhpngach",
+        "type": "set",
+        "value": "new CanErpHp.Models.DbAtVdc2.TblHpNgach()",
+        "valueType": "CanErpHp.Models.DbAtVdc2.TblHpNgach"
+      }
+    ]
+  },
+  "name": "Add Tbl Hp Ngach",
+>>>>>>> Stashed changes:hr-pr/meta/pages/add-tbl-hp-ngach.json
   "layout": "Main"
 }

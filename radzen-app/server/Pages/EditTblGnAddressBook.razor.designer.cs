@@ -103,6 +103,7 @@ namespace CanErp2.Pages
             }
         }
 
+<<<<<<< Updated upstream
         IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> _getTblHpTinhTpsResult;
         protected IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> getTblHpTinhTpsResult
         {
@@ -120,6 +121,8 @@ namespace CanErp2.Pages
             }
         }
 
+=======
+>>>>>>> Stashed changes
         protected override async System.Threading.Tasks.Task OnInitializedAsync()
         {
             await Load();
@@ -136,9 +139,12 @@ namespace CanErp2.Pages
 
             var dbAtVdc2GetTblGnGendersResult = await DbAtVdc2.GetTblGnGenders();
             getTblGnGendersResult = dbAtVdc2GetTblGnGendersResult;
+<<<<<<< Updated upstream
 
             var dbAtVdc2GetTblHpTinhTpsResult = await DbAtVdc2.GetTblHpTinhTps();
             getTblHpTinhTpsResult = dbAtVdc2GetTblHpTinhTpsResult;
+=======
+>>>>>>> Stashed changes
         }
 
         protected async System.Threading.Tasks.Task CloseButtonClick(MouseEventArgs args)

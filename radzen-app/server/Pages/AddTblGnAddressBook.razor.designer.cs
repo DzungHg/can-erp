@@ -66,6 +66,7 @@ namespace CanErp2.Pages
             }
         }
 
+<<<<<<< Updated upstream
         IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> _getTblHpTinhTpsResult;
         protected IEnumerable<CanErp2.Models.DbAtVdc2.TblHpTinhTp> getTblHpTinhTpsResult
         {
@@ -83,6 +84,8 @@ namespace CanErp2.Pages
             }
         }
 
+=======
+>>>>>>> Stashed changes
         CanErp2.Models.DbAtVdc2.TblGnAddressBook _tblgnaddressbook;
         protected CanErp2.Models.DbAtVdc2.TblGnAddressBook tblgnaddressbook
         {
@@ -112,9 +115,12 @@ namespace CanErp2.Pages
             var dbAtVdc2GetTblGnGendersResult = await DbAtVdc2.GetTblGnGenders();
             getTblGnGendersResult = dbAtVdc2GetTblGnGendersResult;
 
+<<<<<<< Updated upstream
             var dbAtVdc2GetTblHpTinhTpsResult = await DbAtVdc2.GetTblHpTinhTps();
             getTblHpTinhTpsResult = dbAtVdc2GetTblHpTinhTpsResult;
 
+=======
+>>>>>>> Stashed changes
             tblgnaddressbook = new CanErp2.Models.DbAtVdc2.TblGnAddressBook();
         }
 

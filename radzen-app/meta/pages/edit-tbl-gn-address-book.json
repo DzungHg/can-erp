@@ -573,11 +573,18 @@
                           "class": "col-md-9",
                           "components": [
                             {
+<<<<<<< Updated upstream
                               "data": "${getTblHpTinhTpsResult}",
                               "textProperty": "TinhTP_Name",
                               "valueProperty": "TinhTP_ID",
                               "placeholder": "Choose TblHpTinhTp",
                               "valueType": "string",
+=======
+                              "textProperty": "City_ID",
+                              "valueProperty": "City_SEQ",
+                              "placeholder": "Choose TblGnCity",
+                              "valueType": "int?",
+>>>>>>> Stashed changes
                               "type": "dropdown",
                               "name": "City_FK",
                               "style": {
@@ -715,6 +722,7 @@
           }
         ],
         "type": "invoke"
+<<<<<<< Updated upstream
       },
       {
         "name": "DB_At_VDC2.getTblHpTinhTps",
@@ -728,6 +736,8 @@
           }
         ],
         "type": "invoke"
+=======
+>>>>>>> Stashed changes
       }
     ]
   },

@@ -1,0 +1,81 @@
+﻿@page "/vw-hr-ly-lich-nv-s"
+@layout MainLayout
+@inherits CanErpHp.Pages.VwHrLyLichNvSComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CanErpHp.Models.DbAtVdc2
+<RadzenContent Container="main">
+  <ChildContent>
+    <RadzenHeading Size="H1" Text="Lý Lịch Nhân Viên">
+    </RadzenHeading>
+    <div style="height: 469px" class="row">
+      <div class="col-md-12">
+        <RadzenButton Text="Thêm" Click="@Button0Click">
+        </RadzenButton>
+        <RadzenGrid @ref="grid0" AllowFiltering="true" AllowPaging="true" AllowSorting="true" Data="@getVwHrLyLichNvsResult" TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv">
+          <Columns>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="NhanVien_ID" Title="Nhan Vien ID">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="HoTenLot" Title="Ho Ten Lot">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="Ten" Title="Ten">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="MaTheChamCong" Title="Ma The Cham Cong">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="PhaiNam" Title="Phai Nam">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="HinhAnh" Title="Hinh Anh">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" FormatString="{0:d}" Property="NgayThangNamSinh" Title="Ngay Thang Nam Sinh">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="NamSinh" Title="Nam Sinh">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="NoiSinh_FK" Title="Noi Sinh FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="QueQuan_FK" Title="Que Quan FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="DanToc_FK" Title="Dan Toc FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="TonGiao_FK" Title="Ton Giao FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="QuocTich_FK" Title="Quoc Tich FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="SoCMND" Title="So CMND">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" FormatString="{0:d}" Property="NgayCapCMND" Title="Ngay Cap CMND">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="NoiCapCMND" Title="Noi Cap CMND">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="HoKhau" Title="Ho Khau">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="QuanHoKhau_FK" Title="Quan Ho Khau FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="TinhTPHoKhau_FK" Title="Tinh TP Ho Khau FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="ChoOHienNay" Title="Cho O Hien Nay">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="QuanChoOHienNay_FK" Title="Quan Cho O Hien Nay FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="TinhTPChoOHienNay_FK" Title="Tinh TP Cho O Hien Nay FK">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="SoDienThoai" Title="So Dien Thoai">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="Email" Title="Email">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="MaSoThueCaNhan" Title="Ma So Thue Ca Nhan">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="TaiKhoanThanhToan" Title="Tai Khoan Thanh Toan">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="HoTenATM" Title="Ho Ten ATM">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" Property="MaKeToan" Title="Ma Ke Toan">
+            </RadzenGridColumn>
+            <RadzenGridColumn TItem="CanErpHp.Models.DbAtVdc2.VwHrLyLichNv" Context="canErpHpModelsDbAtVdc2VwHrLyLichNv" FormatString="{0:d}" Property="NgayNhatTu" Title="Ngay Nhat Tu">
+            </RadzenGridColumn>
+          </Columns>
+        </RadzenGrid>
+      </div>
+    </div>
+  </ChildContent>
+</RadzenContent>

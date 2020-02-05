@@ -1,0 +1,71 @@
+﻿@inherits CanErpHp.Layouts.MainLayoutComponent
+
+@using Radzen
+@using Radzen.Blazor
+@using CanErpHp.Models.DbAtVdc2
+<RadzenDialog />
+<RadzenNotification />
+
+<RadzenHeader>
+  <ChildContent>
+    <div class="row justify-content-start align-items-center">
+      <div class="col-md-6 d-flex align-items-center">
+        <RadzenSidebarToggle Click="@SidebarToggle0Click">
+        </RadzenSidebarToggle>
+        <RadzenLabel Text="CanErpHP">
+        </RadzenLabel>
+      </div>
+      <div class="col-md-6 text-lg-right">
+      </div>
+    </div>
+  </ChildContent>
+</RadzenHeader>
+<RadzenBody @ref="body0">
+  <ChildContent>
+    <RadzenContentContainer Name="main">
+    @Body
+    </RadzenContentContainer>
+  </ChildContent>
+</RadzenBody>
+<RadzenSidebar @ref="sidebar0">
+  <ChildContent>
+    <RadzenPanelMenu style="height: 100%">
+      <ChildContent>
+        <RadzenPanelMenuItem Text="Nhân viên">
+          <ChildContent>
+            <RadzenPanelMenuItem Path="vw-hr-ly-lich-nv-s" Text="Lý lịch">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-nhan-viens" Text="DS Nhân Viên">
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenuItem>
+        <RadzenPanelMenuItem Text="Cài đặt">
+          <ChildContent>
+            <RadzenPanelMenuItem Path="tbl-hp-tinh-tps" Text="Tỉnh Thành">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-quans" Text="Quận Huyện">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-xi-nghieps" Text="Xí nghiệp">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-don-vi-tos" Text="Đơn vị Tổ">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-nganhs" Text="Ngành học">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-ngaches" Text="Ngạch lương">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-hp-bacs" Text="Bậc lương">
+            </RadzenPanelMenuItem>
+            <RadzenPanelMenuItem Path="tbl-gn-departments" Text="Phòng Ban">
+            </RadzenPanelMenuItem>
+          </ChildContent>
+        </RadzenPanelMenuItem>
+      </ChildContent>
+    </RadzenPanelMenu>
+  </ChildContent>
+</RadzenSidebar>
+<RadzenFooter>
+  <ChildContent>
+    <RadzenLabel Text="Ca An HR PR, Copyright Ⓒ 2020">
+    </RadzenLabel>
+  </ChildContent>
+</RadzenFooter>

@@ -1,0 +1,142 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "class": "justify-content-start align-items-center",
+          "components": [
+            {
+              "class": "col-md-6 d-flex align-items-center",
+              "components": [
+                {
+                  "events": {
+                    "click": [
+                      {
+                        "code": "sidebar0.Toggle();",
+                        "type": "execute"
+                      },
+                      {
+                        "code": "body0.Toggle();",
+                        "type": "execute"
+                      }
+                    ]
+                  },
+                  "name": "sidebar-toggle0",
+                  "type": "sidebar-toggle"
+                },
+                {
+                  "name": "label0",
+                  "text": "CanErpHP",
+                  "type": "label"
+                }
+              ],
+              "name": "leftCol",
+              "type": "col"
+            },
+            {
+              "class": "col-md-6 text-lg-right",
+              "name": "rightCol",
+              "type": "col"
+            }
+          ],
+          "name": "headerRow",
+          "type": "row"
+        }
+      ],
+      "name": "header0",
+      "type": "header"
+    },
+    {
+      "components": [
+        {
+          "name": "main",
+          "type": "content-container"
+        }
+      ],
+      "name": "body0",
+      "type": "body"
+    },
+    {
+      "components": [
+        {
+          "items": [
+            {
+              "items": [
+                {
+                  "path": "vw-hr-ly-lich-nv-s",
+                  "text": "Lý lịch"
+                },
+                {
+                  "path": "tbl-hp-nhan-viens",
+                  "text": "DS Nhân Viên"
+                }
+              ],
+              "text": "Nhân viên"
+            },
+            {
+              "items": [
+                {
+                  "icon": "",
+                  "path": "tbl-hp-tinh-tps",
+                  "text": "Tỉnh Thành"
+                },
+                {
+                  "path": "tbl-hp-quans",
+                  "text": "Quận Huyện"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-hp-xi-nghieps",
+                  "text": "Xí nghiệp"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-hp-don-vi-tos",
+                  "text": "Đơn vị Tổ"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-hp-nganhs",
+                  "text": "Ngành học"
+                },
+                {
+                  "icon": "",
+                  "path": "tbl-hp-ngaches",
+                  "text": "Ngạch lương"
+                },
+                {
+                  "path": "tbl-hp-bacs",
+                  "text": "Bậc lương"
+                },
+                {
+                  "path": "tbl-gn-departments",
+                  "text": "Phòng Ban"
+                }
+              ],
+              "text": "Cài đặt"
+            }
+          ],
+          "name": "panelmenu0",
+          "style": {
+            "height": "100%"
+          },
+          "type": "panelmenu"
+        }
+      ],
+      "name": "sidebar0",
+      "type": "sidebar"
+    },
+    {
+      "components": [
+        {
+          "name": "footerText",
+          "text": "Ca An HR PR, Copyright Ⓒ 2020",
+          "type": "label"
+        }
+      ],
+      "name": "footer0",
+      "type": "footer"
+    }
+  ],
+  "name": "Main"
+}
